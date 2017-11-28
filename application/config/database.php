@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'mvc353_2',
-	'password' => 'ltnk1234',
-	'database' => 'mvc353_2',
-	'dbdriver' => 'mysqli',
+	'hostname' => getenv('DB_HOST'),
+	'username' => getenv('DB_USERNAME'),
+	'password' => getenv('DB_PASSWORD'),
+	'database' => getenv('DB_DATABASE'),
+	'dbdriver' => getenv('DB_CONNECTION'),
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
