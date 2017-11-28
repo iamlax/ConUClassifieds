@@ -16,10 +16,18 @@ class Auth_Model extends CI_Model {
 
     public function check_login($data){
         $email = $data['email'];
-        $query = "SELECT * FROM user WHERE 'email' = "."'$email'";
-        $result = $this->db->query($query)->result_array();
+        $password = $data['password'];
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where(array('email'=>$email));
+        $result = $query= $this->db->get()->result_array();
 
-        var_dump($result);
+        if($result[0]['password'] === $password ){
+            return $result[0]['userId'];
+        }else{
+            return false;
+        }
+
     }
 
 }

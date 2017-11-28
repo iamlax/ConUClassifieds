@@ -38,7 +38,7 @@ class Auth_Controller extends CI_Controller {
 
         if(isset($_POST['login'])){
 
-            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
             $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
             if($this->form_validation->run() == true){
@@ -47,10 +47,15 @@ class Auth_Controller extends CI_Controller {
                     'password' => $_POST['password'],
                 );
                 $this->load->model('Auth_Model');
-                $this->Auth_Model->check_login($data);
-                //redirect('login'); //If account created, go to login page
+                $result = $this->Auth_Model->check_login($data);
+                if($result == false){
+                    redirect('login'); //if password is incorrect, redirect to login
+                }else{
+                    $this->session->set_userdata('userId', $result);
+                    //var_dump($this->session->userdata('userId'));
+                }
             }else{
-                redirect('login'); //If failed, go back to login page
+                redirect('login'); //If invalid input, go back to login page
             }
         }
     }
