@@ -30,4 +30,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 .vscode
-.env*
+.env.development
+.env.production
+.env.testing
+.env
