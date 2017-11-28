@@ -9,7 +9,7 @@
                     solutions which harness.</p>
                 <h2>Personal Information</h2>
                 <?php echo validation_errors(); ?>
-                <form action="" method="post">
+                <?php echo form_open('auth_controller/register'); ?>
                     <div class="sign-u">
                         <div class="sign-up1">
                             <h4>First Name* :</h4>

@@ -10,9 +10,9 @@ class Auth_Controller extends CI_Controller {
 
     public function register(){
         $this->load->library('form_validation');
-        //$this->load->view('components/header');
+        $this->load->view('components/header');
         $this->load->view('pages/register');
-        //$this->load->view('components/footer');
+        $this->load->view('components/footer');
 
         if(isset($_POST['register'])){
             $this->form_validation->set_rules('firstName', 'First Name', 'required');
