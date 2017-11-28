@@ -1,5 +1,5 @@
 CREATE TABLE MembershipPlan (
-    membPlanId int NOT NULL,
+    membPlanId int NOT NULL AUTO_INCREMENT,
     name varchar(255),
     price Double,
     adVisibility varchar(255),
@@ -7,7 +7,7 @@ CREATE TABLE MembershipPlan (
 );
 
 CREATE TABLE User (
-    userId int NOT NULL,
+    userId int NOT NULL AUTO_INCREMENT,
     firstName varchar(255),
     lastName varchar(255),
     email varchar(255),
@@ -19,14 +19,14 @@ CREATE TABLE User (
 );
 
 CREATE TABLE Card (
-    cardId int NOT NULL,
+    cardId int NOT NULL AUTO_INCREMENT,
     cardNumber BIGINT,
     cardType varchar(255),
     PRIMARY KEY (cardId)
 );
 
 CREATE TABLE Payment (
-    paymentId int NOT NULL,
+    paymentId int NOT NULL AUTO_INCREMENT,
     userID int,
     amount Double,
     cardId int,
@@ -38,7 +38,7 @@ CREATE TABLE Payment (
 
 
 CREATE TABLE Location (
-    locationId int NOT NULL,
+    locationId int NOT NULL AUTO_INCREMENT,
     province varchar(255),
     city varchar(255),
     PRIMARY KEY (locationId)
@@ -46,7 +46,7 @@ CREATE TABLE Location (
 
 
 CREATE TABLE PromotionPackage (
-    promoId int NOT NULL,
+    promoId int NOT NULL AUTO_INCREMENT,
     description varchar(255),
     duration varchar(255),
     price Double,
@@ -54,13 +54,13 @@ CREATE TABLE PromotionPackage (
 );
 
 CREATE TABLE Category (
-    categoryId int NOT NULL,
+    categoryId int NOT NULL AUTO_INCREMENT,
     name varchar(255),
     PRIMARY KEY (categoryId)
 );
 
 CREATE TABLE SubCategory (
-    subCategoryid int NOT NULL,
+    subCategoryid int NOT NULL AUTO_INCREMENT,
     categoryId int NOT NULL,
     name varchar(255),
     PRIMARY KEY (subCategoryid),
@@ -68,7 +68,7 @@ CREATE TABLE SubCategory (
 );
 
 CREATE TABLE Advertisement (
-    adId int NOT NULL,
+    adId int NOT NULL AUTO_INCREMENT,
     promoId int,
     userId int NOT NULL,
     description varchar(255),
@@ -93,14 +93,14 @@ CREATE TABLE Advertisement (
 );
 
 CREATE TABLE StrategicLocation (
-    strategicLocationId int NOT NULL,
+    strategicLocationId int NOT NULL AUTO_INCREMENT,
     percentage int,
     cph int,
     PRIMARY KEY (strategicLocationId)
 );
 
 CREATE TABLE Store (
-    storeId int NOT NULL,
+    storeId int NOT NULL AUTO_INCREMENT,
     strategicLocationId int,
     address varchar(255),
     managerId int,

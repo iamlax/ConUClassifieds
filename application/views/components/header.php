@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="<?php echo base_url();?>/"><span>Re</span>sale</a>
 			</div>
 			<div class="header-right">
-			<a class="account" href="login.html">My Account</a>
+			<a class="account" href="<?php echo base_url();?>login">My Account</a>
 			<span class="active uls-trigger">Select language</span>
 	<!-- Large modal -->
 			<div class="selectregion">
