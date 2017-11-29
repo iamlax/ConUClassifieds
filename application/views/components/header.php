@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Resale a Business Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>ConUClassifieds</title>
 <link rel="stylesheet" href="<?php echo asset_url();?>css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo asset_url();?>css/bootstrap-select.css">
 <link href="<?php echo asset_url();?>css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="header">
 		<div class="container">
 			<div class="logo">
-				<a href="<?php echo base_url();?>/"><span>Re</span>sale</a>
+				<a href="<?php echo base_url();?>/"><span>ConU</span>Classifieds</a>
 			</div>
 			<div class="header-right">
 			<a class="account" href="<?php echo base_url();?>login">My Account</a>
