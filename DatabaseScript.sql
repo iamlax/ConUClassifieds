@@ -36,14 +36,12 @@ CREATE TABLE Payment (
     FOREIGN KEY (cardId) REFERENCES Card(cardId)
 );
 
-
 CREATE TABLE Location (
     locationId int NOT NULL,
     province varchar(255),
     city varchar(255),
     PRIMARY KEY (locationId)
 );
-
 
 CREATE TABLE PromotionPackage (
     promoId int NOT NULL,
@@ -67,6 +65,23 @@ CREATE TABLE SubCategory (
     FOREIGN KEY (categoryId) REFERENCES Category(categoryId)
 );
 
+CREATE TABLE StrategicLocation (
+    strategicLocationId int NOT NULL,
+    percentage int,
+    cph int,
+    PRIMARY KEY (strategicLocationId)
+);
+
+CREATE TABLE Store (
+    storeId int NOT NULL,
+    strategicLocationId int,
+    address varchar(255),
+    managerId int,
+    PRIMARY KEY (storeId),
+    FOREIGN KEY (managerId) REFERENCES User(userId),
+    FOREIGN KEY (strategicLocationId) REFERENCES StrategicLocation(strategicLocationId)
+);
+
 CREATE TABLE Advertisement (
     adId int NOT NULL,
     promoId int,
@@ -85,37 +100,23 @@ CREATE TABLE Advertisement (
     contactInfo varchar(255),
     price Double,
     forSaleBy varchar(255),
+    storeId int,
     PRIMARY KEY (adId),
     FOREIGN KEY (subCategoryId) REFERENCES SubCategory(subCategoryid),
     FOREIGN KEY (userId) REFERENCES User(userId),
     FOREIGN KEY (locationId) REFERENCES Location(locationId),
-    FOREIGN KEY (promoId) REFERENCES PromotionPackage(promoId)
-);
-
-CREATE TABLE StrategicLocation (
-    strategicLocationId int NOT NULL,
-    percentage int,
-    cph int,
-    PRIMARY KEY (strategicLocationId)
-);
-
-CREATE TABLE Store (
-    storeId int NOT NULL,
-    strategicLocationId int,
-    address varchar(255),
-    managerId int,
-    PRIMARY KEY (storeId),
-    FOREIGN KEY (managerId) REFERENCES User(userId),
-    FOREIGN KEY (strategicLocationId) REFERENCES StrategicLocation(strategicLocationId)
+    FOREIGN KEY (promoId) REFERENCES PromotionPackage(promoId),
+	FOREIGN KEY (storeId) REFERENCES Store(storeId)
 );
 
 CREATE TABLE Rents (
+	rentsId int NOT NULL,
     storeId int NOT NULL,
     userId int NOT NULL,
     delivery varchar(255),
     hours varchar(255),
     date DATE,
-	PRIMARY KEY (storeId, userId),
+	PRIMARY KEY (rentsId),
 	FOREIGN KEY (userId) REFERENCES User(userId),
     FOREIGN KEY (storeId) REFERENCES Store(storeId)
 );
@@ -208,8 +209,18 @@ VALUES(1, 25, 1, "2015-11-29", 6),
 (28, 10, 8, "2017-6-14", 9), 
 (29, 50, 9, "2017-7-18", 10), 
 (30, 90, 10, "2017-8-10", 11), 
-(31, 10, 11, "2017-8-31", 12);
- 
+(31, 10, 11, "2017-8-31", 12),
+(32, 150, 11, "2017-11-20", 13),
+(33, 70, 11, "2017-11-21", 13),
+(34, 70, 11, "2017-11-21", 13),
+(35, 20, 11, "2017-11-22", 13),
+(36, 80, 11, "2017-11-23", 13),
+(37, 20, 11, "2017-11-24", 13),
+(38, 90, 11, "2017-11-25", 13),
+(39, 75, 11, "2017-11-26", 13),
+(40, 20, 11, "2017-11-27", 13),
+(41, 30, 11, "2017-11-28", 13);
+
  
 INSERT into Location(locationId, province, city)
 VALUES(1, "Quebec", "Montreal"),
@@ -226,13 +237,11 @@ VALUES(1, "7 days promotion", 7, 10),
 (2, "14 days promotion", 14, 50), 
 (3, "30 days promotion", 30, 90); 
 
-
 INSERT into Category(categoryId, name)
 VALUES(1, "Buy and Sell"),
 (2, "Services"),
 (3, "Rent"),
-(4, "Cars");
-
+(4, "Cars and Vehicules");
 
 INSERT into SubCategory(subCategoryId, name, categoryId)
 VALUES(1, "Clothing", 1), 
@@ -247,10 +256,24 @@ VALUES(1, "Clothing", 1),
 (10, "Car", 3), 
 (11, "Apartements", 3), 
 (12, "Wedding-Dresses", 3), 
-(13, "AutoParts & Tires", 4), 
-(14, "Cars & Trucks", 4), 
-(15, "ATVs & Snowmobiles", 4), 
-(16, "MotorCycles", 4); 
+(13, "Cars", 4), 
+(14, "Trucks", 4), 
+(15, "Boats", 4), 
+(16, "Motorcycles", 4); 
+
+INSERT into StrategicLocation(strategicLocationId, percentage, cph)
+VALUES(1, 20, 400), 
+(2, 15, 300), 
+(3, 10, 200), 
+(4, 5, 100);
+
+INSERT into Store(storeId, address, strategicLocationId, managerId)
+VALUES(1, "6817 43 Av Montreal QC H1T 2R9", 1, 6), 
+(2, "181 Delisle Laval QC H7A 2V2", 2, 7), 
+(3, "5180 Rue Michel Saint-Hubert QC J3Y 2M9", 3, 8), 
+(4, "1890 Rue Bergeron Jonquière QC G7X 5E6", 4, 9), 
+(5, "1350 Golden Line Rd Almonte ON K0A 1A0", 1, 10), 
+(6, "530 Wallace Ave Windsor ON N9G 1L9", 2, 11);
 
 INSERT into Advertisement(adId, description, date, images,address, title, type, contactInfo, price, status, rating, availability, forSaleBy, userId, locationId, promoId, subCategoryId)
 VALUES(1, "Black belt for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2R9", "Gucci Belt", "Sell", "GS@hotmail.com", 5254, "Posted", 1, "Store", "Buisness", 6, 1, 1, 1),
@@ -265,9 +288,9 @@ VALUES(1, "Black belt for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2
 (10, "Gray color", "2016-12-7", NULL,"4624 Rue du Pirée Laval QC H7K 3K7", "Honda Civic", "Sell", "(514) 852-7456", 7826, "Posted", 5, "Online", "Owner", 6, 2, 1, 10),
 (11, "Great location near metro", "2016-12-13", NULL,"5760 tsse Boisvert Saint-Hubert QC J3Y 5Y4", "Condo 4 by 4", "Buy", "(514) 952-7423", 9096, "Posted", 3, "Online", "Owner", 7, 3, 2, 11),
 (12, "Size 6", "2016-12-14", NULL,"3937 Soucy Jonquière QC G7X 8T1", "White dress", "Sell", "(514) 156-1435", 406, "Posted", 4, "Online", "Owner", 8, 4, 3, 12),
-(13, "size 17", "2016-12-18", NULL,"170 Lees Ave Ottawa ON K1S 5G5", "Michelin Tires, 4 pieces", "Buy", "(613) 164-8534", 4081, "Posted", 2, "Online", "Owner", 9, 5, 1, 13),
+(13, "4 door", "2016-12-18", NULL,"170 Lees Ave Ottawa ON K1S 5G5", "Red Car", "Buy", "(613) 164-8534", 4081, "Posted", 2, "Online", "Owner", 9, 5, 1, 13),
 (14, "Fits 4 people and 2000kg load", "2016-12-21", NULL,"107 Cabana Rd W Windsor ON N9G 2H5", "Huge White Cadillac Truck", "Sell", "(519) 250-6988", 5517, "Posted", 2, "Online", "Owner", 10, 6, 2, 14),
-(15, "Very nice", "2016-12-26", NULL,"544 Parkway Dr Thunder Bay ON P7C 5E1", "Good Snowmobile", "Buy", "(807) 577-9217", 7382, "Posted", 3, "Online", "Owner", 11, 7, 3, 15),
+(15, "Very nice", "2016-12-26", NULL,"544 Parkway Dr Thunder Bay ON P7C 5E1", "Good Boat", "Buy", "(807) 577-9217", 7382, "Posted", 3, "Online", "Owner", 11, 7, 3, 15),
 (16, "Fast thingz", "2017-1-4", NULL,"315 St Germain Ave Toronto ON M5M 1W4", "Red fast motorcycle", "Sell", "(416) 694-8464", 5035, "Posted", 3, "Online", "Owner", 12, 8, 1, 16),
 (17, "Newest fashion", "2017-2-1", NULL,"251 Av Percival Montreal Ouest QC H4X 1T8", "Prada blazer", "Sell", "(514) 123-4567", 2110, "Posted", 2, "Online", "Owner", 13, 1, NULL, 1),
 (18, "Exciting and everyone dies.", "2017-2-4", NULL,"1073 40E Av Laval QC H7R 4X4", "Game of thrones", "Sell", "(514) 143-7258", 5239, "Posted", 1, "Online", "Owner", 14, 2, NULL, 2),
@@ -302,21 +325,28 @@ VALUES(1, "Black belt for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2
 (47, "Two for sale", "2017-6-1", NULL,"157 Amelia St E Thunder Bay ON P7E 3Z5", "Red ATVs", "Buy", "(807) 577-9217", 6993, "Expired", 2, "Online", "Owner", 7, 7, NULL, 15),
 (48, "Can't get safer than 4 wheels.", "2017-6-10", NULL,"1974 Queen St E Toronto ON M4L 1H8", "4 wheel motorcycle", "Sell", "(416) 694-8464", 1529, "Expired", 3, "Online", "Owner", 8, 8, NULL, 16);
 
+INSERT into Advertisement(adId, description, date, images,address, title, type, contactInfo, price, status, rating, availability, forSaleBy, userId, locationId, promoId, subCategoryId, storeId)
+VALUES (49, "Red", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Sweater", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 1, 2),
+(50, "Blue", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Shirt", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 1, 2),
+(51, "Black", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Pants", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 1, 2),
+(52, "344 page book", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Tales of the Madman", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 2, 2),
+(53, "345 page book", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Nickel and Dimed", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 2, 2),
+(54, "Dictionary", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Oxford Dictionary", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 2, 2),
+(55, "Samsung", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Cell Phone", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2),
+(56, "Dell", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Laptop", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2),
+(57, "Hp", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Desktop", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2),
+(58, "With case", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Trumpet", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2),
+(59, "For adults", "2015-12-25", NULL,"181 Delisle Laval QC H7A 2V2", "Guitar", "Sell", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2);
 
-INSERT into StrategicLocation(strategicLocationId, percentage, cph)
-VALUES(1, 20, 400), 
-(2, 15, 300), 
-(3, 10, 200), 
-(4, 5, 100);
-
-INSERT into Store(storeId, address, strategicLocationId, managerId)
-VALUES(1, "6817 43 Av Montreal QC H1T 2R9", 1, 6), 
-(2, "181 Delisle Laval QC H7A 2V2", 2, 7), 
-(3, "5180 Rue Michel Saint-Hubert QC J3Y 2M9", 3, 8), 
-(4, "1890 Rue Bergeron Jonquière QC G7X 5E6", 4, 9), 
-(5, "1350 Golden Line Rd Almonte ON K0A 1A0", 1, 10), 
-(6, "530 Wallace Ave Windsor ON N9G 1L9", 2, 11);
-
-INSERT into Rents(userId, storeId, hours, date,delivery)
-VALUES(12, 1, 5, "2016-4-13", "yes"), 
-(13, 2, 15, "2016-4-14", "yes");
+INSERT into Rents(rentsId, userId, storeId, hours, date,delivery)
+VALUES(1, 12, 1, 5, "2016-4-13", "yes"),
+(2, 13, 2, 15, "2016-4-14", "yes"),
+(3, 13, 2, 7, "2017-11-20", "yes"),
+(4, 13, 2, 7, "2017-11-21", "yes"),
+(5, 13, 2, 2, "2017-11-22", "yes"),
+(6, 13, 2, 8, "2017-11-23", "yes"),
+(7, 13, 2, 2, "2017-11-24", "yes"),
+(8, 13, 2, 6, "2017-11-25", "yes"),
+(9, 13, 2, 5, "2017-11-26", "yes"),
+(10, 13, 2, 2, "2017-11-27", "yes"),
+(11, 13, 2, 3, "2017-11-28", "yes");
