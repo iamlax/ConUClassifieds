@@ -22,7 +22,7 @@
 								<div class="category-info">
 									<h4><?php echo $category['name'] ?></h4>
 									<span>2,01,850 Ads</span>
-									<a href="all-classifieds.html">View all Ads</a>
+									<a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>">View all Ads</a>
 								</div>
 								<div class="clearfix"></div>
 							</div>
