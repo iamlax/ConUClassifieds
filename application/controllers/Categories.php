@@ -4,6 +4,18 @@ class Categories extends CI_Controller{
         $data['title'] = 'Categories';
 
         $categories = $this->category_model->get_categories();
+        
+        $data['categories'] = $categories;
+
+        $this->load->view('components/header');
+        $this->load->view('categories/index', $data);
+        $this->load->view('components/footer');
+    }
+
+    public function subcategory($id){
+        $data['title'] = 'Sub Categories';
+
+        $categories = $this->category_model->get_categories($id);
         foreach($categories as &$category) {
             $category['subcategory'] = $this->category_model->get_subcategories($category['categoryId']);
         }
@@ -11,7 +23,7 @@ class Categories extends CI_Controller{
         $data['categories'] = $categories;
 
         $this->load->view('components/header');
-        $this->load->view('categories/index', $data);
+        $this->load->view('categories/subcategories', $data);
         $this->load->view('components/footer');
     }
 
