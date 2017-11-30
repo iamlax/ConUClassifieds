@@ -2,14 +2,24 @@
 class Advertisement_Model extends CI_Model {
 
     public function get_ad($id) {
+        $this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
+        $this->db->from('advertisement');
+        $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
+        $this->db->join('category', 'subcategory.categoryId = category.categoryId');
+        $this->db->join('location', 'advertisement.locationId = location.locationId');
         $this->db->where('adId', $id);
-        $query = $this->db->get('advertisement');
+        $query = $this->db->get();
         return $query->row_array();
     }
 
     public function get_ads_by_user($id) {
+        $this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
+        $this->db->from('advertisement');
+        $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
+        $this->db->join('category', 'subcategory.categoryId = category.categoryId');
+        $this->db->join('location', 'advertisement.locationId = location.locationId');
         $this->db->where('advertisement.userId', $id);
-        $query = $this->db->get('advertisement');
+        $query = $this->db->get();
         return $query->result_array();
     }
 
@@ -17,21 +27,26 @@ class Advertisement_Model extends CI_Model {
         if ($subcategory === FALSE && $category === FALSE) {
             $query = $this->db->get_where('advertisement', array('advertisement.locationId' => $location));
         } else if ($subcategory === FALSE ) {
-			$this->db->select('advertisement.*');
+			$this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
             $this->db->from('advertisement');
             $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
-			$this->db->join('category', 'subcategory.categoryId = category.categoryId');
+            $this->db->join('category', 'subcategory.categoryId = category.categoryId');
+            $this->db->join('location', 'advertisement.locationId = location.locationId');
             $this->db->where('category.categoryId', $category);
             $this->db->where('advertisement.locationId', $location);
+            $this->db->order_by('advertisement.promoId', 'DESC');
+            $this->db->order_by('advertisement.date', 'DESC');
 			$query = $this->db->get();
         } else {
-            $this->db->select('advertisement.*');
+            $this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
             $this->db->from('advertisement');
             $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
-			$this->db->join('category', 'subcategory.categoryId = category.categoryId');
-            $this->db->where('category.categoryId', $category);
+            $this->db->join('category', 'subcategory.categoryId = category.categoryId');
+            $this->db->join('location', 'advertisement.locationId = location.locationId');
             $this->db->where('subcategory.subcategoryId', $subcategory);
             $this->db->where('advertisement.locationId', $location);
+            $this->db->order_by('advertisement.promoId', 'DESC');
+            $this->db->order_by('advertisement.date', 'DESC');
 			$query = $this->db->get();
         }
         return $query->result_array();
@@ -64,27 +79,30 @@ class Advertisement_Model extends CI_Model {
         return $this->db->insert('advertisement', $data);
     }
 
-    public function update_advertisement(){
+    public function update_advertisement($rating = FALSE){
         if ($this->input->post('storeId').length <= 0) {
             $storeId == NULL;
         } else {
             $storeId == $this->input->post('storeId');
         }
-
-        $data = array(
-            'subCategoryId' => $this->input->post('category'),
-            'title' => $this->input->post('title'),
-            'description' => $this->input->post('description'),
-            'price' => $this->input->post('price'),
-            'type' => $this->input->post('type'),
-            'forsaleby' => $this->input->post('forsaleby'),
-            'images' => $this->input->post('images'),
-            'phone' => $this->input->post('phone'),
-            'email' => $this->input->post('email'),
-            'address' => $this->input->post('address'),
-            'availability' => $this->input->post('availability'),
-            'storeId' => $storeId,
-        );
+        if ($rating) {
+            $data = array('rating' => $rating);
+        } else {
+            $data = array(
+                'subCategoryId' => $this->input->post('category'),
+                'title' => $this->input->post('title'),
+                'description' => $this->input->post('description'),
+                'price' => $this->input->post('price'),
+                'type' => $this->input->post('type'),
+                'forsaleby' => $this->input->post('forsaleby'),
+                'images' => $this->input->post('images'),
+                'phone' => $this->input->post('phone'),
+                'email' => $this->input->post('email'),
+                'address' => $this->input->post('address'),
+                'availability' => $this->input->post('availability'),
+                'storeId' => $storeId,
+            );
+        }
 
         $this->db->where('adId', $this->input->post('adId'));
         return $this->db->update('advertisement', $data);

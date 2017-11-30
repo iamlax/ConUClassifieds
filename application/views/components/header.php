@@ -72,6 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?php echo asset_url();?>js/jquery.uls.languagefilter.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.uls.regionfilter.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.uls.core.js"></script>
+<script src="<?php echo asset_url();?>js/list.min.js"></script>
 </head>
 <body>
 	<div class="header">
