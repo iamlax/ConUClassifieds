@@ -59,6 +59,10 @@ $route['advertisements/create'] = 'advertisements/create';
 $route['advertisements/update'] = 'advertisements/update';
 $route['advertisements/delete'] = 'advertisements/delete';
 
+$route['admins'] = 'admins/index';
+$route['admins/advertisements'] = 'admins/advertisements/view';
+$route['admins/payments'] = 'admins/payments';
+
 $route['locations'] = 'locations/index';
 $route['locations/set/:id'] = 'locations/set';
 
