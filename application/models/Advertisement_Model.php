@@ -64,27 +64,30 @@ class Advertisement_Model extends CI_Model {
         return $this->db->insert('advertisement', $data);
     }
 
-    public function update_advertisement(){
+    public function update_advertisement($rating = FALSE){
         if ($this->input->post('storeId').length <= 0) {
             $storeId == NULL;
         } else {
             $storeId == $this->input->post('storeId');
         }
-
-        $data = array(
-            'subCategoryId' => $this->input->post('category'),
-            'title' => $this->input->post('title'),
-            'description' => $this->input->post('description'),
-            'price' => $this->input->post('price'),
-            'type' => $this->input->post('type'),
-            'forsaleby' => $this->input->post('forsaleby'),
-            'images' => $this->input->post('images'),
-            'phone' => $this->input->post('phone'),
-            'email' => $this->input->post('email'),
-            'address' => $this->input->post('address'),
-            'availability' => $this->input->post('availability'),
-            'storeId' => $storeId,
-        );
+        if ($rating) {
+            $data = array('rating' => $rating);
+        } else {
+            $data = array(
+                'subCategoryId' => $this->input->post('category'),
+                'title' => $this->input->post('title'),
+                'description' => $this->input->post('description'),
+                'price' => $this->input->post('price'),
+                'type' => $this->input->post('type'),
+                'forsaleby' => $this->input->post('forsaleby'),
+                'images' => $this->input->post('images'),
+                'phone' => $this->input->post('phone'),
+                'email' => $this->input->post('email'),
+                'address' => $this->input->post('address'),
+                'availability' => $this->input->post('availability'),
+                'storeId' => $storeId,
+            );
+        }
 
         $this->db->where('adId', $this->input->post('adId'));
         return $this->db->update('advertisement', $data);

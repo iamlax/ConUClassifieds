@@ -57,6 +57,7 @@ $route['categories/advertisements/(:any)/(:any)'] = 'categories/advertisements/$
 $route['advertisements'] = 'advertisements/index';
 $route['advertisements/create'] = 'advertisements/create';
 $route['advertisements/update'] = 'advertisements/update';
+$route['advertisements/updateRating'] = 'advertisements/updateRating';
 $route['advertisements/delete(:any)'] = 'advertisements/delete/$1';
 $route['advertisements/edit/(:any)'] = 'advertisements/edit/$1';
 $route['advertisements/user/(:any)'] = 'advertisements/view_user/$1';

@@ -153,6 +153,21 @@ class Advertisements extends CI_Controller{
         }
     }
 
+    public function updateRating(){
+        $this->form_validation->set_rules('rating', 'Rating', 'required');
+
+        if($this->form_validation->run() === FALSE){
+            redirect('advertisements/'.$this->input->post('adId'), $data);
+        } else {
+            $this->advertisement_model->update_advertisement($this->input->post('rating'));
+
+            // Set message
+            $this->session->set_flashdata('avertisement_updated', 'Your advertisement has been updated');
+
+            redirect('advertisements/'.$this->input->post('adId'), $data);
+        }
+    }
+
     public function delete($id){
 		$this->advertisement_model->delete_advertisement($id);
 
