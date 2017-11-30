@@ -66,14 +66,14 @@ CREATE TABLE SubCategory (
 );
 
 CREATE TABLE StrategicLocation (
-    strategicLocationId int NOT NULL,
+    strategicLocationId int NOT NULL AUTO_INCREMENT,
     percentage int,
     cph int,
     PRIMARY KEY (strategicLocationId)
 );
 
 CREATE TABLE Store (
-    storeId int NOT NULL,
+    storeId int NOT NULL AUTO_INCREMENT,
     strategicLocationId int,
     address varchar(255),
     managerId int,
@@ -110,7 +110,7 @@ CREATE TABLE Advertisement (
 );
 
 CREATE TABLE Rents (
-	rentsId int NOT NULL,
+	rentsId int NOT NULL AUTO_INCREMENT,
     storeId int NOT NULL,
     userId int NOT NULL,
     delivery varchar(255),
