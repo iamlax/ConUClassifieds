@@ -2,7 +2,8 @@
     <div class="container">
         <h2 class="head">Post an Ad</h2>
         <div class="post-ad-form">
-            <?php echo form_open_multipart('advertisements/create'); ?>
+            <?php echo form_open_multipart('advertisements/update'); ?>
+            <input type="hidden" name="adId" value="<?php echo $advertisement['adId']; ?>">
                 <label>Select Category <span>*</span></label>
                 <select class="" name="category">
                     <optgroup label="Categories">
@@ -17,35 +18,40 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>Title <span>*</span></label>
-                <input type="text" name="title" class="phone" placeholder="Title">
+                <input type="text" name="title" class="phone" value="<?php echo $advertisement['title']; ?>">
                 <div class="clearfix"></div>
                 <label>Description <span>*</span></label>
-                <textarea class="mess" name="description" placeholder="Write few lines about your product"></textarea>
+                <textarea class="mess" name="description"><?php echo $advertisement['description']; ?></textarea>
                 <div class="clearfix"></div>
                 <label>Price <span>*</span></label>
-                <input type="text" name="price" class="price" placeholder="Price">
+                <input type="text" name="price" class="price" value="<?php echo $advertisement['price']; ?>">
                 <div class="clearfix"></div>
                 <label>Type <span>*</span></label>
-                <select name="type">
+                <select name="type" id="type">
                     <option value="Buy">Buy</option>
                     <option value="Sell">Sell</option>
                 </select>
                 <div class="clearfix"></div>
                 <label>For Sale By <span>*</span></label>
-                <select name="forsaleby">
+                <select name="forsaleby" id="forsaleby">
                     <option value="Owner">Owner</option>
                     <option value="Business">Business</option>
                 </select>
                 <div class="clearfix"></div>
                 <label>Availability <span>*</span></label>
-                <select name="availability">
+                <select name="availability" id="availability">
                     <option value="Store">Store</option>
                     <option value="Online">Online</option>
                 </select>
                 <div class="clearfix"></div>
                 <label>Store Id</label>
-                <input type="text" name="storeId" placeholder="Store #">
+                <input type="text" name="storeId" value="<?php echo $advertisement['storeId']; ?>">
                 <div class="clearfix"></div>
+                <script>
+                    $('#availability').val('<?php echo $advertisement['availability']; ?>');
+                    $('#forsaleby').val('<?php echo $advertisement['forSaleBy']; ?>');
+                    $('#type').val('<?php echo $advertisement['type']; ?>');
+                </script>
             <div class="upload-ad-photos">
             <label>Images:</label>	
                 <div class="photos-upload-view">
@@ -61,13 +67,13 @@
             </div>
                 <div class="personal-details">
                     <label>Your Phone # <span>*</span></label>
-                    <input type="text" name="phone" class="phone" placeholder="Phone number">
+                    <input type="text" name="phone" class="phone" value="<?php echo $advertisement['phone']; ?>">
                     <div class="clearfix"></div>
                     <label>Your Email Address<span>*</span></label>
-                    <input type="text" name="email" class="email" placeholder="Email Address">
+                    <input type="text" name="email" class="email" value="<?php echo $advertisement['email']; ?>">
                     <div class="clearfix"></div>
                     <label>Selling Address<span>*</span></label>
-                    <input type="text" name="address" class="email" placeholder="Address">
+                    <input type="text" name="address" class="email" value="<?php echo $advertisement['address']; ?>">
                     <div class="clearfix"></div>
                 <input type="submit">					
                 <div class="clearfix"></div>

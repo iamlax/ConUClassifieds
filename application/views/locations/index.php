@@ -1,4 +1,13 @@
 <div class="regions main-grid-border">
+    <?php if($this->session->flashdata('success') !== null){ ?>
+        <div class="alert alert-success text-center">
+            <?php echo $this->session->flashdata('success'); ?>
+        </div>
+    <?php } ?>
+    <div>
+        <h3 class="tlt text-center">Now please choose a location in order to proceed</h3>
+        <hr>
+    </div>
     <div class="container">
         <h2 class="head">Location List</h2>
     </div>

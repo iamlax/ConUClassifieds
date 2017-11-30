@@ -6,7 +6,17 @@
             <p class="creating">Having hands on experience in creating innovative designs,I do offer design
                 solutions which harness.</p>
             <h2>Personal Information</h2>
-            <?php echo validation_errors(); ?>
+            <?php if($this->session->flashdata('success') !== null){ ?>
+                <div class="alert alert-success">
+                    <?php echo $this->session->flashdata('success'); ?>
+                </div>
+            <?php } ?>
+            <?php if($this->session->flashdata('error') !== null){ ?>
+                <div class="alert alert-danger">
+                    <?php echo $this->session->flashdata('error'); ?>
+                </div>
+            <?php } ?>
+            <?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
             <?php echo form_open('auth_controller/register');?>
             <div class="sign-u">
                 <div class="sign-up1">

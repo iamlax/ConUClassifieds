@@ -77,7 +77,7 @@
                             <div class="clearfix"></div>
                         <ul class="list">
                             <?php foreach($ads as $ad) { ?>
-                            <a href="single.html">
+                            <a href="<?php echo base_url();?>advertisements/<?php echo $ad['adId'] ?>">
                                 <li>
                                 <img src="images/m1.jpg" title="" alt="" />
                                 <section class="list-left">
