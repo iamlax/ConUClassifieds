@@ -337,7 +337,7 @@ VALUES(1, "Black belt for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2
 (58, "With case", "2016-01-03", NULL,"181 Delisle Laval QC H7A 2V2", "Trumpet", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4),
 (59, "For adults", "2016-01-04", NULL,"181 Delisle Laval QC H7A 2V2", "Guitar", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4);
 
-INSERT into Rents(userId, storeId, hours, date,delivery)
+INSERT into Rents(rentsId, userId, storeId, hours, date,delivery)
 VALUES(1, 13, 1, 5, "2016-4-13", "yes"), 
 (2, 13, 2, 15, "2016-4-14", "yes"), 
 (3, 13, 2, 7, "43059", "yes"), 
