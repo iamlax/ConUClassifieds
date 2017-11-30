@@ -3,7 +3,7 @@
         <h2 class="head">Post an Ad</h2>
         <div class="post-ad-form">
             <?php echo form_open_multipart('advertisements/update'); ?>
-            <input type="hidden" name="id" value="<?php echo $advertisement['adId']; ?>">
+            <input type="hidden" name="adId" value="<?php echo $advertisement['adId']; ?>">
                 <label>Select Category <span>*</span></label>
                 <select class="" name="category">
                     <optgroup label="Categories">

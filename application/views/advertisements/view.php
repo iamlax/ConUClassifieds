@@ -14,7 +14,7 @@
             <?php if ($isowner) { ?>
                 Status: <?php echo $advertisement['status'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
-                <a><button type="button" class="btn-danger">Delete</button></a>
+                <a href="<?php echo base_url();?>advertisements/delete/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
             <?php } ?>
         </div>
         <?php if (!$isowner) { ?>

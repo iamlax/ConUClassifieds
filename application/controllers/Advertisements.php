@@ -38,7 +38,7 @@ class Advertisements extends CI_Controller{
     public function view_user($id = NULL){
         $data['advertisements'] = $this->advertisement_model->get_ads_by_user($id);
 
-        $data['user'] = $this->user_model->get_user($data['advertisements'][0]['userId']);
+        $data['user'] = $this->user_model->get_user($id);
 
         if(empty($data['user'])){
             show_404();
