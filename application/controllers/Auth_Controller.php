@@ -72,8 +72,7 @@ class Auth_Controller extends CI_Controller
                         $this->session->set_userdata($key, $value);
                     }
                     $this->session->set_flashdata('success', 'Successfully login.');
-                    var_dump($this->session->userdata('userId'));
-                    //redirect('locations/index');
+                    redirect('locations/index');
                 }
             } else {
                 $this->load->view('components/header');
