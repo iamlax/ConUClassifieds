@@ -28,13 +28,13 @@
                     </address>
                 </div>
                 <div class="clearfix"></div>
-            </div>						
-        </div>	
-    </div>	
+            </div>
+        </div>
+    </div>
     <div class="footer-bottom text-center">
     <div class="container">
         <div class="footer-logo">
-            <a href="index.html"><span>ConU</span>Classifieds</a>
+            <a href="<?php echo base_url();?>"><span>ConU</span>Classifieds</a>
         </div>
         <div class="footer-social-icons">
             <ul>
@@ -46,7 +46,7 @@
             </ul>
         </div>
         <div class="copyrights">
-            <p> © 2016 ConUClassifieds. All Rights Reserved</a></p>
+            <p> © 2017 ConUClassifieds. All Rights Reserved</a></p>
         </div>
     </div>
 </footer>
