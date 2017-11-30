@@ -10,7 +10,7 @@ CREATE TABLE User (
     userId int NOT NULL AUTO_INCREMENT,
     firstName varchar(255),
     lastName varchar(255),
-    email varchar(255),
+    email varchar(255) UNIQUE,
     password varchar(255),
     userType varchar(255) NOT NULL,
     membPlanId int,
@@ -141,47 +141,47 @@ VALUES(1, "Layla", "Levine", "LL@hotmail.com", "LL1234", "Admin", Null),
 (3, "Darren Banks", "Banks", "DB@hotmail.com", "DB1234", "Admin", Null), 
 (4, "Joaquin", "Carney", "JC@hotmail.com", "JC1234", "Admin", Null), 
 (5, "Lexie", "Burke", "LB@hotmail.com", "LB1234", "Admin", Null), 
-(6, "Delaney", "Buck", "DB@hotmail.com", "DB1234", "User ", 1),
+(6, "Delaney", "Car", "DC@hotmail.com", "DC1234", "User ", 1),
 (7, "Adrienne", "Stevenson", "AS@hotmail.com", "AS1234", "User ", 1), 
-(8, "Abel", "Saunders", "AS@hotmail.com", "AS1234", "User ", 1), 
-(9, "Katelynn", "Barr", "KB@hotmail.com", "KB1234", "User ", 1), 
-(10, "Deandre", "Haynes", "DH@hotmail.com", "DH1234", "User ", 2), 
-(11, "Annika", "Parks", "AP@hotmail.com", "AP1234", "User ", 1), 
-(12, "Naomi", "Villanueva", "NV@hotmail.com", "NV1234", "User ", 2), 
-(13, "Sergio", "Cooper", "SC@hotmail.com", "SC1234", "User ", 2), 
-(14, "Erick", "Mccarty", "EM@hotmail.com", "EM1234", "User ", 2), 
-(15, "Jaslene", "Lin", "JL@hotmail.com", "JL1234", "User ", 2), 
-(16, "Gunnar", "Kirby", "GK@hotmail.com", "GK1234", "User ", 3), 
-(17, "Victoria", "Shaffer", "VS@hotmail.com", "VS1234", "User ", 3), 
-(18, "Elisha", "Harrington", "EH@hotmail.com", "EH1234", "User ", 3), 
-(19, "Carsen", "Kemp", "CK@hotmail.com", "CK1234", "User ", 3), 
-(20, "Edna", "Mccarty", "EM@hotmail.com", "EM1234", "User ", 3);
+(8, "Abel", "Taunders", "AT@hotmail.com", "AT1234", "User ", 1),
+(9, "Katelynn", "Barr", "KB@hotmail.com", "KB1234", "User ", 1),
+(10, "Deandre", "Haynes", "DH@hotmail.com", "DH1234", "User ", 2),
+(11, "Annika", "Parks", "AP@hotmail.com", "AP1234", "User ", 1),
+(12, "Naomi", "Villanueva", "NV@hotmail.com", "NV1234", "User ", 2),
+(13, "Sergio", "Cooper", "SC@hotmail.com", "SC1234", "User ", 2),
+(14, "Erick", "Mccarty", "EM@hotmail.com", "EM1234", "User ", 2),
+(15, "Jaslene", "Lin", "JL@hotmail.com", "JL1234", "User ", 2),
+(16, "Gunnar", "Kirby", "GK@hotmail.com", "GK1234", "User ", 3),
+(17, "Victoria", "Shaffer", "VS@hotmail.com", "VS1234", "User ", 3),
+(18, "Elisha", "Harrington", "EH@hotmail.com", "EH1234", "User ", 3),
+(19, "Carsen", "Kemp", "CK@hotmail.com", "CK1234", "User ", 3),
+(20, "Edna", "Dccarty", "ED@hotmail.com", "EM1234", "User ", 3);
 
 INSERT into Card(cardId, cardNumber, cardType)
-VALUES(1, 4539937618825770, "Visa"), 
-(2, 4485143132202660, "Visa"), 
-(3, 4556119783048130, "Visa"), 
-(4, 4916222916560180, "Visa"), 
-(5, 4716121300744330, "Visa"), 
-(6, 5244169352589420, "Mastercard"), 
-(7, 5118717339818440, "Mastercard"), 
-(8, 5335698282814770, "Mastercard"), 
-(9, 5489419629934160, "Mastercard"), 
-(10, 5118184210991760, "Mastercard"), 
-(11, 6011799570191260, "American Express"), 
-(12, 6011977049126790, "American Express"), 
-(13, 6011875119881310, "American Express"), 
-(14, 6011573912781280, "American Express"), 
-(15, 6011844566324420, "American Express"), 
-(16, 347969284901707, "Capital One"), 
-(17, 340645157373060, "Capital One"), 
-(18, 373787835718355, "Capital One"), 
-(19, 346098970061666, "Capital One"), 
-(20, 349745688116227, "Capital One"); 
+VALUES(1, 4539937618825770, "Visa"),
+(2, 4485143132202660, "Visa"),
+(3, 4556119783048130, "Visa"),
+(4, 4916222916560180, "Visa"),
+(5, 4716121300744330, "Visa"),
+(6, 5244169352589420, "Mastercard"),
+(7, 5118717339818440, "Mastercard"),
+(8, 5335698282814770, "Mastercard"),
+(9, 5489419629934160, "Mastercard"),
+(10, 5118184210991760, "Mastercard"),
+(11, 6011799570191260, "American Express"),
+(12, 6011977049126790, "American Express"),
+(13, 6011875119881310, "American Express"),
+(14, 6011573912781280, "American Express"),
+(15, 6011844566324420, "American Express"),
+(16, 347969284901707, "Capital One"),
+(17, 340645157373060, "Capital One"),
+(18, 373787835718355, "Capital One"),
+(19, 346098970061666, "Capital One"),
+(20, 349745688116227, "Capital One");
 
 INSERT into Payment(paymentId, amount, cardId, date,userId)
-VALUES(1, 25, 1, "2015-11-29", 6), 
-(2, 25, 2, "2015-12-25", 7), 
+VALUES(1, 25, 1, "2015-11-29", 6),
+(2, 25, 2, "2015-12-25", 7),
 (3, 25, 3, "2016-01-05", 8),
 (4, 25, 4, "2016-03-10", 9),
 (5, 25, 5, "2016-03-12", 10),
@@ -222,7 +222,7 @@ VALUES(1, 25, 1, "2015-11-29", 6),
 (40, 30, 11, "2017-11-28", 13);
 
 
- 
+
 INSERT into Location(locationId, province, city)
 VALUES(1, "Quebec", "Montreal"),
 (2, "Quebec", "Laval"),
@@ -234,9 +234,9 @@ VALUES(1, "Quebec", "Montreal"),
 (8, "Ontario", "Toronto");
 
 INSERT into PromotionPackage(promoId, description, duration, price)
-VALUES(1, "7 days promotion", 7, 10), 
-(2, "14 days promotion", 14, 50), 
-(3, "30 days promotion", 30, 90); 
+VALUES(1, "7 days promotion", 7, 10),
+(2, "14 days promotion", 14, 50),
+(3, "30 days promotion", 30, 90);
 
 INSERT into Category(categoryId, name)
 VALUES(1, "Buy and Sell"),
@@ -245,35 +245,35 @@ VALUES(1, "Buy and Sell"),
 (4, "Cars and Vehicules");
 
 INSERT into SubCategory(subCategoryId, name, categoryId)
-VALUES(1, "Clothing", 1), 
-(2, "Books", 1), 
-(3, "Electronics", 1), 
-(4, "Musical Instruments", 1), 
-(5, "Tutors", 2), 
-(6, "Event Planners", 2), 
-(7, "Photographers", 2), 
-(8, "Personal Trainers", 2), 
-(9, "Electronics", 3), 
-(10, "Car", 3), 
-(11, "Apartements", 3), 
-(12, "Wedding-Dresses", 3), 
-(13, "Cars", 4), 
-(14, "Trucks", 4), 
-(15, "Boats", 4), 
-(16, "Motorcycles", 4); 
+VALUES(1, "Clothing", 1),
+(2, "Books", 1),
+(3, "Electronics", 1),
+(4, "Musical Instruments", 1),
+(5, "Tutors", 2),
+(6, "Event Planners", 2),
+(7, "Photographers", 2),
+(8, "Personal Trainers", 2),
+(9, "Electronics", 3),
+(10, "Car", 3),
+(11, "Apartements", 3),
+(12, "Wedding-Dresses", 3),
+(13, "Cars", 4),
+(14, "Trucks", 4),
+(15, "Boats", 4),
+(16, "Motorcycles", 4);
 
 INSERT into StrategicLocation(strategicLocationId, percentage, cph)
-VALUES(1, 20, 400), 
-(2, 15, 300), 
-(3, 10, 200), 
+VALUES(1, 20, 400),
+(2, 15, 300),
+(3, 10, 200),
 (4, 5, 100);
 
 INSERT into Store(storeId, address, strategicLocationId, managerId)
-VALUES(1, "6817 43 Av Montreal QC H1T 2R9", 1, 6), 
-(2, "181 Delisle Laval QC H7A 2V2", 2, 7), 
-(3, "5180 Rue Michel Saint-Hubert QC J3Y 2M9", 3, 8), 
-(4, "1890 Rue Bergeron Jonquière QC G7X 5E6", 4, 9), 
-(5, "1350 Golden Line Rd Almonte ON K0A 1A0", 1, 10), 
+VALUES(1, "6817 43 Av Montreal QC H1T 2R9", 1, 6),
+(2, "181 Delisle Laval QC H7A 2V2", 2, 7),
+(3, "5180 Rue Michel Saint-Hubert QC J3Y 2M9", 3, 8),
+(4, "1890 Rue Bergeron Jonquière QC G7X 5E6", 4, 9),
+(5, "1350 Golden Line Rd Almonte ON K0A 1A0", 1, 10),
 (6, "530 Wallace Ave Windsor ON N9G 1L9", 2, 11);
 
 INSERT into Advertisement(adId, description, date, images,address, title, type, email, phone, price, status, rating, availability, forSaleBy, userId, locationId, promoId, subCategoryId, storeId)
@@ -336,6 +336,7 @@ VALUES(1, "Black belt for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2
 (57, "Hp", "2016-01-02", NULL,"181 Delisle Laval QC H7A 2V2", "Desktop", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2),
 (58, "With case", "2016-01-03", NULL,"181 Delisle Laval QC H7A 2V2", "Trumpet", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2),
 (59, "For adults", "2016-01-04", NULL,"181 Delisle Laval QC H7A 2V2", "Guitar", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2);
+
 
 INSERT into Rents(rentsId, userId, storeId, hours, date,delivery)
 VALUES(1, 13, 1, 5, "2016-4-13", "yes"),
