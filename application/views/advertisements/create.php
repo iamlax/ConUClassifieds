@@ -43,6 +43,9 @@
                     <option value="Online">Online</option>
                 </select>
                 <div class="clearfix"></div>
+                <label>Store Id</label>
+                <input type="text" name="storeId" placeholder="Store #">
+                <div class="clearfix"></div>
             <div class="upload-ad-photos">
             <label>Images:</label>	
                 <div class="photos-upload-view">

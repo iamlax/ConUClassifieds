@@ -7,6 +7,7 @@
             Date: <?php echo $advertisement['date'] ?></br>
             Address: <?php echo $advertisement['address'] ?></br>
             Availability: <?php echo $advertisement['availability'] ?></br>
+            StoreId: <?php echo $advertisement['storeId']; ?></br>
             Rating: <?php echo $advertisement['rating'] ?></br>
             Email:<?php echo $advertisement['email'] ?></br>
             Phone: <?php echo $advertisement['phone'] ?></br>

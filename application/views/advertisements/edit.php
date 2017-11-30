@@ -44,6 +44,9 @@
                     <option value="Online">Online</option>
                 </select>
                 <div class="clearfix"></div>
+                <label>Store Id</label>
+                <input type="text" name="storeId" value="<?php echo $advertisement['storeId']; ?>">
+                <div class="clearfix"></div>
                 <script>
                     $('#availability').val('<?php echo $advertisement['availability']; ?>');
                     $('#forsaleby').val('<?php echo $advertisement['forSaleBy']; ?>');

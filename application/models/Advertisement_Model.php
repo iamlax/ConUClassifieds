@@ -38,6 +38,11 @@ class Advertisement_Model extends CI_Model {
     }
 
     public function create_advertisement(){
+        if ($this->input->post('storeId').length <= 0) {
+            $storeId == NULL;
+        } else {
+            $storeId == $this->input->post('storeId');
+        }
 
         $data = array(
             'subCategoryId' => $this->input->post('category'),
@@ -51,7 +56,7 @@ class Advertisement_Model extends CI_Model {
             'email' => $this->input->post('email'),
             'address' => $this->input->post('address'),
             'availability' => $this->input->post('availability'),
-            'storeId' => $this->input->post('storeId'),
+            'storeId' => $storeId,
             'userId' => $this->session->userdata('userId'),
             'locationId' => $this->session->userdata('locationId'),
         );
@@ -60,6 +65,12 @@ class Advertisement_Model extends CI_Model {
     }
 
     public function update_advertisement(){
+        if ($this->input->post('storeId').length <= 0) {
+            $storeId == NULL;
+        } else {
+            $storeId == $this->input->post('storeId');
+        }
+
         $data = array(
             'subCategoryId' => $this->input->post('category'),
             'title' => $this->input->post('title'),
@@ -72,7 +83,7 @@ class Advertisement_Model extends CI_Model {
             'email' => $this->input->post('email'),
             'address' => $this->input->post('address'),
             'availability' => $this->input->post('availability'),
-            'storeId' => $this->input->post('storeId'),
+            'storeId' => $storeId,
         );
 
         $this->db->where('adId', $this->input->post('adId'));
