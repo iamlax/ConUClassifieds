@@ -2,9 +2,9 @@
     <div class="container">
         <h2 class="head">Post an Ad</h2>
         <div class="post-ad-form">
-            <form>
+            <?php echo form_open_multipart('advertisements/create'); ?>
                 <label>Select Category <span>*</span></label>
-                <select class="">
+                <select class="" name="category">
                     <optgroup label="Categories">
                     <?php foreach ($categories as $category) { ?>
                         <optgroup label="<?php echo $category['name'] ?>">
@@ -17,22 +17,22 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>Title <span>*</span></label>
-                <input type="text" class="phone" placeholder="Title">
+                <input type="text" name="title" class="phone" placeholder="Title">
                 <div class="clearfix"></div>
                 <label>Description <span>*</span></label>
-                <textarea class="mess" placeholder="Write few lines about your product"></textarea>
+                <textarea class="mess" name="description" placeholder="Write few lines about your product"></textarea>
                 <div class="clearfix"></div>
                 <label>Price <span>*</span></label>
-                <input type="text" class="price" placeholder="Price">
+                <input type="text" name="price" class="price" placeholder="Price">
                 <div class="clearfix"></div>
                 <label>Type <span>*</span></label>
-                <select>
+                <select name="type">
                     <option value="Buy">Buy</option>
                     <option value="Sell">Sell</option>
                 </select>
                 <div class="clearfix"></div>
                 <label>For Sale By <span>*</span></label>
-                <select>
+                <select name="forsaleby">
                     <option value="Owner">Owner</option>
                     <option value="Business">Business</option>
                 </select>
@@ -40,7 +40,6 @@
             <div class="upload-ad-photos">
             <label>Images:</label>	
                 <div class="photos-upload-view">
-                    <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
 
                     <div>
@@ -51,24 +50,21 @@
                     <div id="submitbutton">
                         <button type="submit">Upload Files</button>
                     </div>
-                    </form>
                     </div>
                 <div class="clearfix"></div>
                     <script src="js/filedrag.js"></script>
             </div>
                 <div class="personal-details">
-                <form>
                     <label>Your Phone # <span>*</span></label>
-                    <input type="text" class="phone" placeholder="Phone number">
+                    <input type="text" name="phone" class="phone" placeholder="Phone number">
                     <div class="clearfix"></div>
                     <label>Your Email Address<span>*</span></label>
-                    <input type="text" class="email" placeholder="Email Address">
+                    <input type="text" name="email" class="email" placeholder="Email Address">
                     <div class="clearfix"></div>
                     <label>Selling Address<span>*</span></label>
-                    <input type="text" class="email" placeholder="Address">
+                    <input type="text" name="address" class="email" placeholder="Address">
                     <div class="clearfix"></div>
-                    <p class="post-terms">By clicking <strong>post Button</strong> you accept our <a href="terms.html" target="_blank">Terms of Use </a> and <a href="privacy.html" target="_blank">Privacy Policy</a></p>
-                <input type="submit" value="Post">					
+                <input type="submit">					
                 <div class="clearfix"></div>
                 </form>
             </div>
