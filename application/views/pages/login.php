@@ -5,6 +5,17 @@
                 <h1>Log in</h1>
             </div>
             <div class="signin">
+                <?php if($this->session->flashdata('success') !== null){ ?>
+                    <div class="alert alert-success">
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                <?php } ?>
+                <?php if($this->session->flashdata('error') !== null){ ?>
+                    <div class="alert alert-danger">
+                        <?php echo $this->session->flashdata('error'); ?>
+                    </div>
+                <?php } ?>
+                <?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
                 <?php echo form_open('auth_controller/login'); ?>
                 <div class="log-input">
                     <div class="log-input-left">
@@ -22,12 +33,6 @@
                 </div>
                 <input type="submit" name="login" value="Log in">
                 </form>
-            </div>
-            <div class="new_people">
-                <h2>For New People</h2>
-                <p>Having hands on experience in creating innovative designs,I do offer design
-                    solutions which harness.</p>
-                <a href="<?php echo base_url(); ?>register">Register Now!</a>
             </div>
         </div>
     </div>
