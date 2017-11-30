@@ -69,10 +69,11 @@ class Auth_Controller extends CI_Controller
                     //if password is incorrect, redirect to login, verified by model.
                 } else {
                     foreach ($result as $key => $value) {
-                        $this->session->set_userdata('$key', $value);
+                        $this->session->set_userdata($key, $value);
                     }
                     $this->session->set_flashdata('success', 'Successfully login.');
-                    redirect('locations/index');
+                    var_dump($this->session->userdata('userId'));
+                    //redirect('locations/index');
                 }
             } else {
                 $this->load->view('components/header');
