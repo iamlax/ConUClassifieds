@@ -4,28 +4,7 @@
             <div class="foo-grids">
                 <div class="col-md-3 footer-grid">
                     <h4 class="footer-head">Who We Are</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <p>The point of using Lorem Ipsum is that it has a more-or-less normal letters, as opposed to using 'Content here.</p>
-                </div>
-                <div class="col-md-3 footer-grid">
-                    <h4 class="footer-head">Help</h4>
-                    <ul>
-                        <li><a href="howitworks.html">How it Works</a></li>						
-                        <li><a href="sitemap.html">Sitemap</a></li>
-                        <li><a href="faq.html">Faq</a></li>
-                        <li><a href="feedback.html">Feedback</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="typography.html">Shortcodes</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 footer-grid">
-                    <h4 class="footer-head">Information</h4>
-                    <ul>
-                        <li><a href="regions.html">Locations Map</a></li>	
-                        <li><a href="terms.html">Terms of Use</a></li>
-                        <li><a href="popular-search.html">Popular searches</a></li>	
-                        <li><a href="privacy.html">Privacy Policy</a></li>	
-                    </ul>
+                    <p>We are a classified ads website.</p>
                 </div>
                 <div class="col-md-3 footer-grid">
                     <h4 class="footer-head">Contact Us</h4>
@@ -33,19 +12,19 @@
                     <address>
                         <ul class="location">
                             <li><span class="glyphicon glyphicon-map-marker"></span></li>
-                            <li>CENTER FOR FINANCIAL ASSISTANCE TO DEPOSED NIGERIAN ROYALTY</li>
+                            <li>Concordia University</li>
                             <div class="clearfix"></div>
-                        </ul>	
+                        </ul>
                         <ul class="location">
                             <li><span class="glyphicon glyphicon-earphone"></span></li>
-                            <li>+0 561 111 235</li>
+                            <li>+1 (514) 848-2424</li>
                             <div class="clearfix"></div>
-                        </ul>	
+                        </ul>
                         <ul class="location">
                             <li><span class="glyphicon glyphicon-envelope"></span></li>
-                            <li><a href="mailto:info@example.com">mail@example.com</a></li>
+                            <li><a href="mailto:info@example.com">classifieds@concordia.com</a></li>
                             <div class="clearfix"></div>
-                        </ul>						
+                        </ul>
                     </address>
                 </div>
                 <div class="clearfix"></div>
@@ -55,7 +34,7 @@
     <div class="footer-bottom text-center">
     <div class="container">
         <div class="footer-logo">
-            <a href="index.html"><span>Re</span>sale</a>
+            <a href="index.html"><span>ConU</span>Classifieds</a>
         </div>
         <div class="footer-social-icons">
             <ul>
@@ -67,9 +46,9 @@
             </ul>
         </div>
         <div class="copyrights">
-            <p> © 2016 Resale. All Rights Reserved</a></p>
+            <p> © 2016 ConUClassifieds. All Rights Reserved</a></p>
         </div>
-        <div class="clearfix"></div>
     </div>
-</div>
 </footer>
+</body>
+</html>
