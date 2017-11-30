@@ -3,6 +3,10 @@
         <h2 class="head">Ad</h2>
         <div>
             Title: <?php echo $advertisement['title'] ?></br>
+            <?php if ($advertisement['promoId'] > 0) { ?>
+                <span class="label label-warning">Promoted</span></br>
+            <?php } ?>
+            Rank in <?php echo $advertisement['cat_name'] ?>/<?php echo $advertisement['sub_name'] ?> in <?php echo $advertisement['city'] ?>: <span class="label label-primary"><?php echo $advertisement['rank'] ?></span></br>
             Description: <?php echo $advertisement['description'] ?></br>
             Date: <?php echo $advertisement['date'] ?></br>
             Address: <?php echo $advertisement['address'] ?></br>
@@ -20,6 +24,21 @@
         </div>
         <?php if (!$isowner) { ?>
         <div>
+            <?php if ($advertisement['status'] == 'Sold' && $advertisement['rating'] == NULL) { ?>
+            <?php echo form_open_multipart('advertisements/updateRating'); ?>
+                <input type="hidden" name="adId" value="<?php echo $advertisement['adId']; ?>">
+                <label>Rate this transaction:</label>
+                <select name="rating" id="rating">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button type="submit">Rate</button>
+            </form>
+            <?php } ?>
             User: <a href="<?php echo base_url()?>advertisements/user/<?php echo $user['userId'] ?>"><?php echo $user['firstName'] ?> <?php echo $user['lastName'] ?></a> 
         </div>
         <?php } ?>

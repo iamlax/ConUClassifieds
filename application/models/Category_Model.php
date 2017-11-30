@@ -1,8 +1,13 @@
 <?php
 	class Category_model extends CI_Model{
 
-		public function get_categories(){
-			$query = $this->db->get('category');
+		public function get_categories($id = FALSE){
+			if($id == FALSE) {
+				$query = $this->db->get('category');
+			} else {
+				$this->db->where('category.categoryId', $id);
+				$query = $this->db->get('category');
+			}
 			return $query->result_array();
         }
         

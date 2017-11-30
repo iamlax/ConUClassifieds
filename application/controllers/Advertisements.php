@@ -16,10 +16,15 @@ class Advertisements extends CI_Controller{
     }
 
     public function view($id = NULL){
-        $data['advertisement'] = $this->advertisement_model->get_ad($id);
+        $ad  = $this->advertisement_model->get_ad($id);
+
+        $ads_by_sub = $this->advertisement_model->get_ads_by_category(FALSE, $ad['subCategoryId'], $this->session->userdata('locationId'));
+        $ad['rank'] = array_search($ad['adId'], array_column($ads_by_sub, 'adId')) + 1;
+
+        $data['advertisement'] = $ad;
 
         $data['user'] = $this->user_model->get_user($data['advertisement']['userId']);
-        
+
         if(empty($data['advertisement'])){
             show_404();
         }
@@ -36,7 +41,14 @@ class Advertisements extends CI_Controller{
     }
 
     public function view_user($id = NULL){
-        $data['advertisements'] = $this->advertisement_model->get_ads_by_user($id);
+        $ads = $this->advertisement_model->get_ads_by_user($id);
+
+        foreach($ads as &$ad) {
+            $ads_by_sub = $this->advertisement_model->get_ads_by_category(FALSE, $ad['subCategoryId'], $this->session->userdata('locationId'));
+            $ad['rank'] = array_search($ad['adId'], array_column($ads_by_sub, 'adId')) + 1;
+        }
+
+        $data['advertisements'] = $ads;
 
         $data['user'] = $this->user_model->get_user($id);
 
@@ -150,6 +162,21 @@ class Advertisements extends CI_Controller{
             $this->session->set_flashdata('avertisement_updated', 'Your advertisement has been updated');
 
             redirect('advertisements/user/'.$this->session->userdata('userId'));
+        }
+    }
+
+    public function updateRating(){
+        $this->form_validation->set_rules('rating', 'Rating', 'required');
+
+        if($this->form_validation->run() === FALSE){
+            redirect('advertisements/'.$this->input->post('adId'), $data);
+        } else {
+            $this->advertisement_model->update_advertisement($this->input->post('rating'));
+
+            // Set message
+            $this->session->set_flashdata('avertisement_updated', 'Your advertisement has been updated');
+
+            redirect('advertisements/'.$this->input->post('adId'), $data);
         }
     }
 

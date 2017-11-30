@@ -1,53 +1,20 @@
-<body>
-	<!-- content-starts-here -->
-	<div class="content">
-		<div class="categories">
-			<div class="container">
-				<div class="col-md-2 focus-grid">
-					<a href="<?php echo base_url();?>categories">
-						<div class="focus-border">
-							<div class="focus-layout">
-								<div class="focus-image"><i class="fa fa-asterisk"></i></div>
-								<h4 class="clrchg">Buy & Sell</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-2 focus-grid">
-					<a href="<?php echo base_url();?>categories">
-						<div class="focus-border">
-							<div class="focus-layout">
-								<div class="focus-image"><i class="fa fa-shield"></i></div>
-								<h4 class="clrchg">Services</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-2 focus-grid">
-					<a href="<?php echo base_url();?>categories">
-						<div class="focus-border">
-							<div class="focus-layout">
-								<div class="focus-image"><i class="fa fa-book"></i></div>
-								<h4 class="clrchg">Rent</h4>
-							</div>
-						</div>
-					</a>
-				</div>	
-				<div class="col-md-2 focus-grid">
-					<a href="<?php echo base_url();?>categories">
-						<div class="focus-border">
-							<div class="focus-layout">
-								<div class="focus-image"><i class="fa fa-car"></i></div>
-								<h4 class="clrchg">Cars & Vehicles</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<!-- //slider -->				
-		</div>
-	</div>
-</body>
-</html>
+<div class="container">
+    <h2 class="head">Categories</h2>
+</div>
+<div class="sitemap-regions">
+    <div class="container">
+        <div class="sitemap-region-grid">
+            <?php foreach($categories as $category) { ?>
+            <div class="sitemap-region">
+                <a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>"><h4><?php echo $category['name'] ?></h4></a>
+                <ul>
+                <?php foreach($category['subcategory'] as $subcategory) { ?>
+                <li><a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>/<?php echo $subcategory['subcategoryId'];?>"><?php echo $subcategory['name'] ?></a></li>
+                <?php } ?>
+                </ul>
+            </div>
+            <?php } ?>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

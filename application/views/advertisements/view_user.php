@@ -9,6 +9,10 @@
             <div>
                 <a href="<?php echo base_url();?>advertisements/<?php echo $ad['adId'] ?>">View Details</a></br>
                 Title: <?php echo $ad['title'] ?></br>
+                <?php if ($ad['promoId'] > 0) { ?>
+                    <span class="label label-warning">Promoted</span></br>
+                <?php } ?>
+                Rank in <?php echo $ad['cat_name'] ?>/<?php echo $ad['sub_name'] ?> in <?php echo $ad['city'] ?>: <span class="label label-primary"><?php echo $ad['rank'] ?></span></br>
                 Description: <?php echo $ad['description'] ?></br>
                 Date: <?php echo $ad['date'] ?></br>
                 Address: <?php echo $ad['address'] ?></br>

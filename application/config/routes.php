@@ -52,11 +52,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['categories'] = 'categories/index';
+$route['categories/(:any)'] = 'categories/subcategory/$1';
 $route['categories/advertisements/(:any)/(:any)'] = 'categories/advertisements/$1/$2';
 
 $route['advertisements'] = 'advertisements/index';
 $route['advertisements/create'] = 'advertisements/create';
 $route['advertisements/update'] = 'advertisements/update';
+$route['advertisements/updateRating'] = 'advertisements/updateRating';
 $route['advertisements/delete(:any)'] = 'advertisements/delete/$1';
 $route['advertisements/edit/(:any)'] = 'advertisements/edit/$1';
 $route['advertisements/user/(:any)'] = 'advertisements/view_user/$1';
