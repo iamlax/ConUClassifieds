@@ -60,8 +60,7 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 	function Init() {
 
 		var fileselect = $id("fileselect"),
-			filedrag = $id("filedrag"),
-			submitbutton = $id("submitbutton");
+			filedrag = $id("filedrag");
 
 		// file select
 		fileselect.addEventListener("change", FileSelectHandler, false);
@@ -75,11 +74,7 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 			filedrag.addEventListener("dragleave", FileDragHover, false);
 			filedrag.addEventListener("drop", FileSelectHandler, false);
 			filedrag.style.display = "block";
-
-			// remove submit button
-			submitbutton.style.display = "none";
 		}
-
 	}
 
 	// call initialization file
