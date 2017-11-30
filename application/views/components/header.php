@@ -32,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         function hideURLbar() {
             window.scrollTo(0, 1);
-        } </script>
+        } });</script>
     <!-- //for-mobile-apps -->
     <!--fonts-->
     <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
