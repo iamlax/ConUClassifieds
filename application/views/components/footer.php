@@ -14,17 +14,17 @@
                             <li><span class="glyphicon glyphicon-map-marker"></span></li>
                             <li>Concordia University</li>
                             <div class="clearfix"></div>
-                        </ul>	
+                        </ul>
                         <ul class="location">
                             <li><span class="glyphicon glyphicon-earphone"></span></li>
                             <li>+1 (514) 848-2424</li>
                             <div class="clearfix"></div>
-                        </ul>	
+                        </ul>
                         <ul class="location">
                             <li><span class="glyphicon glyphicon-envelope"></span></li>
                             <li><a href="mailto:info@example.com">classifieds@concordia.com</a></li>
                             <div class="clearfix"></div>
-                        </ul>						
+                        </ul>
                     </address>
                 </div>
                 <div class="clearfix"></div>
@@ -48,7 +48,7 @@
         <div class="copyrights">
             <p> © 2016 ConUClassifieds. All Rights Reserved</a></p>
         </div>
-        <div class="clearfix"></div>
     </div>
-</div>
 </footer>
+</body>
+</html>

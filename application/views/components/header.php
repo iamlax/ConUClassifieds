@@ -30,15 +30,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   $(document).ready(function () {
     var mySelect = $('#first-disabled2');
 
-    $('#special').on('click', function () {
-      mySelect.find('option:selected').prop('disabled', true);
-      mySelect.selectpicker('refresh');
-    });
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+    <!-- //for-mobile-apps -->
+    <!--fonts-->
+    <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <!-- js -->
+    <script type="text/javascript" src="<?php echo asset_url(); ?>js/jquery.min.js"></script>
+    <!-- js -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo asset_url(); ?>js/bootstrap-select.js"></script>
+    <script src="<?php echo asset_url(); ?>js/easyResponsiveTabs.js"></script>
+    <script>
+        $(document).ready(function () {
+            var mySelect = $('#first-disabled2');
 
-    $('#special2').on('click', function () {
-      mySelect.find('option:disabled').prop('disabled', false);
-      mySelect.selectpicker('refresh');
-    });
+            $('#special').on('click', function () {
+                mySelect.find('option:selected').prop('disabled', true);
+                mySelect.selectpicker('refresh');
+            });
 
     $('#basic2').selectpicker({
       liveSearch: true,

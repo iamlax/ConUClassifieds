@@ -62,6 +62,7 @@ $route['advertisements/delete'] = 'advertisements/delete';
 $route['locations'] = 'locations/index';
 $route['locations/set/:id'] = 'locations/set';
 
+$route['auth_controller/login'] = 'auth_controller/login';
 $route['auth_controller/register'] = 'auth_controller/register';
 $route['default_controller'] = 'pages/view';
 
