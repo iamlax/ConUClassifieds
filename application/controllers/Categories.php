@@ -31,7 +31,7 @@ class Categories extends CI_Controller{
         $location = $this->session->userdata('locationId');
 
         $data['ads'] = $this->advertisement_model->get_ads_by_category($cat, $subcat, $location);
-        
+
         $this->load->view('components/header');
         $this->load->view('components/adbanner');
         $this->load->view('advertisements/index', $data);

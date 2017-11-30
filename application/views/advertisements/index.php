@@ -49,7 +49,12 @@
                                 <li>
                                 <img src="images/m1.jpg" title="" alt="" />
                                 <section class="list-left">
-                                <h5 class="title"><?php echo $ad['title'] ?></h5>
+                                <h5 class="title"><?php echo $ad['title'] ?>
+                                <?php if ($ad['promoId'] > 0) { ?>
+                                    <span class="label label-warning">Promoted</span>
+                                <?php } ?>
+                                <span class="label label-primary">Rank: <?php echo array_search($ad['adId'], array_column($ads, 'adId')) + 1; ?></span>
+                                </h5>
                                 <span class="adprice"><?php echo $ad['price'] ?></span>
 
                                 </section>

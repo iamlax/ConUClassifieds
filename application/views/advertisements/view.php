@@ -3,6 +3,10 @@
         <h2 class="head">Ad</h2>
         <div>
             Title: <?php echo $advertisement['title'] ?></br>
+            <?php if ($advertisement['promoId'] > 0) { ?>
+                <span class="label label-warning">Promoted</span></br>
+            <?php } ?>
+            Rank in <?php echo $advertisement['cat_name'] ?>/<?php echo $advertisement['sub_name'] ?> in <?php echo $advertisement['city'] ?>: <span class="label label-primary"><?php echo $advertisement['rank'] ?></span></br>
             Description: <?php echo $advertisement['description'] ?></br>
             Date: <?php echo $advertisement['date'] ?></br>
             Address: <?php echo $advertisement['address'] ?></br>
