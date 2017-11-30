@@ -10,7 +10,7 @@ CREATE TABLE User (
     userId int NOT NULL AUTO_INCREMENT,
     firstName varchar(255),
     lastName varchar(255),
-    email varchar(255) UNIQUE,
+    email varchar(255) NOT NULL UNIQUE,
     password varchar(255),
     userType varchar(255) NOT NULL,
     membPlanId int,
