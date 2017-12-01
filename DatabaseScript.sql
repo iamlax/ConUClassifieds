@@ -27,12 +27,12 @@ CREATE TABLE Card (
 
 CREATE TABLE Payment (
     paymentId int NOT NULL AUTO_INCREMENT,
-    userID int,
+    userId int,
     amount Double,
     cardId int,
     date DATE,
     PRIMARY KEY (paymentId),
-	FOREIGN KEY (userID) REFERENCES User(userID),
+	FOREIGN KEY (userId) REFERENCES User(userId),
     FOREIGN KEY (cardId) REFERENCES Card(cardId)
 );
 
@@ -126,7 +126,7 @@ CREATE TABLE StorePayment (
     storeId int NOT NULL,
     paymentId int NOT NULL,
     paymentMethod varchar(255), 
-    data DATE,
+    date DATE,
     FOREIGN KEY (storeId) REFERENCES Store(storeId)
 );
 
@@ -219,8 +219,29 @@ VALUES(1, 25, 1, "2015-11-29", 6),
 (37, 90, 11, "2017-11-25", 13),
 (38, 75, 11, "2017-11-26", 13),
 (39, 20, 11, "2017-11-27", 13),
-(40, 30, 11, "2017-11-28", 13);
-
+(40, 30, 11, "2017-11-28", 13),
+(41, 8547, 20, "2017-11-28", 20),
+(42, 8547, 20, "2017-11-29", 20),
+(43, 8547, 20, "2017-11-30", 20),
+(44, 8547, 20, "2017-12-01", 20),
+(45, 8547, 20, "2017-12-01", 20),
+(46, 8547, 20, "2017-12-01", 20),
+(47, 8547, 20, "2017-12-01", 20),
+(48, 8547, 20, "2017-12-01", 20),
+(49, 8547, 20, "2017-12-01", 20),
+(50, 8547, 20, "2017-12-01", 20),
+(51, 8547, 20, "2017-12-01", 20),
+(52, 8547, 20, "2017-11-29", 20),
+(53, 8547, 20, "2017-11-30", 20),
+(54, 8547, 20, "2017-12-01", 20),
+(55, 8547, 20, "2017-12-02", 20),
+(56, 8547, 20, "2017-12-03", 20),
+(57, 8547, 20, "2017-12-04", 20),
+(58, 8547, 20, "2017-12-05", 20),
+(59, 8547, 20, "2017-12-06", 20),
+(60, 8547, 20, "2017-12-07", 20),
+(61, 8547, 20, "2017-12-08", 20),
+(62, 8547, 20, "2017-12-09", 20);
 
 
 INSERT into Location(locationId, province, city)
@@ -304,7 +325,7 @@ VALUES(1, "Black belt for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2
 (25, "Trash, only useful as paper weight", "2017-08-31", NULL,"7766 George Street Lasalle QC H8P 1E1", "Iphone X", "Sell", "NULL", "IS@hotmail.com", 4051, "Posted", 5, "Online", "Owner", 12, 1, NULL, 9, NULL),
 (26, "Good for winter", "2016-04-14", NULL,"1731 Rue Le Royer Laval QC H7M 2R6", "Acura CRV", "Sell", "NULL", "AS@hotmail.com", 4355, "Posted", 3, "Online", "Owner", 13, 2, NULL, 10, NULL),
 (27, "Spacious area", "2016-04-25", NULL,"3724 Bd Gareau Saint-Hubert QC J3Y 0G", "6 bedroom", "Buy", "NULL", "6B@hotmail.com", 6974, "Posted", 3, "Online", "Owner", 14, 3, NULL, 11, NULL),
-(28, "Stylish", "2015-11-29", NULL,"1814 Rue Ste Famille Jonquiere QC G7X 9L1", "Gray dress", "Sell", "(514) 143-7412", "NULL", 4919, "Posted", 3, "Online", "Owner", 6, 4, NULL, 12, NULL),
+(28, "Stylish", "2017-11-30", NULL,"1814 Rue Ste Famille Jonquiere QC G7X 9L1", "Gray dress", "Sell", "(514) 143-7412", "NULL", 4919, "Posted", 3, "Online", "Owner", 6, 4, NULL, 12, NULL),
 (29, "Cleans well", "2015-12-25", NULL,"43 Aylmer Ave Ottawa ON K1S 5R4", "Windshield wipers", "Buy", "(613) 143-7564", "NULL", 5637, "Posted", 2, "Online", "Owner", 7, 5, NULL, 13, NULL),
 (30, "Quite small", "2016-01-05", NULL,"8000 Clairview Ave C Windsor ON N8S 1H9", "Small truck", "Sell", "(519) 250-7782", "NULL", 124, "Posted", 5, "Online", "Owner", 8, 6, NULL, 14, NULL),
 (31, "Goes Vroooom Vroooooom", "2016-03-10", NULL,"2725 Willow Pl Thunder Bay ON P7C 1K8", "Fast Snowmobile", "Buy", "(807) 577-9217", "NULL", 7423, "Posted", 4, "Online", "Owner", 9, 7, NULL, 15, NULL),
@@ -335,18 +356,45 @@ VALUES(1, "Black belt for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2
 (56, " Dell", "2016-01-01", NULL,"181 Delisle Laval QC H7A 2V2", "Laptop", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2),
 (57, "Hp", "2016-01-02", NULL,"181 Delisle Laval QC H7A 2V2", "Desktop", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2),
 (58, "With case", "2016-01-03", NULL,"181 Delisle Laval QC H7A 2V2", "Trumpet", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2),
-(59, "For adults", "2016-01-04", NULL,"181 Delisle Laval QC H7A 2V2", "Guitar", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2);
-
+(59, "For adults", "2016-01-04", NULL,"181 Delisle Laval QC H7A 2V2", "Guitar", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2),
+(60, "Black  for men", "2015-11-29", NULL,"6817 43 Av Montreal QC H1T 2R9", "Winter Men's Jacket", "Sell", "NULL", "GS@hotmail.com", 5254, "Posted", 1, "Store", "Buisness", 6, 1, NULL, 1, NULL);
 
 INSERT into Rents(rentsId, userId, storeId, hours, date,delivery)
 VALUES(1, 13, 1, 5, "2016-4-13", "yes"),
-(2, 13, 2, 15, "2016-4-14", "yes"),
-(3, 13, 2, 7, "43059", "yes"),
-(4, 13, 2, 7, "43060", "yes"),
-(5, 13, 2, 2, "43061", "yes"),
-(6, 13, 2, 8, "43062", "yes"),
-(7, 13, 2, 2, "43063", "yes"),
-(8, 13, 2, 6, "43064", "yes"),
-(9, 13, 2, 5, "43065", "yes"),
-(10, 13, 2, 2, "43066", "yes"),
-(11, 13, 2, 3, "43067", "yes");
+(2, 13, 2, 15, "2016-04-14", "yes"),
+(3, 13, 2, 7, "2017-11-20", "yes"),
+(4, 13, 2, 7, "2017-11-21", "yes"),
+(5, 13, 2, 2, "2017-11-22", "yes"),
+(6, 13, 2, 8, "2017-11-23", "yes"),
+(7, 13, 2, 2, "2017-11-24", "yes"),
+(8, 13, 2, 6, "2017-11-25", "yes"),
+(9, 13, 2, 5, "2017-11-26", "yes"),
+(10, 13, 2, 2, "2017-11-27", "yes"),
+(11, 13, 2, 3, "2017-11-28", "yes");
+
+
+INSERT into StorePayment(storeId, paymentId, paymentMethod, date)
+VALUES(2, 41, "Store", "2017-11-28"),
+(2, 42, "Store", "2017-11-29"),
+(2, 43, "Store", "2017-11-30"),
+(2, 44, "Store", "2017-12-01"),
+(2, 45, "Store", "2017-12-02"),
+(2, 46, "Store", "2017-12-03"),
+(2, 47, "Store", "2017-12-04"),
+(2, 48, "Store", "2017-12-05"),
+(2, 49, "Store", "2017-12-06"),
+(2, 50, "Store", "2017-12-07"),
+(2, 51, "Store", "2017-12-08"),
+(2, 52, "Online", "2017-11-28"),
+(2, 53, "Online", "2017-11-29"),
+(2, 54, "Online", "2017-11-30"),
+(2, 55, "Online", "2017-12-01"),
+(2, 56, "Online", "2017-12-02"),
+(2, 57, "Online", "2017-12-03"),
+(2, 58, "Online", "2017-12-04"),
+(2, 59, "Online", "2017-12-05"),
+(2, 60, "Online", "2017-12-06"),
+(2, 61, "Online", "2017-12-07"),
+(2, 62, "Online", "2017-12-08");
+
+

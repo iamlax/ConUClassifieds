@@ -6,4 +6,11 @@ class User_Model extends CI_Model {
         $query = $this->db->get('user');
         return $query->row_array();
     }
+
+    public function get_users() {
+        $this->db->from('User');
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
 }

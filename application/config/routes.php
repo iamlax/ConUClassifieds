@@ -65,8 +65,18 @@ $route['advertisements/user/(:any)'] = 'advertisements/view_user/$1';
 $route['advertisements/(:any)'] = 'advertisements/view/$1';
 
 $route['admins'] = 'admins/index';
-$route['admins/advertisements'] = 'admins/advertisements/view';
+$route['admins/advertisements'] = 'admins/index';
 $route['admins/payments'] = 'admins/payments';
+$route['admins/reports'] = 'admins/reports';
+$route['admins/report1'] = 'admins/report1';
+$route['admins/report2'] = 'admins/report2';
+$route['admins/report3'] = 'admins/report3';
+$route['admins/report4'] = 'admins/report4';
+$route['admins/report5'] = 'admins/report5';
+$route['admins/report6/(:any)'] = 'admins/report6/$1';
+$route['admins/report7'] = 'admins/report7';
+$route['admins/report8/(:any)'] = 'admins/report8/$1';
+$route['admins/report9/(:any)'] = 'admins/report9/$1';
 
 $route['locations'] = 'locations/index';
 $route['locations/set/:id'] = 'locations/set';
