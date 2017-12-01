@@ -82,4 +82,24 @@ class Auth_Controller extends CI_Controller
             }
         }
     }
+
+    public function viewProfile(){
+        $id = $this->session->userdata('membPlanId');
+        $userId = $this->session->userdata('userId');
+        $this->load->model('Auth_Model');
+        //$this->load->model('Advertisement_Model');
+        $data = $this->Auth_Model->getPlan($id);
+        //$data2 = $this->Advertisement_Model->get_ads_by_user($userId);
+        $data['userId'] = $userId;
+        $this->load->view('components/header');
+        $this->load->view('pages/profile', $data);
+        $this->load->view('components/footer');
+    }
+
+    public function Logout()
+    {
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('success', 'Successfully logout.');
+        redirect('home');
+    }
 }

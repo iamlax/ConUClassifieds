@@ -30,4 +30,17 @@ class Auth_Model extends CI_Model {
 
     }
 
+    public function getPlan($id){
+        $this->db->select('name');
+        $this->db->from('membershipplan');
+        $this->db->where(array('membPlanId'=>$id));
+        $memberPlan = $query = $this->db->get()->result_array();
+        if($memberPlan == null){
+            return $memberPlan = array('name'=>'None');
+        }else{
+            return $memberPlan[0];
+        }
+
+    }
+
 }

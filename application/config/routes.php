@@ -69,6 +69,7 @@ $route['locations/set/:id'] = 'locations/set';
 
 $route['auth_controller/login'] = 'auth_controller/login';
 $route['auth_controller/register'] = 'auth_controller/register';
+$route['viewProfile'] = 'auth_controller/viewProfile';
 $route['default_controller'] = 'pages/view';
 
 $route['(:any)'] = 'pages/view/$1';
