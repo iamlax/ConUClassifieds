@@ -80,9 +80,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="logo">
 				<a href="<?php echo base_url();?>"><span>ConU</span>Classifieds</a>
 			</div>
-			<div class="header-right">
-				<a class="account" href="<?php echo base_url();?>login">My Account</a>
-			</div>
+            <div class="header-right">
+                <?php if($this->session->userdata('userId') !== null ) : ?>
+                    <a class="account" href="<?php echo base_url();?>viewProfile">My Account</a>
+                <?php endif; ?>
+            </div>
 		</div>
 	</div>
 </body

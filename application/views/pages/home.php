@@ -1,4 +1,11 @@
 <div id="page-wrapper" class="sign-in-wrapper">
+
+    <?php
+        if($this->session->userdata('userId') !== null){
+            redirect('locations/index');
+        }
+    ?>
+
     <h2 class="head text-center">Welcome to our website</h2>
     <div>
         <h3 class="tlt text-center">Please login in order to proceed</h3>
