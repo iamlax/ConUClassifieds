@@ -1,5 +1,11 @@
 <?php
-class Locations extends CI_Controller{
+class Locations extends MY_Controller{
+
+    protected function middleware()
+    {
+        return array('user_auth');
+    }
+
     public function index(){
         $data['title'] = 'Locations';
 
