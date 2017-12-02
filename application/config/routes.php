@@ -86,6 +86,8 @@ $route['auth_controller/register'] = 'auth_controller/register';
 $route['viewProfile'] = 'auth_controller/viewProfile';
 $route['default_controller'] = 'pages/view';
 
+$route['purchaseMembership'] = 'ClientPayment/purchaseMembership';
+
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
