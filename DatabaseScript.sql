@@ -58,10 +58,10 @@ CREATE TABLE Category (
 );
 
 CREATE TABLE SubCategory (
-    subCategoryid int NOT NULL AUTO_INCREMENT,
+    subCategoryId int NOT NULL AUTO_INCREMENT,
     categoryId int NOT NULL,
     name varchar(255),
-    PRIMARY KEY (subCategoryid),
+    PRIMARY KEY (subCategoryId),
     FOREIGN KEY (categoryId) REFERENCES Category(categoryId)
 );
 
@@ -103,7 +103,7 @@ CREATE TABLE Advertisement (
     forSaleBy varchar(255),
     storeId int,
     PRIMARY KEY (adId),
-    FOREIGN KEY (subCategoryId) REFERENCES SubCategory(subCategoryid),
+    FOREIGN KEY (subCategoryId) REFERENCES SubCategory(subCategoryId),
     FOREIGN KEY (userId) REFERENCES User(userId),
     FOREIGN KEY (locationId) REFERENCES Location(locationId),
     FOREIGN KEY (promoId) REFERENCES PromotionPackage(promoId),

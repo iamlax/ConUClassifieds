@@ -10,7 +10,7 @@ class Auth_model extends CI_Model {
 
     public function insert_register($data){
 
-        $this->db->insert('user',$data);
+        $this->db->insert('User',$data);
 
     }
 
@@ -18,7 +18,7 @@ class Auth_model extends CI_Model {
         $email = $data['email'];
         $password = $data['password'];
         $this->db->select('*');
-        $this->db->from('user');
+        $this->db->from('User');
         $this->db->where(array('email'=>$email));
         $result = $query= $this->db->get()->result_array();
 
@@ -32,7 +32,7 @@ class Auth_model extends CI_Model {
 
     public function getPlan($id){
         $this->db->select('name');
-        $this->db->from('membershipplan');
+        $this->db->from('MembershipPlan');
         $this->db->where(array('membPlanId'=>$id));
         $memberPlan = $query = $this->db->get()->result_array();
         if($memberPlan == null){

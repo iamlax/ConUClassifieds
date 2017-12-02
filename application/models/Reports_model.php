@@ -71,7 +71,7 @@ class Reports_model extends CI_Model
 
         $query = $this->db->query("SELECT *
             FROM Advertisement
-            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryid
+            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
             LEFT JOIN Category ON Subcategory.categoryId = Category.categoryId
             WHERE Category.name = \"Buy and Sell\"
             AND Advertisement.date >= CURDATE() - INTERVAL 10 DAY AND Advertisement.date <= CURDATE();
@@ -87,7 +87,7 @@ class Reports_model extends CI_Model
         $query = $this->db->query("SELECT User.*, Advertisement.title
             FROM User
             INNER JOIN Advertisement on User.userId = Advertisement.userId
-            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryid
+            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
             LEFT JOIN Location ON Advertisement.locationId = Location.locationId
             WHERE Subcategory.name = \"Clothing\" AND location.province = \"Quebec\" AND Advertisement.title = \"Winter Men\'s Jacket\";
             ");
