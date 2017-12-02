@@ -29,9 +29,9 @@
                 <?php } ?>
             </div>
             <div>
-            <?php if(json_decode($advertisement['images'])[0]) { ?>
+            <?php if(json_decode($ad['images'])[0]) { ?>
                 Images: </br>
-                <?php foreach(json_decode($advertisement['images']) as $image) { ?>
+                <?php foreach(json_decode($ad['images']) as $image) { ?>
                     <img class='images_display' src="<?php echo base_url();?>public/images/<?php echo $image;?>"/>
                 <?php } ?>
             <?php } ?>
