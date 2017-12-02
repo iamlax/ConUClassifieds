@@ -1,5 +1,5 @@
 <?php
-class Advertisement_Model extends CI_Model {
+class Advertisement_model extends CI_Model {
 
     public function get_ad($id) {
         $this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');

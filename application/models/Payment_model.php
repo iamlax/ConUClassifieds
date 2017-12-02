@@ -1,5 +1,5 @@
 <?php
-class Payment_Model extends CI_Model {
+class Payment_model extends CI_Model {
 
     public function get_payments() {
         $this->db->select('*');
