@@ -32,8 +32,7 @@ class Auth_Controller extends CI_Controller
                     'userType' => 'User'
                 );
                 $this->session->set_flashdata('success', 'Account has been created, you can now login.');
-                $this->load->model('Auth_Model');
-                $this->Auth_Model->insert_register($data);
+                $this->auth_model->insert_register($data);
                 $this->load->view('components/header');
                 $this->load->view('pages/login');
                 $this->load->view('components/footer');
@@ -59,8 +58,7 @@ class Auth_Controller extends CI_Controller
                     'email' => $_POST['email'],
                     'password' => $_POST['password'],
                 );
-                $this->load->model('Auth_Model');
-                $result = $this->Auth_Model->check_login($data);
+                $result = $this->auth_model->check_login($data);
                 if ($result == false) {
                     $this->session->set_flashdata('error', 'Wrong email or password, please try again.');
                     $this->load->view('components/header');
@@ -86,9 +84,8 @@ class Auth_Controller extends CI_Controller
     public function viewProfile(){
         $id = $this->session->userdata('membPlanId');
         $userId = $this->session->userdata('userId');
-        $this->load->model('Auth_Model');
         //$this->load->model('Advertisement_Model');
-        $data = $this->Auth_Model->getPlan($id);
+        $data = $this->auth_model->getPlan($id);
         //$data2 = $this->Advertisement_Model->get_ads_by_user($userId);
         $data['userId'] = $userId;
         $this->load->view('components/header');
