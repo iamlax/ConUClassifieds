@@ -20,7 +20,7 @@ class Auth_controller extends CI_Controller
 
             $this->form_validation->set_rules('firstName', 'First Name', 'required|alpha');
             $this->form_validation->set_rules('lastName', 'Last Name', 'required|alpha');
-            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[User.email]');
             $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
             if ($this->form_validation->run() == true) {
