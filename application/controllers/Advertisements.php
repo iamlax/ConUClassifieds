@@ -122,7 +122,7 @@ class Advertisements extends MY_Controller{
             // Set message
             $this->session->set_flashdata('advertisement_created', 'Your advertisement has been created');
 
-            //redirect('advertisements/create');
+            redirect('advertisements/create');
         }
     }
 
