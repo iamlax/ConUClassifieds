@@ -89,7 +89,7 @@ class Reports_model extends CI_Model
             INNER JOIN Advertisement on User.userId = Advertisement.userId
             LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
             LEFT JOIN Location ON Advertisement.locationId = Location.locationId
-            WHERE SubCategory.name = \"Clothing\" AND location.province = \"Quebec\" AND Advertisement.title = \"Winter Men\'s Jacket\";
+            WHERE SubCategory.name = \"Clothing\" AND Location.province = \"Quebec\" AND Advertisement.title = \"Winter Men\'s Jacket\";
             ");
         return $query->result_array();
     }
@@ -158,7 +158,7 @@ GROUP BY Payment.date, Store.storeId;
 
         $query = $this->db->query("SELECT Store.storeId, COUNT(*) as Online_payments
             FROM payment
-            INNER JOIN storepayment ON payment.paymentId = StorePayment.paymentId
+            INNER JOIN storepayment ON Payment.paymentId = StorePayment.paymentId
             LEFT JOIN store on StorePayment.storeId =Store.storeId
             WHERE Store.managerId = $managerId AND StorePayment.paymentMethod='Online' AND Payment.date >= CURDATE() - INTERVAL 15 DAY AND Payment.date <= CURDATE()
             GROUP BY Store.storeId;
