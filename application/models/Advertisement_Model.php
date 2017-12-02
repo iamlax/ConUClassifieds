@@ -52,12 +52,13 @@ class Advertisement_Model extends CI_Model {
         return $query->result_array();
     }
 
-    public function create_advertisement(){
-        if ($this->input->post('storeId').length <= 0) {
-            $storeId == NULL;
+    public function create_advertisement($images){
+        if ($this->input->post('storeId') <= 0) {
+            $storeId = NULL;
         } else {
-            $storeId == $this->input->post('storeId');
+            $storeId = $this->input->post('storeId');
         }
+        $now = date('Y-m-d H:i:s');
 
         $data = array(
             'subCategoryId' => $this->input->post('category'),
@@ -74,6 +75,8 @@ class Advertisement_Model extends CI_Model {
             'storeId' => $storeId,
             'userId' => $this->session->userdata('userId'),
             'locationId' => $this->session->userdata('locationId'),
+            'images' => json_encode($images),
+            'date' => $now,
         );
 
         return $this->db->insert('advertisement', $data);

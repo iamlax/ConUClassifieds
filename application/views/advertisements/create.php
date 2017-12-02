@@ -49,7 +49,7 @@
             <div class="upload-ad-photos">
             <label>Images:</label>	
                 <div class="photos-upload-view">
-                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="30000000" />
 
                     <div>
                         <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
