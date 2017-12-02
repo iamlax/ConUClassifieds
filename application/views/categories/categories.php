@@ -8,8 +8,8 @@
             <div class="sitemap-region">
                 <a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>"><h4><?php echo $category['name'] ?></h4></a>
                 <ul>
-                <?php foreach($category['subcategory'] as $subcategory) { ?>
-                <li><a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>/<?php echo $subcategory['subcategoryId'];?>"><?php echo $subcategory['name'] ?></a></li>
+                <?php foreach($category['subCategory'] as $subcategory) { ?>
+                <li><a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>/<?php echo $subcategory['subCategoryId'];?>"><?php echo $subcategory['name'] ?></a></li>
                 <?php } ?>
                 </ul>
             </div>

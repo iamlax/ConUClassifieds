@@ -9,8 +9,8 @@
                     <optgroup label="Categories">
                     <?php foreach ($categories as $category) { ?>
                         <optgroup label="<?php echo $category['name'] ?>">
-                            <?php foreach ($category['subcategory'] as $subcategory) { ?>
-                                <option value=<?php echo $subcategory['subcategoryId'] ?>><?php echo $subcategory['name'] ?></option>
+                            <?php foreach ($category['subCategory'] as $subcategory) { ?>
+                                <option value=<?php echo $subcategory['subCategoryId'] ?>><?php echo $subcategory['name'] ?></option>
                             <?php } ?>
                         </optgroup>
                     <?php } ?>
