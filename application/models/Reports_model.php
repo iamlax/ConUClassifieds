@@ -14,8 +14,8 @@ class Reports_model extends CI_Model
         $query = $this->db->query("SELECT Category.name, User.userId, User.firstName, User.lastName, COUNT(*) as Posts
             FROM User
             INNER JOIN Advertisement ON User.userId = Advertisement.userId
-            LEFT JOIN Subcategory ON Advertisement.SubCategoryId = Subcategory.subCategoryId
-            LEFT JOIN Category ON Subcategory.categoryId = Category.categoryId
+            LEFT JOIN SubCategory ON Advertisement.SubCategoryId = SubCategory.subCategoryId
+            LEFT JOIN Category ON SubCategory.categoryId = Category.categoryId
             WHERE Category.name = \"$category\"
             GROUP BY User.userId
             HAVING COUNT(*) =
@@ -24,8 +24,8 @@ class Reports_model extends CI_Model
             (SELECT Count(*) as num 
             FROM User
             INNER JOIN Advertisement ON User.userId = Advertisement.userId
-            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
-            Left JOIN Category ON Subcategory.categoryId = Category.categoryId
+            LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
+            Left JOIN Category ON SubCategory.categoryId = Category.categoryId
             WHERE Category.name = \"$category\"
             GROUP BY User.userId) x);
             ");
@@ -35,8 +35,8 @@ class Reports_model extends CI_Model
                 $this->db->select('User.userId as z');
                 $this->db->from('User');
                 $this->db->join('Advertisement', 'Advertisement.userId = User.userId', 'INNER');
-                $this->db->join('Subcategory', 'Subcategory.subCategoryId = Advertisement.subCategoryId', 'LEFT');
-                $this->db->join('Category', 'Category.categoryId = Subcategory.categoryId', 'LEFT');
+                $this->db->join('SubCategory', 'SubCategory.subCategoryId = Advertisement.subCategoryId', 'LEFT');
+                $this->db->join('Category', 'Category.categoryId = SubCategory.categoryId', 'LEFT');
                 $this->db->where('Category.name', $category);
                 $this->db->group_by('User.userId');
                 $subQuery1 =  $this->db->get_compiled_select();
@@ -55,8 +55,8 @@ class Reports_model extends CI_Model
                 $this->db->select('User.userId, COUNT(*) as Count');
                 $this->db->from('User');
                 $this->db->join('Advertisement', 'Advertisement.userId = User.userId', 'INNER');
-                $this->db->join('Subcategory', 'Subcategory.subCategoryId = Advertisement.subCategoryId', 'LEFT');
-                $this->db->join('Category', 'Category.categoryId = Subcategory.categoryId', 'LEFT');
+                $this->db->join('SubCategory', 'SubCategory.subCategoryId = Advertisement.subCategoryId', 'LEFT');
+                $this->db->join('Category', 'Category.categoryId = SubCategory.categoryId', 'LEFT');
                 $this->db->where('Category.name', $category);
                 $this->db->group_by('User.userId');
                 $this->db->having('COUNT(*)', $subQuery3);
@@ -71,8 +71,8 @@ class Reports_model extends CI_Model
 
         $query = $this->db->query("SELECT *
             FROM Advertisement
-            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
-            LEFT JOIN Category ON Subcategory.categoryId = Category.categoryId
+            LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
+            LEFT JOIN Category ON SubCategory.categoryId = Category.categoryId
             WHERE Category.name = \"Buy and Sell\"
             AND Advertisement.date >= CURDATE() - INTERVAL 10 DAY AND Advertisement.date <= CURDATE();
             ");
@@ -87,9 +87,9 @@ class Reports_model extends CI_Model
         $query = $this->db->query("SELECT User.*, Advertisement.title
             FROM User
             INNER JOIN Advertisement on User.userId = Advertisement.userId
-            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
+            LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
             LEFT JOIN Location ON Advertisement.locationId = Location.locationId
-            WHERE Subcategory.name = \"Clothing\" AND location.province = \"Quebec\" AND Advertisement.title = \"Winter Men\'s Jacket\";
+            WHERE SubCategory.name = \"Clothing\" AND location.province = \"Quebec\" AND Advertisement.title = \"Winter Men\'s Jacket\";
             ");
         return $query->result_array();
     }
@@ -100,7 +100,7 @@ class Reports_model extends CI_Model
 
         $query = $this->db->query("SELECT Ad.adId, Ad.userId, Ad.title, Ad.description, Ad.price, Ad.date, Ad.availability, Ad.type, SC.name as SubCategory
             FROM Advertisement Ad
-            LEFT JOIN Subcategory SC ON Ad.subCategoryId = SC.subCategoryId
+            LEFT JOIN SubCategory SC ON Ad.subCategoryId = SC.subCategoryId
             Left JOIN Category C ON SC.categoryId = C.categoryId
             WHERE C.name = 'Rent';
             ");
@@ -113,7 +113,7 @@ class Reports_model extends CI_Model
         $query = $this->db->query("SELECT C.name as Category, L.city, U.userId, U.firstName, U.lastName, U.email, Ad.adId, Ad.title, C.name, AVG(Ad.rating) as avg_rating
                 FROM User U
                 INNER JOIN Advertisement Ad on U.userId = Ad.userId
-                LEFT JOIN Subcategory SC ON Ad.subCategoryId = SC.subCategoryId
+                LEFT JOIN SubCategory SC ON Ad.subCategoryId = SC.subCategoryId
                 LEFT JOIN Category C ON SC.categoryId = C.categoryId
                 LEFT JOIN Location L ON Ad.locationId = L.locationId
                 WHERE C.name = \"$category\" AND L.city = \"$city\"
@@ -124,7 +124,7 @@ class Reports_model extends CI_Model
                 (SELECT AVG(Ad2.rating) as avg_rating
                 FROM User U2
                 INNER JOIN Advertisement Ad2 on U2.userId = Ad2.userId
-                LEFT JOIN Subcategory SC2 ON Ad2.subCategoryId = SC2.subCategoryId
+                LEFT JOIN SubCategory SC2 ON Ad2.subCategoryId = SC2.subCategoryId
                 LEFT JOIN Category C2 ON SC2.categoryId = C2.categoryId
                 LEFT JOIN Location L2 ON Ad2.locationId = L2.locationId
                 WHERE C2.name = \"$category\" AND L2.city = \"$city\"
