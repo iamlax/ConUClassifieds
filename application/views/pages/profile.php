@@ -1,5 +1,10 @@
 <!--Vertical Tab-->
 <div class="categories-section main-grid-border">
+    <?php if ($this->session->flashdata('success') !== null) { ?>
+        <div class="alert alert-success text-center">
+            <?php echo $this->session->flashdata('success'); ?>
+        </div>
+    <?php } ?>
     <div class="container">
         <h2 class="head">User profile</h2>
         <div class="category-list">
@@ -8,6 +13,7 @@
                     <li>Info</li>
                     <li>My ads</li>
                     <li>Logout</li>
+                    <li>Purchase Membership</li>
                 </ul>
                 <div class="resp-tabs-container hor_1">
                     <div>
@@ -27,8 +33,7 @@
                         <div class="category">
                             <h3 class="tlt text-center">My ads </h3>
                         </div>
-                        <div class="text-center">
-                            <br>
+                        <div class="new_people">
                             <a href="<?php echo base_url() ?>advertisements/user/<?php echo $userId ?>">See my Ads</a>
                         </div>
                     </div>
@@ -36,11 +41,19 @@
                         <div class="category">
                             <h3 class="tlt text-center">Log Out</h3>
                         </div>
-                        <div class="text-center">
+                        <div class="new_people">
                             <br>
                             <?php echo form_open('auth_controller/logout'); ?>
                             <input type="submit" name="logout" value="Log Out">
                             </form>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="category">
+                            <h3 class="tlt text-center">Purchase Membership Plan</h3>
+                        </div>
+                        <div class="new_people">
+                            <a href="<?php echo base_url(); ?>purchaseMembership">Purchase Now!</a>
                         </div>
                     </div>
                 </div>
