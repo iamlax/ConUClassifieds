@@ -158,8 +158,8 @@ GROUP BY Payment.date, Store.storeId;
 
         $query = $this->db->query("SELECT Store.storeId, COUNT(*) as Online_payments
             FROM payment
-            INNER JOIN storepayment ON Payment.paymentId = StorePayment.paymentId
-            LEFT JOIN store on StorePayment.storeId =Store.storeId
+            INNER JOIN StorePayment ON Payment.paymentId = StorePayment.paymentId
+            LEFT JOIN Store on StorePayment.storeId =Store.storeId
             WHERE Store.managerId = $managerId AND StorePayment.paymentMethod='Online' AND Payment.date >= CURDATE() - INTERVAL 15 DAY AND Payment.date <= CURDATE()
             GROUP BY Store.storeId;
             ");
