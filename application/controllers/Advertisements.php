@@ -1,5 +1,11 @@
 <?php
-class Advertisements extends CI_Controller{
+class Advertisements extends MY_Controller{
+
+    protected function middleware()
+    {
+        return array('user_auth');
+    }
+
     public function index(){
         $data['title'] = 'Advertisements';
 

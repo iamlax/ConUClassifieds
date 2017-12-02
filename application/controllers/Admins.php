@@ -1,5 +1,11 @@
 <?php
-class Admins extends CI_Controller{
+class Admins extends MY_Controller{
+    
+    protected function middleware()
+    {
+        return array('admin_auth');
+    }
+
     public function index(){
         $data['title'] = 'Admin View Ads';
 

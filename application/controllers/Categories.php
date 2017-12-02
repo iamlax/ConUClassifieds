@@ -1,5 +1,11 @@
 <?php
-class Categories extends CI_Controller{
+class Categories extends MY_Controller{
+
+    protected function middleware()
+    {
+        return array('user_auth');
+    }
+
     public function index(){
         $data['title'] = 'Categories';
 
