@@ -33,7 +33,7 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>For Sale By <span>*</span></label>
-                <select name="forsaleby" id="forsaleby">
+                <select name="forSaleBy" id="forSaleBy">
                     <option value="Owner">Owner</option>
                     <option value="Business">Business</option>
                 </select>
@@ -49,7 +49,7 @@
                 <div class="clearfix"></div>
                 <script>
                     $('#availability').val('<?php echo $advertisement['availability']; ?>');
-                    $('#forsaleby').val('<?php echo $advertisement['forSaleBy']; ?>');
+                    $('#forSaleBy').val('<?php echo $advertisement['forSaleBy']; ?>');
                     $('#type').val('<?php echo $advertisement['type']; ?>');
                 </script>
             <div class="upload-ad-photos">
