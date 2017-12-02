@@ -2,51 +2,51 @@
 class Advertisement_model extends CI_Model {
 
     public function get_ad($id) {
-        $this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
-        $this->db->from('advertisement');
-        $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
-        $this->db->join('category', 'subcategory.categoryId = category.categoryId');
-        $this->db->join('location', 'advertisement.locationId = location.locationId');
+        $this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
+        $this->db->from('Advertisement');
+        $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+        $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
+        $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
         $this->db->where('adId', $id);
         $query = $this->db->get();
         return $query->row_array();
     }
 
     public function get_ads_by_user($id) {
-        $this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
-        $this->db->from('advertisement');
-        $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
-        $this->db->join('category', 'subcategory.categoryId = category.categoryId');
-        $this->db->join('location', 'advertisement.locationId = location.locationId');
-        $this->db->where('advertisement.userId', $id);
+        $this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
+        $this->db->from('Advertisement');
+        $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+        $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
+        $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
+        $this->db->where('Advertisement.userId', $id);
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function get_ads_by_category($category = FALSE, $subcategory = FALSE, $location) {
         if ($subcategory === FALSE && $category === FALSE) {
-            $query = $this->db->get_where('advertisement', array('advertisement.locationId' => $location));
+            $query = $this->db->get_where('Advertisement', array('Advertisement.LocationId' => $location));
         } else if ($subcategory === FALSE ) {
-			$this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
-            $this->db->from('advertisement');
-            $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
-            $this->db->join('category', 'subcategory.categoryId = category.categoryId');
-            $this->db->join('location', 'advertisement.locationId = location.locationId');
-            $this->db->where('category.categoryId', $category);
-            $this->db->where('advertisement.locationId', $location);
-            $this->db->order_by('advertisement.promoId', 'DESC');
-            $this->db->order_by('advertisement.date', 'DESC');
+			$this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
+            $this->db->from('Advertisement');
+            $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+            $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
+            $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
+            $this->db->where('Category.categoryId', $category);
+            $this->db->where('Advertisement.locationId', $location);
+            $this->db->order_by('Advertisement.promoId', 'DESC');
+            $this->db->order_by('Advertisement.date', 'DESC');
 			$query = $this->db->get();
         } else {
-            $this->db->select('advertisement.*, location.city, subcategory.name as sub_name, category.name as cat_name');
-            $this->db->from('advertisement');
-            $this->db->join('subcategory', 'advertisement.subcategoryId = subcategory.subcategoryId');
-            $this->db->join('category', 'subcategory.categoryId = category.categoryId');
-            $this->db->join('location', 'advertisement.locationId = location.locationId');
-            $this->db->where('subcategory.subcategoryId', $subcategory);
-            $this->db->where('advertisement.locationId', $location);
-            $this->db->order_by('advertisement.promoId', 'DESC');
-            $this->db->order_by('advertisement.date', 'DESC');
+            $this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
+            $this->db->from('Advertisement');
+            $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+            $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
+            $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
+            $this->db->where('SubCategory.subcategoryId', $subcategory);
+            $this->db->where('Advertisement.locationId', $location);
+            $this->db->order_by('Advertisement.promoId', 'DESC');
+            $this->db->order_by('Advertisement.date', 'DESC');
 			$query = $this->db->get();
         }
         return $query->result_array();
@@ -79,7 +79,7 @@ class Advertisement_model extends CI_Model {
             'date' => $now,
         );
 
-        return $this->db->insert('advertisement', $data);
+        return $this->db->insert('Advertisement', $data);
     }
 
     public function update_advertisement($rating = FALSE){
@@ -108,12 +108,12 @@ class Advertisement_model extends CI_Model {
         }
 
         $this->db->where('adId', $this->input->post('adId'));
-        return $this->db->update('advertisement', $data);
+        return $this->db->update('Advertisement', $data);
     }
 
     public function delete_advertisement($id){
         $this->db->where('adId', $id);
-        $this->db->delete('advertisement');
+        $this->db->delete('Advertisement');
         return true;
     }
 }

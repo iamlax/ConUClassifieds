@@ -30,7 +30,7 @@ class ClientPaymentModel extends CI_Model
         $this->db->insert('card',$cardData);
 
         $this->db->select('cardId');
-        $this->db->from('card');
+        $this->db->from('Card');
         $this->db->where(array('cardNumber'=>$cardData['cardNumber']));
         $newCardId = $query= $this->db->get()->result_array();
 
@@ -41,7 +41,7 @@ class ClientPaymentModel extends CI_Model
             'date' => date("Y-m-d")
         );
 
-        $this->db->insert('payment', $paymentData);
+        $this->db->insert('Payment', $paymentData);
 
         $newMembPlandId = intval($data['membPlanId']);
 

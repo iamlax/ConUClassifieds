@@ -2,7 +2,7 @@
 class Location_model extends CI_Model {
     
     public function get_locations() {
-        $query = $this->db->get('location');
+        $query = $this->db->get('Location');
         return $query->result_array();
     }
 
