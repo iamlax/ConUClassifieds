@@ -16,6 +16,11 @@ class Admins extends CI_Controller{
         $this->load->view('components/footer');
     }
 
+    public function backupPayments(){
+        $data['backup'] = $this->payment_model->backupPayments();
+        $this->payments();
+    }
+
     public function reports(){
         $data['title'] = 'Admin Report List';
 

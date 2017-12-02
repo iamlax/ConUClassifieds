@@ -397,4 +397,26 @@ VALUES(2, 41, "Store", "2017-11-28"),
 (2, 61, "Online", "2017-12-07"),
 (2, 62, "Online", "2017-12-08");
 
+CREATE TABLE PaymentProcessingDepartment LIKE Payment;
 
+DELIMITER $$
+CREATE PROCEDURE backupPayments()
+BEGIN
+	INSERT into PaymentProcessingDepartment
+    	SELECT * from Payment
+	where Payment.paymentId NOT IN(SELECT distinct(paymentId) from PaymentProcessingDepartment);
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE EVENT backupPaymentEvent
+	ON SCHEDULE
+	EVERY 1 DAY
+	STARTS  CONCAT(current_date(), ' 23:00:00')
+	ON COMPLETION PRESERVE
+DO
+BEGIN
+  call backupPayments();
+END$$
+DELIMITER ;

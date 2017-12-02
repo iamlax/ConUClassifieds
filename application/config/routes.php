@@ -67,6 +67,7 @@ $route['advertisements/(:any)'] = 'advertisements/view/$1';
 $route['admins'] = 'admins/index';
 $route['admins/advertisements'] = 'admins/index';
 $route['admins/payments'] = 'admins/payments';
+$route['admins/backupPayments'] = 'admins/backupPayments';
 $route['admins/reports'] = 'admins/reports';
 $route['admins/report1'] = 'admins/report1';
 $route['admins/report2'] = 'admins/report2';

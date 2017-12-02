@@ -1,6 +1,12 @@
 <div class="submit-ad main-grid-border">
     <div class="container">
         <h2 class="head">Report</h2>
+        <?php if (!empty($backup))  { ?>
+            <?php echo $backup ?>
+        <?php } ?>
+        <button class="btn btn-success btn-lg" type="button">
+            <a href="<?php echo base_url();?>admins/backupPayments" >Backup Payments</a>
+        </button>
         <table class="table table-striped">
             <?php if (!empty($payment))  { ?>
                 <thead>
