@@ -8,4 +8,8 @@ class Payment_Model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function backupPayments() {
+        $this->db->query('CALL backupPayments();');
+        return $this->db->affected_rows();
+    }
 }
