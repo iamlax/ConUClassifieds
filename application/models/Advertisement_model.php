@@ -4,7 +4,7 @@ class Advertisement_model extends CI_Model {
     public function get_ad($id) {
         $this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
         $this->db->from('Advertisement');
-        $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+        $this->db->join('SubCategory', 'Advertisement.subCategoryId = SubCategory.subCategoryId');
         $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
         $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
         $this->db->where('adId', $id);
@@ -15,7 +15,7 @@ class Advertisement_model extends CI_Model {
     public function get_ads_by_user($id) {
         $this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
         $this->db->from('Advertisement');
-        $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+        $this->db->join('SubCategory', 'Advertisement.subCategoryId = SubCategory.subCategoryId');
         $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
         $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
         $this->db->where('Advertisement.userId', $id);
@@ -25,11 +25,11 @@ class Advertisement_model extends CI_Model {
 
     public function get_ads_by_category($category = FALSE, $subcategory = FALSE, $location) {
         if ($subcategory === FALSE && $category === FALSE) {
-            $query = $this->db->get_where('Advertisement', array('Advertisement.LocationId' => $location));
+            $query = $this->db->get_where('Advertisement', array('Advertisement.locationId' => $location));
         } else if ($subcategory === FALSE ) {
 			$this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
             $this->db->from('Advertisement');
-            $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+            $this->db->join('SubCategory', 'Advertisement.subCategoryId = SubCategory.subCategoryId');
             $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
             $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
             $this->db->where('Category.categoryId', $category);
@@ -40,10 +40,10 @@ class Advertisement_model extends CI_Model {
         } else {
             $this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
             $this->db->from('Advertisement');
-            $this->db->join('SubCategory', 'Advertisement.subcategoryId = SubCategory.subcategoryId');
+            $this->db->join('SubCategory', 'Advertisement.subCategoryId = SubCategory.subCategoryId');
             $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
             $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
-            $this->db->where('SubCategory.subcategoryId', $subcategory);
+            $this->db->where('SubCategory.subCategoryId', $subcategory);
             $this->db->where('Advertisement.locationId', $location);
             $this->db->order_by('Advertisement.promoId', 'DESC');
             $this->db->order_by('Advertisement.date', 'DESC');

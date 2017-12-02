@@ -46,7 +46,7 @@
                         <th>price</th>
                         <th>forSaleBy</th>
                         <th>storeId</th>
-                        <th>subCategoryid</th>
+                        <th>subCategoryId</th>
                         <th>categoryId</th>
                         <th>name</th>
                     </tr>
@@ -73,7 +73,7 @@
                         <td><?php echo $rep2['price'] ?></td>
                         <td><?php echo $rep2['forSaleBy'] ?></td>
                         <td><?php echo $rep2['storeId'] ?></td>
-                        <td><?php echo $rep2['subCategoryid'] ?></td>
+                        <td><?php echo $rep2['subCategoryId'] ?></td>
                         <td><?php echo $rep2['categoryId'] ?></td>
                         <td><?php echo $rep2['name'] ?></td>
                     </tr>
