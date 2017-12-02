@@ -7,16 +7,12 @@ class Advertisements extends MY_Controller{
     }
 
     public function index(){
-        $data['title'] = 'Advertisements';
-
-        $categories = $this->category_model->get_categories();
-        foreach($categories as &$category) {
-            $category['subcategory'] = $this->category_model->get_subcategories($category['categoryId']);
-        }
+        $location = $this->session->userdata('locationId');
         
-        $data['categories'] = $categories;
+        $data['ads'] = $this->advertisement_model->get_ads_by_category(FALSE, FALSE, $location);
 
         $this->load->view('components/header');
+        $this->load->view('components/adbanner');
         $this->load->view('advertisements/index', $data);
         $this->load->view('components/footer');
     }
@@ -94,34 +90,39 @@ class Advertisements extends MY_Controller{
         $this->form_validation->set_rules('address', 'Address', 'required');
         $this->form_validation->set_rules('availability', 'Availability', 'required');
 
+        if (empty($_FILES['fileselect']['name'][0]))
+        {
+            $this->form_validation->set_rules('fileselect', 'images', 'required');
+        }
+
         if($this->form_validation->run() === FALSE){
             $this->load->view('components/header');
             $this->load->view('advertisements/create', $data);
             $this->load->view('components/footer');
         } else {
-            // Upload Image
-            // $config['upload_path'] = './assets/images/posts';
-            // $config['allowed_types'] = 'gif|jpg|png';
-            // $config['max_size'] = '2048';
-            // $config['max_width'] = '2000';
-            // $config['max_height'] = '2000';
+            // Upload Images
+            //Configure upload.
+            $this->upload->initialize(array(
+                "upload_path"	=> "./public/images/",
+                "allowed_types" => "gif|jpg|png"
+            ));
 
-            // $this->load->library('upload', $config);
-
-            // if(!$this->upload->do_upload()){
-            //     $errors = array('error' => $this->upload->display_errors());
-            //     $post_image = 'noimage.jpg';
-            // } else {
-            //     $data = array('upload_data' => $this->upload->data());
-            //     $post_image = $_FILES['userfile']['name'];
-            // }
-
-            $this->advertisement_model->create_advertisement();
+            //Perform upload.
+            if($this->upload->do_multi_upload("fileselect")) {
+                //Code to run upon successful upload.
+                $imagesArray = $this->upload->get_multi_upload_data();
+                $images = [];
+                foreach($imagesArray as $image) {
+                    $images[]= $image['file_name'];
+                }
+            }
+        
+            $this->advertisement_model->create_advertisement($images);
 
             // Set message
             $this->session->set_flashdata('advertisement_created', 'Your advertisement has been created');
 
-            redirect('advertisements/create');
+            //redirect('advertisements/create');
         }
     }
 

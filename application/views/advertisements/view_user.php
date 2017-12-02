@@ -28,6 +28,14 @@
                 <a href="<?php echo base_url();?>advertisements/delete/<?php echo $ad['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
                 <?php } ?>
             </div>
+            <div>
+            <?php if(json_decode($ad['images'])[0]) { ?>
+                Images: </br>
+                <?php foreach(json_decode($ad['images']) as $image) { ?>
+                    <img class='images_display' src="<?php echo base_url();?>public/images/<?php echo $image;?>"/>
+                <?php } ?>
+            <?php } ?>
+            </div>
             </br>
             </br>
         <?php } ?>

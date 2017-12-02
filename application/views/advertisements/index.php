@@ -34,20 +34,14 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                         <div>
                                             <div id="container">
-                            <div class="sort">
-                                <div class="sort-by">
-                                    <label>Sort By : </label>
-                                    <select>
-                                        <option value="">Most recent</option>
-                                    </select>
-                                    </div>
-                                    </div>
                             <div class="clearfix"></div>
                         <ul class="list">
                             <?php foreach($ads as $ad) { ?>
                             <a href="<?php echo base_url();?>advertisements/<?php echo $ad['adId'] ?>">
                                 <li>
-                                <img src="images/m1.jpg" title="" alt="" />
+                                <?php if(json_decode($ad['images'])[0]) { ?>
+                                <img src="<?php echo base_url();?>public/images/<?php echo json_decode($ad['images'])[0];?>"/>
+                                <?php } ?>
                                 <section class="list-left">
                                 <h5 class="title"><?php echo $ad['title'] ?>
                                 <?php if ($ad['promoId'] > 0) { ?>
@@ -55,7 +49,8 @@
                                 <?php } ?>
                                 <span class="label label-primary">Rank: <?php echo array_search($ad['adId'], array_column($ads, 'adId')) + 1; ?></span>
                                 </h5>
-                                <span class="adprice"><?php echo $ad['price'] ?></span>
+                                <span class="adprice">Type: <?php echo $ad['type'] ?></span>
+                                <span class="adprice">$<?php echo $ad['price'] ?></span>
 
                                 </section>
                                 <section class="list-right">

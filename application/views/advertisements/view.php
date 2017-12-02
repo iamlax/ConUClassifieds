@@ -22,6 +22,14 @@
                 <a href="<?php echo base_url();?>advertisements/delete/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
             <?php } ?>
         </div>
+        <div>
+        <?php if(json_decode($advertisement['images'])[0]) { ?>
+            Images: </br>
+            <?php foreach(json_decode($advertisement['images']) as $image) { ?>
+                <img class='images_display' src="<?php echo base_url();?>public/images/<?php echo $image;?>"/>
+            <?php } ?>
+        <?php } ?>
+        </div>
         <?php if (!$isowner) { ?>
         <div>
             <?php if ($advertisement['status'] == 'Sold' && $advertisement['rating'] == NULL) { ?>
