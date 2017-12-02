@@ -35,9 +35,9 @@ class ClientPaymentModel extends CI_Model
         $newCardId = $query= $this->db->get()->result_array();
 
         $paymentData = array(
-            'userId' => $data['userId'],
+            'userID' => $data['userId'],
             'amount' => $amount,
-            'cardID' => $newCardId[0]['cardId'],
+            'cardId' => $newCardId[0]['cardId'],
             'date' => date("Y-m-d")
         );
 
