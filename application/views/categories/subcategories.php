@@ -17,8 +17,8 @@
 							</div>
 							<div class="sub-categories">
 								<ul>
-									<?php foreach($category['subcategory'] as $subcategory) { ?>
-									<li><a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>/<?php echo $subcategory['subcategoryId'];?>"><?php echo $subcategory['name'] ?></a></li>
+									<?php foreach($category['subCategory'] as $subcategory) { ?>
+									<li><a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>/<?php echo $subcategory['subCategoryId'];?>"><?php echo $subcategory['name'] ?></a></li>
 									<?php } ?>
 									<div class="clearfix"></div>
 								</ul>

@@ -73,7 +73,7 @@ class Advertisements extends MY_Controller{
 
         $categories = $this->category_model->get_categories();
         foreach($categories as &$category) {
-            $category['subcategory'] = $this->category_model->get_subcategories($category['categoryId']);
+            $category['subCategory'] = $this->category_model->get_subcategories($category['categoryId']);
         }
         
         $data['categories'] = $categories;
@@ -83,7 +83,7 @@ class Advertisements extends MY_Controller{
         $this->form_validation->set_rules('description', 'Description', 'required');
         $this->form_validation->set_rules('price', 'Price', 'required');
         $this->form_validation->set_rules('type', 'Type', 'required');
-        $this->form_validation->set_rules('forsaleby', 'For Sale By', 'required');
+        $this->form_validation->set_rules('forSaleBy', 'For Sale By', 'required');
         // $this->form_validation->set_rules('images', 'Images', 'required');
         $this->form_validation->set_rules('phone', 'Phone Number', 'required');
         // $this->form_validation->set_rules('email', 'Email Address', 'required');
@@ -131,7 +131,7 @@ class Advertisements extends MY_Controller{
 
         $categories = $this->category_model->get_categories();
         foreach($categories as &$category) {
-            $category['subcategory'] = $this->category_model->get_subcategories($category['categoryId']);
+            $category['subCategory'] = $this->category_model->get_subcategories($category['categoryId']);
         }
         
         $data['categories'] = $categories;
@@ -153,7 +153,7 @@ class Advertisements extends MY_Controller{
         $this->form_validation->set_rules('description', 'Description', 'required');
         $this->form_validation->set_rules('price', 'Price', 'required');
         $this->form_validation->set_rules('type', 'Type', 'required');
-        $this->form_validation->set_rules('forsaleby', 'For Sale By', 'required');
+        $this->form_validation->set_rules('forSaleBy', 'For Sale By', 'required');
         // $this->form_validation->set_rules('images', 'Images', 'required');
         $this->form_validation->set_rules('phone', 'Phone Number', 'required');
         // $this->form_validation->set_rules('email', 'Email Address', 'required');

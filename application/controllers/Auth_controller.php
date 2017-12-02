@@ -6,7 +6,7 @@
  * Time: 4:26 AM
  */
 
-class Auth_Controller extends CI_Controller
+class Auth_controller extends CI_Controller
 {
     function __construct()
     {

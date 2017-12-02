@@ -9,8 +9,8 @@
                     <optgroup label="Categories">
                     <?php foreach ($categories as $category) { ?>
                         <optgroup label="<?php echo $category['name'] ?>">
-                            <?php foreach ($category['subcategory'] as $subcategory) { ?>
-                                <option value=<?php echo $subcategory['subcategoryId'] ?>><?php echo $subcategory['name'] ?></option>
+                            <?php foreach ($category['subCategory'] as $subcategory) { ?>
+                                <option value=<?php echo $subcategory['subCategoryId'] ?>><?php echo $subcategory['name'] ?></option>
                             <?php } ?>
                         </optgroup>
                     <?php } ?>
@@ -33,7 +33,7 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>For Sale By <span>*</span></label>
-                <select name="forsaleby" id="forsaleby">
+                <select name="forSaleBy" id="forSaleBy">
                     <option value="Owner">Owner</option>
                     <option value="Business">Business</option>
                 </select>
@@ -49,7 +49,7 @@
                 <div class="clearfix"></div>
                 <script>
                     $('#availability').val('<?php echo $advertisement['availability']; ?>');
-                    $('#forsaleby').val('<?php echo $advertisement['forSaleBy']; ?>');
+                    $('#forSaleBy').val('<?php echo $advertisement['forSaleBy']; ?>');
                     $('#type').val('<?php echo $advertisement['type']; ?>');
                 </script>
             <div class="upload-ad-photos">

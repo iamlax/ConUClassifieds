@@ -8,8 +8,8 @@
                     <optgroup label="Categories">
                     <?php foreach ($categories as $category) { ?>
                         <optgroup label="<?php echo $category['name'] ?>">
-                            <?php foreach ($category['subcategory'] as $subcategory) { ?>
-                                <option value=<?php echo $subcategory['subcategoryId'] ?>><?php echo $subcategory['name'] ?></option>
+                            <?php foreach ($category['subCategory'] as $subcategory) { ?>
+                                <option value=<?php echo $subcategory['subCategoryId'] ?>><?php echo $subcategory['name'] ?></option>
                             <?php } ?>
                         </optgroup>
                     <?php } ?>
@@ -32,7 +32,7 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>For Sale By <span>*</span></label>
-                <select name="forsaleby">
+                <select name="forSaleBy">
                     <option value="Owner">Owner</option>
                     <option value="Business">Business</option>
                 </select>
