@@ -32,7 +32,7 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>For Sale By <span>*</span></label>
-                <select name="forsaleby">
+                <select name="forSaleBy">
                     <option value="Owner">Owner</option>
                     <option value="Business">Business</option>
                 </select>

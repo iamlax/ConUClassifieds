@@ -15,7 +15,7 @@
 			if ($id === FALSE) {
 				$query = $this->db->get('SubCategory');
 			} else {
-				$this->db->select('SubCategory.subcategoryId, SubCategory.name');
+				$this->db->select('SubCategory.subCategoryId, SubCategory.name');
 				$this->db->from('SubCategory');
 				$this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
 				$this->db->where('Category.categoryId', $id);

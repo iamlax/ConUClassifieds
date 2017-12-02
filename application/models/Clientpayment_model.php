@@ -6,7 +6,7 @@
  * Time: 10:33 PM
  */
 
-class ClientPayment_model extends CI_Model
+class Clientpayment_model extends CI_Model
 {
     public function purchaseMP($data)
     {
