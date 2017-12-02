@@ -28,8 +28,7 @@ class ClientPayment extends CI_Controller
                     'cardNumber' => $_POST['cardNumber'],
                     'userId' => $this->session->userdata('userId')
                 );
-                $this->load->model('ClientPaymentModel');
-                $this->ClientPaymentModel->purchaseMP($data);
+                $this->clientpayment_model->purchaseMP($data);
                 $this->session->set_flashdata('success', 'Membership plan has been applied to your account');
                 //$this->load->view('components/header');
                 redirect('viewProfile');
