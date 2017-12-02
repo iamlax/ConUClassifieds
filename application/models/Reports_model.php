@@ -6,7 +6,7 @@
  * Time: 11:02 PM
  */
 
-class Reports_Model extends CI_Model
+class Reports_model extends CI_Model
 {
 
     public function usersThatPostedHighestNumberInEachCategory($category)

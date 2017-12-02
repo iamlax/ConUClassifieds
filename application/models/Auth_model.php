@@ -6,7 +6,7 @@
  * Time: 4:43 AM
  */
 
-class Auth_Model extends CI_Model {
+class Auth_model extends CI_Model {
 
     public function insert_register($data){
 
