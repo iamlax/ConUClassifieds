@@ -8,7 +8,6 @@
 					<a href="<?php echo base_url();?>categories/<?php echo $category['categoryId'] ?>">
 						<div class="focus-border">
 							<div class="focus-layout">
-								<div class="focus-image"><i class="fa fa-asterisk"></i></div>
 								<h4 class="clrchg"><?php echo $category['name'] ?></h4>
 							</div>
 						</div>

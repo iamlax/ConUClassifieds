@@ -55,7 +55,8 @@
                                 <?php } ?>
                                 <span class="label label-primary">Rank: <?php echo array_search($ad['adId'], array_column($ads, 'adId')) + 1; ?></span>
                                 </h5>
-                                <span class="adprice"><?php echo $ad['price'] ?></span>
+                                <span class="adprice">Type: <?php echo $ad['type'] ?></span>
+                                <span class="adprice">$<?php echo $ad['price'] ?></span>
 
                                 </section>
                                 <section class="list-right">

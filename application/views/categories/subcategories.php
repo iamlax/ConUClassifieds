@@ -9,9 +9,6 @@
 						<?php foreach($categories as $category) { ?>
 						<div>
 							<div class="category">
-								<div class="category-img">
-									<img src="<?php echo asset_url();?>images/cat2.png" title="image" alt="" />
-								</div>
 								<div class="category-info">
 									<h4><?php echo $category['name'] ?></h4>
 									<a href="<?php echo base_url();?>categories/advertisements/<?php echo $category['categoryId'];?>">View all Ads</a>
