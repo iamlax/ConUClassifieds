@@ -16,7 +16,7 @@
             Email:<?php echo $advertisement['email'] ?></br>
             Phone: <?php echo $advertisement['phone'] ?></br>
             For Sale By: <?php echo $advertisement['forSaleBy'] ?></br>
-            <?php if ($isowner) { ?>
+            <?php if ($isowner || $isadmin) { ?>
                 Status: <?php echo $advertisement['status'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
                 <a href="<?php echo base_url();?>advertisements/delete/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
