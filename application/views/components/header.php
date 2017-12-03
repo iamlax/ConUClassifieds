@@ -87,6 +87,7 @@
                 <?php endif; ?>
                 <?php if($this->session->userdata('userType') === 'Admin' ) : ?>
                     <a class="account" href="<?php echo base_url();?>admins/index">Admin</a>
+                    <a class="account" href="<?php echo base_url();?>admins/reports">Reports</a>
                 <?php endif; ?>
             </div>
 		</div>
