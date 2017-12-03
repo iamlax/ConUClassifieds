@@ -169,7 +169,13 @@ GROUP BY Payment.date, Store.storeId;
     public function isItProfitableForASellerInSl1OrSl4()
     {
 
-        $query = $this->db->query("SELECT S.strategicLocationID, S.percentage, S.cph, 15 as \"Weekend Hourly Cost\", 10 as \"Weekday Hourly Cost\", (15+15*(S.percentage/100)) as \"Cost per Hour on Weekend\", (10+10*(S.percentage/100)) as \"Cost per Hour on Weekday\", ((15+15*(S.percentage/100))/S.cph) as \"Cost Per Customer on Weekend\", ((10+10*(S.percentage/100))/S.cph) as \"Cost Per Customer on Weekend\"
+        $query = $this->db->query("SELECT S.strategicLocationID, S.percentage, S.cph, 15 as \"Weekend Hourly Cost\", 10 as \"Weekday Hourly Cost\", 
+10 as \"Delivery Weekend Hourly Cost\", 5 as \"Delivery Weekday Hourly Cost\",(15+(15*(S.percentage/100))) as \"Cost per Hour on Weekend\", 
+(10+(10*(S.percentage/100))) as \"Cost per Hour on Weekday\", (15+(15*(S.percentage/100)))+10 as \"Cost per Hour on Weekend with Delivery\", 
+(10+(10*(S.percentage/100)))+5 as \"Cost per Hour on Weekday with Delivery\",
+(15+(15*(S.percentage/100)))/S.cph as \"Cost Per Customer on Weekend\", (10+(10*(S.percentage/100)))/S.cph as \"Cost Per Customer on Weekday\",
+(15+(15*(S.percentage/100))+10)/S.cph as \"Cost Per Customer on Weekend with Delivery\", 
+(10+(10*(S.percentage/100))+5)/S.cph as \"Cost Per Customer on Weekday with Delivery\"
             FROM StrategicLocation S
             WHERE S.strategicLocationID=1 OR S.strategicLocationID=4;");
         return $query->result_array();

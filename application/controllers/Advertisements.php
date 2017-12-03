@@ -37,6 +37,12 @@ class Advertisements extends MY_Controller{
             $data['isowner'] = false;
         }
 
+        if ($this->session->userdata('userType') == 'Admin') {
+            $data['isadmin'] = true;
+        } else {
+            $data['isadmin'] = false;
+        }
+
         $this->load->view('components/header');
         $this->load->view('advertisements/view', $data);
         $this->load->view('components/footer');
@@ -63,6 +69,7 @@ class Advertisements extends MY_Controller{
         } else {
             $data['isowner'] = false;
         }
+
         $this->load->view('components/header');
         $this->load->view('advertisements/view_user', $data);
         $this->load->view('components/footer');
