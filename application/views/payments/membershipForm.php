@@ -12,7 +12,7 @@
                     <option value= 3>Premium Plan</option>
                 </select>
                 <div class="clearfix"></div>
-                <label>Membership Plans <span>*</span></label>
+                <label>Card Types <span>*</span></label>
                 <select required name="cardType">
                     <option disabled selected value="">Select Card</option>
                     <option value='Visa'>Visa</option>

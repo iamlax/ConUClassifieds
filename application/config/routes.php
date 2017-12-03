@@ -88,6 +88,7 @@ $route['viewProfile'] = 'auth_controller/viewProfile';
 $route['default_controller'] = 'pages/view';
 
 $route['purchaseMembership'] = 'ClientPayment/purchaseMembership';
+$route['ClientPayment/purchasePromotion/(:any)'] = 'ClientPayment/purchasePromotion/$1';
 
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
