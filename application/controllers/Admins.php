@@ -39,7 +39,7 @@ class Admins extends MY_Controller{
         $r1 = $this->reports_model->usersThatPostedHighestNumberInEachCategory("Buy and Sell");
         $r2 = $this->reports_model->usersThatPostedHighestNumberInEachCategory("Rent");
         $r3 = $this->reports_model->usersThatPostedHighestNumberInEachCategory("Services");
-        $r4 = $this->reports_model->usersThatPostedHighestNumberInEachCategory("Cars");
+        $r4 = $this->reports_model->usersThatPostedHighestNumberInEachCategory("Cars and Vehicles");
 
         $merge1 = array_merge($r1, $r2);
         $merge2 = array_merge($merge1, $r3);
