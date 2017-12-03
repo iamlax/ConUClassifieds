@@ -146,10 +146,6 @@
                     <th>userId</th>
                     <th>firstName</th>
                     <th>lastName</th>
-                    <th>email</th>
-                    <th>adId</th>
-                    <th>title</th>
-                    <th>name</th>
                     <th>avg_rating</th>
                 </tr>
                 </thead>
@@ -161,12 +157,7 @@
                         <td><?php echo $rep5['userId'] ?></td>
                         <td><?php echo $rep5['firstName'] ?></td>
                         <td><?php echo $rep5['lastName'] ?></td>
-                        <td><?php echo $rep5['email'] ?></td>
-                        <td><?php echo $rep5['adId'] ?></td>
-                        <td><?php echo $rep5['title'] ?></td>
-                        <td><?php echo $rep5['name'] ?></td>
                         <td><?php echo $rep5['avg_rating'] ?></td>
-
                     </tr>
                 <?php } ?>
                 </tbody>

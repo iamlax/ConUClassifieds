@@ -30,38 +30,6 @@ class Reports_model extends CI_Model
             GROUP BY User.userId) x);
             ");
 
-        /*
-                // Sub Query 1
-                $this->db->select('User.userId as z');
-                $this->db->from('User');
-                $this->db->join('Advertisement', 'Advertisement.userId = User.userId', 'INNER');
-                $this->db->join('SubCategory', 'SubCategory.subCategoryId = Advertisement.subCategoryId', 'LEFT');
-                $this->db->join('Category', 'Category.categoryId = SubCategory.categoryId', 'LEFT');
-                $this->db->where('Category.name', $category);
-                $this->db->group_by('User.userId');
-                $subQuery1 =  $this->db->get_compiled_select();
-
-                // Sub Query 2
-                $this->db->select('COUNT(*) AS num');
-                $this->db->from("($subQuery1) as x");
-                $subQuery2 =  $this->db->get_compiled_select();
-
-                // Sub Query 3
-                $this->db->select('MAX(y.num)');
-                $this->db->from("($subQuery2) as y");
-                 $subQuery3 =  $this->db->get_compiled_select();
-
-                // Main Query
-                $this->db->select('User.userId, COUNT(*) as Count');
-                $this->db->from('User');
-                $this->db->join('Advertisement', 'Advertisement.userId = User.userId', 'INNER');
-                $this->db->join('SubCategory', 'SubCategory.subCategoryId = Advertisement.subCategoryId', 'LEFT');
-                $this->db->join('Category', 'Category.categoryId = SubCategory.categoryId', 'LEFT');
-                $this->db->where('Category.name', $category);
-                $this->db->group_by('User.userId');
-                $this->db->having('COUNT(*)', $subQuery3);
-                $query = $this->db->get();
-                */
         return $query->result_array();
 
     }
@@ -110,25 +78,26 @@ class Reports_model extends CI_Model
     public function sellersHighestAverageRatingForItemsInACategoryForACity($city, $category)
     {
 
-        $query = $this->db->query("SELECT C.name as Category, L.city, U.userId, U.firstName, U.lastName, U.email, Ad.adId, Ad.title, C.name, AVG(Ad.rating) as avg_rating
-                FROM User U
-                INNER JOIN Advertisement Ad on U.userId = Ad.userId
-                LEFT JOIN SubCategory SC ON Ad.subCategoryId = SC.subCategoryId
-                LEFT JOIN Category C ON SC.categoryId = C.categoryId
-                LEFT JOIN Location L ON Ad.locationId = L.locationId
-                WHERE C.name = \"$category\" AND L.city = \"$city\"
-                GROUP BY U.userId
-                HAVING avg_rating = 
-                (SELECT MAX(avg_rating)
-                FROM
-                (SELECT AVG(Ad2.rating) as avg_rating
-                FROM User U2
-                INNER JOIN Advertisement Ad2 on U2.userId = Ad2.userId
-                LEFT JOIN SubCategory SC2 ON Ad2.subCategoryId = SC2.subCategoryId
-                LEFT JOIN Category C2 ON SC2.categoryId = C2.categoryId
-                LEFT JOIN Location L2 ON Ad2.locationId = L2.locationId
-                WHERE C2.name = \"$category\" AND L2.city = \"$city\"
-                GROUP BY U2.userId) x);");
+        $query = $this->db->query("SELECT Category.name as Category, Location.city, User.userId, User.firstName, User.lastName, AVG(Advertisement.rating) as avg_rating
+FROM User 
+INNER JOIN Advertisement on User.userId = Advertisement.userId
+LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
+LEFT JOIN Category ON Subcategory.categoryId = Category.categoryId
+LEFT JOIN Location ON Advertisement.locationId = Location.locationId
+WHERE Category.name = \"$category\" AND Location.city =\"$city\"
+GROUP BY User.userId
+HAVING avg_rating = 
+(SELECT MAX(avg_rating)
+FROM
+(SELECT AVG(Advertisement.rating) as avg_rating
+FROM User 
+INNER JOIN Advertisement on User.userId = Advertisement.userId
+LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
+LEFT JOIN Category ON Subcategory.categoryId = Category.categoryId
+LEFT JOIN Location ON Advertisement.locationId = Location.locationId
+WHERE Category.name = \"$category\" AND Location.city =\"$city\"
+GROUP BY User.userId) x);
+");
         return $query->result_array();
     }
 
