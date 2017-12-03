@@ -1,4 +1,9 @@
 <div class="submit-ad main-grid-border">
+    <?php if ($this->session->flashdata('success') !== null) { ?>
+        <div class="alert alert-success text-center">
+            <?php echo $this->session->flashdata('success'); ?>
+        </div>
+    <?php } ?>
     <div class="container">
         <?php if ($isowner) { ?>
         <h2 class="head">Your Ads</h2>
@@ -25,6 +30,7 @@
                 <?php if ($isowner) { ?>
                 Status: <?php echo $ad['status'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $ad['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
+                <a href="<?php echo base_url();?>ClientPayment/purchasePromotion/<?php echo $ad['adId'] ?>"><button type="button" class="btn-warning">Add promotion package</button></a>
                 <a href="<?php echo base_url();?>advertisements/delete/<?php echo $ad['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
                 <?php } ?>
             </div>

@@ -40,4 +40,41 @@ class ClientPayment extends CI_Controller
             }
         }
     }
+
+    public function purchasePromotion($adId){
+
+        $data['adId'] = intval($adId);
+
+        $this->load->view('components/header');
+        $this->load->view('payments/promotionPackageForm', $data);
+        $this->load->view('components/footer');
+
+        if (isset($_POST['purchasePromotion'])) {
+
+            $this->form_validation->set_rules('promoId', 'Memberplan ID', 'required');
+            $this->form_validation->set_rules('cardType', 'Card Type', 'required');
+            $this->form_validation->set_rules('cardNumber', 'Card Number', 'required');
+
+            if ($this->form_validation->run() == true) {
+
+                $data = array(
+                    'promoId' => $_POST['promoId'],
+                    'cardType' => $_POST['cardType'],
+                    'cardNumber' => $_POST['cardNumber'],
+                    'userId' => $this->session->userdata('userId'),
+                    'adId' => $adId
+                );
+                $this->clientpayment_model->purchasePromo($data);
+                $this->session->set_flashdata('success', 'Promotion Package has been applied to your ad');
+                //$this->load->view('components/header');
+                redirect('advertisements/user/'.$this->session->userdata('userId'));
+            } else {
+                $this->load->view('components/header');
+                $this->load->view('payments/promotionPackageForm', $data);
+                $this->load->view('components/footer');
+                //If failed, go back to register page, verified by validation
+            }
+        }
+    }
+
 }
