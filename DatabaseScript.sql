@@ -263,7 +263,7 @@ INSERT into Category(categoryId, name)
 VALUES(1, "Buy and Sell"),
 (2, "Services"),
 (3, "Rent"),
-(4, "Cars and Vehicules");
+(4, "Cars and Vehicles");
 
 INSERT into SubCategory(subCategoryId, name, categoryId)
 VALUES(1, "Clothing", 1),
