@@ -98,7 +98,6 @@ class Advertisement_model extends CI_Model {
                 'price' => $this->input->post('price'),
                 'type' => $this->input->post('type'),
                 'forSaleby' => $this->input->post('forSaleBy'),
-                'images' => $this->input->post('images'),
                 'phone' => $this->input->post('phone'),
                 'email' => $this->input->post('email'),
                 'address' => $this->input->post('address'),

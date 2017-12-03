@@ -17,30 +17,33 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>Title <span>*</span></label>
-                <input type="text" name="title" class="phone" placeholder="Title">
+                <input type="text" name="title" class="phone" placeholder="Title" required>
                 <div class="clearfix"></div>
                 <label>Description <span>*</span></label>
-                <textarea class="mess" name="description" placeholder="Write few lines about your product"></textarea>
+                <textarea class="mess" name="description" placeholder="Write few lines about your product" required></textarea>
                 <div class="clearfix"></div>
                 <label>Price <span>*</span></label>
-                <input type="text" name="price" class="price" placeholder="Price">
+                <input type="text" name="price" class="price" placeholder="Price" required>
                 <div class="clearfix"></div>
                 <label>Type <span>*</span></label>
-                <select name="type">
+                <select name="type" required>
+                    <option disabled selected value>Select an Option</option>
                     <option value="Buy">Buy</option>
                     <option value="Sell">Sell</option>
                 </select>
                 <div class="clearfix"></div>
                 <label>For Sale By <span>*</span></label>
-                <select name="forSaleBy">
+                <select name="forSaleBy" required>
+                    <option disabled selected value>Select an Option</option>
                     <option value="Owner">Owner</option>
                     <option value="Business">Business</option>
                 </select>
                 <div class="clearfix"></div>
                 <label>Availability <span>*</span></label>
-                <select name="availability">
-                    <option value="Store">Store</option>
+                <select name="availability" required>
+                    <option disabled selected value>Select an Option</option>
                     <option value="Online">Online</option>
+                    <option value="Store">Store</option>
                 </select>
                 <div class="clearfix"></div>
                 <label>Store Id</label>
@@ -52,7 +55,7 @@
                     <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="30000000" />
 
                     <div>
-                        <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+                        <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" required/>
                         <div id="filedrag">or drop files here</div>
                     </div>
                     </div>
@@ -67,7 +70,7 @@
                     <input type="text" name="email" class="email" placeholder="Email Address">
                     <div class="clearfix"></div>
                     <label>Selling Address<span>*</span></label>
-                    <input type="text" name="address" class="email" placeholder="Address">
+                    <input type="text" name="address" class="email" placeholder="Address" required>
                     <div class="clearfix"></div>
                 <input type="submit">					
                 <div class="clearfix"></div>
