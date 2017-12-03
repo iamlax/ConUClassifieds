@@ -60,12 +60,21 @@ class Clientpayment_model extends CI_Model
         switch ($data['promoId']) {
             case '1':
                 $amount = 10;
+                $stop_date = new DateTime(); 
+                $stop_date->modify('+7 day');
+                $expiryDate= $stop_date->format('Y-m-d H:i:s');
                 break;
             case '2':
                 $amount = 50;
+                $stop_date = new DateTime(); 
+                $stop_date->modify('+30 day');
+                $expiryDate= $stop_date->format('Y-m-d H:i:s');
                 break;
             case '3':
                 $amount = 90;
+                $stop_date = new DateTime(); 
+                $stop_date->modify('+60 day');
+                $expiryDate = $stop_date->format('Y-m-d H:i:s');
                 break;
         }
         $cardData = array(
@@ -92,7 +101,8 @@ class Clientpayment_model extends CI_Model
         $newPromoId = intval($data['promoId']);
 
         $newPromo = array(
-            'promoId' => $newPromoId
+            'promoId' => $newPromoId,
+            'promoExpiration' => $expiryDate
         );
 
         $this->db->where('adId', $data['adId']);

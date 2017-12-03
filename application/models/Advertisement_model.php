@@ -29,7 +29,10 @@ class Advertisement_model extends CI_Model {
         $this->db->join('SubCategory', 'Advertisement.subCategoryId = SubCategory.subCategoryId');
         $this->db->join('Category', 'SubCategory.categoryId = Category.categoryId');
         $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
+        $this->db->group_start();
         $this->db->where('Advertisement.expiryDate >=', date("Y-m-d H:i:s"));
+        $this->db->or_where('Advertisement.promoExpiration >=', date("Y-m-d H:i:s"));
+        $this->db->group_end();
         $this->db->where('Advertisement.userId', $id);
         $query = $this->db->get();
         return $query->result_array();
@@ -37,8 +40,13 @@ class Advertisement_model extends CI_Model {
 
     public function get_ads_by_category($category = FALSE, $subcategory = FALSE, $location) {
         if ($subcategory === FALSE && $category === FALSE) {
-            $this->db->where('Advertisement.expiryDate >=', date("Y-m-d H:i:s"));
             $this->db->where('Advertisement.locationId', $location);
+            $this->db->group_start();
+            $this->db->where('Advertisement.expiryDate >=', date("Y-m-d H:i:s"));
+            $this->db->or_where('Advertisement.promoExpiration >=', date("Y-m-d H:i:s"));
+            $this->db->group_end();
+            $this->db->order_by('Advertisement.promoId', 'DESC');
+            $this->db->order_by('Advertisement.date', 'DESC');
             $query = $this->db->get('Advertisement');
         } else if ($subcategory === FALSE ) {
 			$this->db->select('Advertisement.*, Location.city, SubCategory.name as sub_name, Category.name as cat_name');
@@ -48,7 +56,10 @@ class Advertisement_model extends CI_Model {
             $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
             $this->db->where('Category.categoryId', $category);
             $this->db->where('Advertisement.locationId', $location);
+            $this->db->group_start();
             $this->db->where('Advertisement.expiryDate >=', date("Y-m-d H:i:s"));
+            $this->db->or_where('Advertisement.promoExpiration >=', date("Y-m-d H:i:s"));
+            $this->db->group_end();
             $this->db->order_by('Advertisement.promoId', 'DESC');
             $this->db->order_by('Advertisement.date', 'DESC');
 			$query = $this->db->get();
@@ -60,7 +71,10 @@ class Advertisement_model extends CI_Model {
             $this->db->join('Location', 'Advertisement.locationId = Location.locationId');
             $this->db->where('SubCategory.subCategoryId', $subcategory);
             $this->db->where('Advertisement.locationId', $location);
+            $this->db->group_start();
             $this->db->where('Advertisement.expiryDate >=', date("Y-m-d H:i:s"));
+            $this->db->or_where('Advertisement.promoExpiration >=', date("Y-m-d H:i:s"));
+            $this->db->group_end();
             $this->db->order_by('Advertisement.promoId', 'DESC');
             $this->db->order_by('Advertisement.date', 'DESC');
 			$query = $this->db->get();
