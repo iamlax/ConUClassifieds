@@ -37,6 +37,12 @@ class Advertisements extends MY_Controller{
             $data['isowner'] = false;
         }
 
+        if ($this->session->userdata('userType') == 'Admin') {
+            $data['isadmin'] = true;
+        } else {
+            $data['isadmin'] = false;
+        }
+
         $this->load->view('components/header');
         $this->load->view('advertisements/view', $data);
         $this->load->view('components/footer');
@@ -63,6 +69,7 @@ class Advertisements extends MY_Controller{
         } else {
             $data['isowner'] = false;
         }
+
         $this->load->view('components/header');
         $this->load->view('advertisements/view_user', $data);
         $this->load->view('components/footer');
@@ -79,16 +86,30 @@ class Advertisements extends MY_Controller{
         $data['categories'] = $categories;
 
         $this->form_validation->set_rules('category', 'Category', 'required');
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('description', 'Description', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required');
+        $this->form_validation->set_rules('title', 'Title', 'required|trim');
+        $this->form_validation->set_rules('description', 'Description', 'required|trim');
+        $this->form_validation->set_rules('price', 'Price', 'required|trim|numeric');
         $this->form_validation->set_rules('type', 'Type', 'required');
         $this->form_validation->set_rules('forSaleBy', 'For Sale By', 'required');
-        // $this->form_validation->set_rules('images', 'Images', 'required');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-        // $this->form_validation->set_rules('email', 'Email Address', 'required');
-        $this->form_validation->set_rules('address', 'Address', 'required');
+        $this->form_validation->set_rules('address', 'Address', 'required|trim|regex_match[/^\d+\s[A-z]+/]');
         $this->form_validation->set_rules('availability', 'Availability', 'required');
+
+        if ($this->input->post('availability') == 'Store') {
+            $this->form_validation->set_rules('storeId', 'Store Id', 'required|trim|int');
+        }
+
+        if ($this->input->post('email'))
+        {
+            $this->form_validation->set_rules('email', 'Email Address', 'required|trim|valid_email');
+        }
+        else if ($this->input->post('phone'))
+        {
+            $this->form_validation->set_rules('phone', 'Phone Number', 'required|trim|regex_match[/^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/]');
+        }
+        else
+        {
+            $this->form_validation->set_rules('phone', 'Phone or Email', 'required');
+        }
 
         if (empty($_FILES['fileselect']['name'][0]))
         {
@@ -96,6 +117,9 @@ class Advertisements extends MY_Controller{
         }
 
         if($this->form_validation->run() === FALSE){
+            if (validation_errors() != NULL) {
+                $this->session->set_flashdata('error', validation_errors());
+            }
             $this->load->view('components/header');
             $this->load->view('advertisements/create', $data);
             $this->load->view('components/footer');
@@ -103,7 +127,7 @@ class Advertisements extends MY_Controller{
             // Upload Images
             //Configure upload.
             $this->upload->initialize(array(
-                "upload_path"	=> "./public/images/",
+                "upload_path"	=> "./public/images/uploads",
                 "allowed_types" => "gif|jpg|png"
             ));
 
@@ -120,7 +144,7 @@ class Advertisements extends MY_Controller{
             $this->advertisement_model->create_advertisement($images);
 
             // Set message
-            $this->session->set_flashdata('advertisement_created', 'Your advertisement has been created');
+            $this->session->set_flashdata('success', 'Advertisement has been created.');
 
             redirect('advertisements/create');
         }
@@ -149,24 +173,41 @@ class Advertisements extends MY_Controller{
 
     public function update(){
         $this->form_validation->set_rules('category', 'Category', 'required');
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('description', 'Description', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required');
+        $this->form_validation->set_rules('title', 'Title', 'required|trim');
+        $this->form_validation->set_rules('description', 'Description', 'required|trim');
+        $this->form_validation->set_rules('price', 'Price', 'required|trim|numeric');
         $this->form_validation->set_rules('type', 'Type', 'required');
         $this->form_validation->set_rules('forSaleBy', 'For Sale By', 'required');
-        // $this->form_validation->set_rules('images', 'Images', 'required');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-        // $this->form_validation->set_rules('email', 'Email Address', 'required');
-        $this->form_validation->set_rules('address', 'Address', 'required');
+        $this->form_validation->set_rules('address', 'Address', 'required|trim|regex_match[/^\d+\s[A-z]+/]');
         $this->form_validation->set_rules('availability', 'Availability', 'required');
 
+        if ($this->input->post('availability') == 'Store') {
+            $this->form_validation->set_rules('storeId', 'Store Id', 'required|trim|int');
+        }
+
+        if ($this->input->post('email'))
+        {
+            $this->form_validation->set_rules('email', 'Email Address', 'required|trim|valid_email');
+        }
+        else if ($this->input->post('phone'))
+        {
+            $this->form_validation->set_rules('phone', 'Phone Number', 'required|trim|regex_match[/^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/]');
+        }
+        else
+        {
+            $this->form_validation->set_rules('phone', 'Phone or Email', 'required');
+        }
+
         if($this->form_validation->run() === FALSE){
+            if (validation_errors() != NULL) {
+                $this->session->set_flashdata('error', validation_errors());
+            }
             redirect('advertisements/edit/'.$this->input->post('adId'), $data);
         } else {
             $this->advertisement_model->update_advertisement();
 
             // Set message
-            $this->session->set_flashdata('avertisement_updated', 'Your advertisement has been updated');
+            $this->session->set_flashdata('success', 'Advertisement has been updated.');
 
             redirect('advertisements/user/'.$this->session->userdata('userId'));
         }
@@ -181,16 +222,24 @@ class Advertisements extends MY_Controller{
             $this->advertisement_model->update_advertisement($this->input->post('rating'));
 
             // Set message
-            $this->session->set_flashdata('avertisement_updated', 'Your advertisement has been updated');
+            $this->session->set_flashdata('success', 'Rating has been updated');
 
             redirect('advertisements/'.$this->input->post('adId'), $data);
         }
     }
 
     public function delete($id){
+        $ad = $this->advertisement_model->get_ad($id);
+        
+        if ($ad['images']) {
+            foreach(json_decode($ad['images']) as $image) {
+                unlink('./public/images/uploads/'.$image);
+            }
+        }
+
 		$this->advertisement_model->delete_advertisement($id);
 
-		$this->session->set_flashdata('advertisement_deleted', 'Your advertisement has been deleted');
+		$this->session->set_flashdata('success', 'Advertisement has been deleted');
 
 		redirect('advertisements/user/'.$this->session->userdata('userId'));
     }

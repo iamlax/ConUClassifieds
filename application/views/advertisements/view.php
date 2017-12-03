@@ -16,7 +16,7 @@
             Email:<?php echo $advertisement['email'] ?></br>
             Phone: <?php echo $advertisement['phone'] ?></br>
             For Sale By: <?php echo $advertisement['forSaleBy'] ?></br>
-            <?php if ($isowner) { ?>
+            <?php if ($isowner || $isadmin) { ?>
                 Status: <?php echo $advertisement['status'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
                 <a href="<?php echo base_url();?>ClientPayment/purchasePromotion/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Add promotion package</button></a>
@@ -27,7 +27,7 @@
         <?php if(json_decode($advertisement['images'])[0]) { ?>
             Images: </br>
             <?php foreach(json_decode($advertisement['images']) as $image) { ?>
-                <img class='images_display' src="<?php echo base_url();?>public/images/<?php echo $image;?>"/>
+                <img class='images_display' src="<?php echo base_url();?>public/images/uploads/<?php echo $image;?>"/>
             <?php } ?>
         <?php } ?>
         </div>

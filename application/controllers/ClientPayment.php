@@ -6,8 +6,13 @@
  * Time: 10:33 PM
  */
 
-class ClientPayment extends CI_Controller
+class ClientPayment extends MY_Controller
 {
+    protected function middleware()
+    {
+        return array('user_auth');
+    }
+    
     public function purchaseMembership(){
 
         $this->load->view('components/header');

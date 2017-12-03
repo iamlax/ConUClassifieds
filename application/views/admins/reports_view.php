@@ -297,10 +297,16 @@
                     <th>cph</th>
                     <th>Weekend Hourly Cost</th>
                     <th>Weekday Hourly Cost</th>
+                    <th>Delivery Weekend Hourly Cost</th>
+                    <th>Delivery Weekday Hourly Cost</th>
                     <th>Cost per Hour on Weekend</th>
                     <th>Cost per Hour on Weekday</th>
+                    <th>Cost per Hour on Weekend with Delivery</th>
+                    <th>Cost per Hour on Weekday with Delivery</th>
                     <th>Cost Per Customer on Weekend</th>
-                    <th>Cost Per Customer on Weekend</th>
+                    <th>Cost Per Customer on Weekday</th>
+                    <th>Cost Per Customer on Weekend with Delivery</th>
+                    <th>Cost Per Customer on Weekday with Delivery</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -311,11 +317,16 @@
                         <td><?php echo $rep7['cph'] ?></td>
                         <td><?php echo $rep7['Weekend Hourly Cost'] ?></td>
                         <td><?php echo $rep7['Weekday Hourly Cost'] ?></td>
+                        <td><?php echo $rep7['Delivery Weekend Hourly Cost'] ?></td>
+                        <td><?php echo $rep7['Delivery Weekday Hourly Cost'] ?></td>
                         <td><?php echo $rep7['Cost per Hour on Weekend'] ?></td>
                         <td><?php echo $rep7['Cost per Hour on Weekday'] ?></td>
+                        <td><?php echo $rep7['Cost per Hour on Weekend with Delivery'] ?></td>
+                        <td><?php echo $rep7['Cost per Hour on Weekday with Delivery'] ?></td>
                         <td><?php echo $rep7['Cost Per Customer on Weekend'] ?></td>
-                        <td><?php echo $rep7['Cost Per Customer on Weekend'] ?></td>
-
+                        <td><?php echo $rep7['Cost Per Customer on Weekday'] ?></td>
+                        <td><?php echo $rep7['Cost Per Customer on Weekend with Delivery'] ?></td>
+                        <td><?php echo $rep7['Cost Per Customer on Weekday with Delivery'] ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>

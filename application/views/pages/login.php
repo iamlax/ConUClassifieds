@@ -5,16 +5,6 @@
                 <h1>Log in</h1>
             </div>
             <div class="signin">
-                <?php if($this->session->flashdata('success') !== null){ ?>
-                    <div class="alert alert-success">
-                        <?php echo $this->session->flashdata('success'); ?>
-                    </div>
-                <?php } ?>
-                <?php if($this->session->flashdata('error') !== null){ ?>
-                    <div class="alert alert-danger">
-                        <?php echo $this->session->flashdata('error'); ?>
-                    </div>
-                <?php } ?>
                 <?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
                 <?php echo form_open('auth_controller/login'); ?>
                 <div class="log-input">

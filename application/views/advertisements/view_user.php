@@ -38,7 +38,7 @@
             <?php if(json_decode($ad['images'])[0]) { ?>
                 Images: </br>
                 <?php foreach(json_decode($ad['images']) as $image) { ?>
-                    <img class='images_display' src="<?php echo base_url();?>public/images/<?php echo $image;?>"/>
+                    <img class='images_display' src="<?php echo base_url();?>public/images/uploads/<?php echo $image;?>"/>
                 <?php } ?>
             <?php } ?>
             </div>
