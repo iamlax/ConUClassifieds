@@ -14,6 +14,7 @@
                 <?php } ?>
                 Rank in <?php echo $ad['cat_name'] ?>/<?php echo $ad['sub_name'] ?> in <?php echo $ad['city'] ?>: <span class="label label-primary"><?php echo $ad['rank'] ?></span></br>
                 Description: <?php echo $ad['description'] ?></br>
+                Price: $<?php echo $ad['price'] ?></br>
                 Date: <?php echo $ad['date'] ?></br>
                 Address: <?php echo $ad['address'] ?></br>
                 Availability: <?php echo $ad['availability'] ?></br>
