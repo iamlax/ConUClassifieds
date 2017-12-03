@@ -1,9 +1,4 @@
 <div class="regions main-grid-border">
-    <?php if ($this->session->flashdata('success') !== null) { ?>
-        <div class="alert alert-success text-center">
-            <?php echo $this->session->flashdata('success'); ?>
-        </div>
-    <?php } ?>
     <div>
         <hr>
         <h3 class="tlt text-center">Hello

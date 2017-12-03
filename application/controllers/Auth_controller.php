@@ -6,11 +6,16 @@
  * Time: 4:26 AM
  */
 
-class Auth_controller extends CI_Controller
+class Auth_controller extends MY_Controller
 {
     function __construct()
     {
         parent::__construct();
+    }
+
+    protected function middleware()
+    {
+        return array('user_auth|except:register,login');
     }
 
     public function register()
@@ -69,7 +74,7 @@ class Auth_controller extends CI_Controller
                     foreach ($result as $key => $value) {
                         $this->session->set_userdata($key, $value);
                     }
-                    $this->session->set_flashdata('success', 'Successfully login.');
+                    $this->session->set_flashdata('success', 'Successfully logged in.');
                     redirect('locations/index');
                 }
             } else {
@@ -96,7 +101,7 @@ class Auth_controller extends CI_Controller
     public function Logout()
     {
         $this->session->sess_destroy();
-        $this->session->set_flashdata('success', 'Successfully logout.');
+        $this->session->set_flashdata('success', 'Successfully logged out.');
         redirect('home');
     }
 }

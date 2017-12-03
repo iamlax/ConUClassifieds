@@ -5,24 +5,6 @@
             <li><a href="<?php echo base_url();?>categories">Categories</a></li>
             <li class="active">Mobiles</li>
         </ol>
-        <div class="select-box">
-            <div class="search-product ads-list">
-                <label>Search for a specific product</label>
-                <div class="search">
-                    <div id="custom-search-input">
-                    <div class="input-group">
-                        <input type="text" class="form-control input-lg" placeholder="Buscar" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-info btn-lg" type="button">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
         <div class="ads-grid">
             </div>
             <div class="ads-display col-md-12">
@@ -40,7 +22,7 @@
                             <a href="<?php echo base_url();?>advertisements/<?php echo $ad['adId'] ?>">
                                 <li>
                                 <?php if(json_decode($ad['images'])[0]) { ?>
-                                <img src="<?php echo base_url();?>public/images/<?php echo json_decode($ad['images'])[0];?>"/>
+                                <img src="<?php echo base_url();?>public/images/uploads/<?php echo json_decode($ad['images'])[0];?>"/>
                                 <?php } ?>
                                 <section class="list-left">
                                 <h5 class="title"><?php echo $ad['title'] ?>

@@ -11,8 +11,6 @@
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Resale Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
 <!--fonts-->
@@ -88,3 +86,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 </body
+<header role="banner">
+<nav id="navbar-primary" class="navbar" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-primary-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-primary-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="<?php echo base_url();?>">Home</a></li>
+        <li><a href="<?php echo base_url();?>locations">Locations</a></li>
+        <li><a href="<?php echo base_url();?>categories">Categories</a></li>
+        <li><a href="<?php echo base_url();?>advertisements/user/<?php echo $this->session->userdata('userId');?>">My Ads</a></li>
+        <li><a href="<?php echo base_url();?>viewProfile">My Account</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</header><!-- header role="banner" -->
+<?php if ($this->session->flashdata('success') !== null) { ?>
+    <div class="alert alert-success text-center">
+        <?php echo $this->session->flashdata('success'); ?>
+    </div>
+<?php } ?>
+<?php if ($this->session->flashdata('error') !== null) { ?>
+    <div class="alert alert-danger text-center">
+        <?php echo $this->session->flashdata('error'); ?>
+    </div>
+<?php } ?>

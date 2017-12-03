@@ -47,24 +47,18 @@
                 <label>Store Id</label>
                 <input type="text" name="storeId" value="<?php echo $advertisement['storeId']; ?>">
                 <div class="clearfix"></div>
+                <?php if(json_decode($advertisement['images'])[0]) { ?>
+                    Images: </br>
+                    <?php foreach(json_decode($advertisement['images']) as $image) { ?>
+                        <img class='images_display' src="<?php echo base_url();?>public/images/uploads/<?php echo $image;?>"/>
+                    <?php } ?>
+                <?php } ?>
                 <script>
                     $('#availability').val('<?php echo $advertisement['availability']; ?>');
                     $('#forSaleBy').val('<?php echo $advertisement['forSaleBy']; ?>');
                     $('#type').val('<?php echo $advertisement['type']; ?>');
                 </script>
             <div class="upload-ad-photos">
-            <label>Images:</label>	
-                <div class="photos-upload-view">
-                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
-
-                    <div>
-                        <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                        <div id="filedrag">or drop files here</div>
-                    </div>
-                    </div>
-                <div class="clearfix"></div>
-                    <script src="<?php echo asset_url() ?>js/filedrag.js"></script>
-            </div>
                 <div class="personal-details">
                     <label>Your Phone # <span>*</span></label>
                     <input type="text" name="phone" class="phone" value="<?php echo $advertisement['phone']; ?>">
