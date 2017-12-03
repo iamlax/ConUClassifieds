@@ -1,9 +1,4 @@
 <div class="submit-ad main-grid-border">
-    <?php if ($this->session->flashdata('success') !== null) { ?>
-        <div class="alert alert-success text-center">
-            <?php echo $this->session->flashdata('success'); ?>
-        </div>
-    <?php } ?>
     <div class="container">
         <?php if ($isowner) { ?>
         <h2 class="head">Your Ads</h2>

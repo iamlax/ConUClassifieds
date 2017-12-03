@@ -80,36 +80,17 @@
 			</div>
             <div class="header-right">
                 <?php if($this->session->userdata('userId') !== null ) : ?>
+                    <a class="account" href="<?php echo base_url();?>locations">Locations</a>
                     <a class="account" href="<?php echo base_url();?>viewProfile">My Account</a>
+                    <a class="account" href="<?php echo base_url();?>categories">Categories</a>
+                    <a class="account" href="<?php echo base_url();?>advertisements/user/<?php echo $this->session->userdata('userId');?>">My Ads</a>
+                <?php endif; ?>
+                <?php if($this->session->userdata('userType') === 'Admin' ) : ?>
+                    <a class="account" href="<?php echo base_url();?>admins/index">Admin</a>
                 <?php endif; ?>
             </div>
 		</div>
 	</div>
-</body
-<header role="banner">
-<nav id="navbar-primary" class="navbar" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-primary-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-primary-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="<?php echo base_url();?>">Home</a></li>
-        <li><a href="<?php echo base_url();?>locations">Locations</a></li>
-        <li><a href="<?php echo base_url();?>categories">Categories</a></li>
-        <li><a href="<?php echo base_url();?>advertisements/user/<?php echo $this->session->userdata('userId');?>">My Ads</a></li>
-        <li><a href="<?php echo base_url();?>viewProfile">My Account</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-</header><!-- header role="banner" -->
 <?php if ($this->session->flashdata('success') !== null) { ?>
     <div class="alert alert-success text-center">
         <?php echo $this->session->flashdata('success'); ?>
