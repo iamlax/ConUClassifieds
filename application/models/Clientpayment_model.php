@@ -43,7 +43,7 @@ class Clientpayment_model extends CI_Model
                 'userID' => $data['userId'],
                 'amount' => $amount,
                 'cardId' => $newCardId[0]['cardId'],
-                'date' => date("Y-m-d")
+                'date' => date("Y-m-d H:i:s")
             );
             $this->db->insert('Payment', $paymentData);
         }else{
@@ -51,7 +51,7 @@ class Clientpayment_model extends CI_Model
                 'userID' => $data['userId'],
                 'amount' => $amount,
                 'cardId' => $existCardId[0]['cardId'],
-                'date' => date("Y-m-d")
+                'date' => date("Y-m-d H:i:s")
             );
             $this->db->insert('Payment', $paymentData);
         }
@@ -76,19 +76,19 @@ class Clientpayment_model extends CI_Model
                 $amount = 10;
                 $stop_date = new DateTime(); 
                 $stop_date->modify('+7 day');
-                $expiryDate= $stop_date->format('Y-m-d H:i:s');
+                $expiryDate= $stop_date->format("Y-m-d H:i:s");
                 break;
             case '2':
                 $amount = 50;
                 $stop_date = new DateTime(); 
                 $stop_date->modify('+30 day');
-                $expiryDate= $stop_date->format('Y-m-d H:i:s');
+                $expiryDate= $stop_date->format("Y-m-d H:i:s");
                 break;
             case '3':
                 $amount = 90;
                 $stop_date = new DateTime(); 
                 $stop_date->modify('+60 day');
-                $expiryDate = $stop_date->format('Y-m-d H:i:s');
+                $expiryDate = $stop_date->format("Y-m-d H:i:s");
                 break;
         }
 
@@ -112,7 +112,7 @@ class Clientpayment_model extends CI_Model
                 'userID' => $data['userId'],
                 'amount' => $amount,
                 'cardId' => $newCardId[0]['cardId'],
-                'date' => date("Y-m-d")
+                'date' => date("Y-m-d H:i:s")
             );
             $this->db->insert('Payment', $paymentData);
         }else{
@@ -120,7 +120,7 @@ class Clientpayment_model extends CI_Model
                 'userID' => $data['userId'],
                 'amount' => $amount,
                 'cardId' => $existCardId[0]['cardId'],
-                'date' => date("Y-m-d")
+                'date' => date("Y-m-d H:i:s")
             );
             $this->db->insert('Payment', $paymentData);
         }
