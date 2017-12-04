@@ -7,6 +7,7 @@
         <div class="ads-grid">
             </div>
             <div class="ads-display col-md-12">
+            <h3><a href="<?php echo current_url();?>/sellers">View Sellers Only</a></h3>
                 <div class="wrapper">					
                 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">

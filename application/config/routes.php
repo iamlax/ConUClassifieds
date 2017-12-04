@@ -52,8 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['categories'] = 'categories/index';
-$route['categories/(:any)'] = 'categories/subcategory/$1';
+$route['categories/advertisements/(:any)/(:any)/sellers'] = 'categories/advertisements/$1/$2/sellers';
 $route['categories/advertisements/(:any)/(:any)'] = 'categories/advertisements/$1/$2';
+$route['categories/(:any)'] = 'categories/subcategory/$1';
 
 $route['advertisements'] = 'advertisements/index';
 $route['advertisements/create'] = 'advertisements/create';
