@@ -99,7 +99,7 @@ CREATE TABLE Advertisement (
     description varchar(255),
     images varchar(255),
 	  address varchar(255),
-    status varchar(255) DEFAULT "Posted",
+    status varchar(255) DEFAULT "Available",
     availability varchar(255),
     rating varchar(255) DEFAULT NULL,
     locationId int NOT NULL,
