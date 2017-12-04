@@ -18,11 +18,18 @@ CREATE TABLE User (
     FOREIGN KEY (membPlanId) REFERENCES MembershipPlan(membPlanId)
 );
 
+CREATE TABLE CardFees (
+    cardType varchar(255),
+    percentage int,
+    PRIMARY KEY (cardType)
+);
+
 CREATE TABLE Card (
     cardId int NOT NULL AUTO_INCREMENT,
     cardNumber BIGINT,
     cardType varchar(255),
-    PRIMARY KEY (cardId)
+    PRIMARY KEY (cardId),
+    FOREIGN KEY (cardType) REFERENCES CardFees(cardType)
 );
 
 CREATE TABLE Payment (
@@ -138,6 +145,7 @@ VALUES(1, "Normal Plan", 25, 7),
 (2, "Silver Plan", 50, 14),
 (3, "Premium Plan", 70, 30);
 
+
 INSERT into User(UserId, firstName, lastName, email,password, userType, membPlanId)
 VALUES(1, "Layla", "Levine", "LL@hotmail.com", "LL1234", "Admin", Null),
 (2, "Riley", "Hughes", "RH@hotmail.com", "RH1234", "Admin", Null),
@@ -158,7 +166,12 @@ VALUES(1, "Layla", "Levine", "LL@hotmail.com", "LL1234", "Admin", Null),
 (17, "Victoria", "Shaffer", "VS@hotmail.com", "VS1234", "User ", 3),
 (18, "Elisha", "Harrington", "EH@hotmail.com", "EH1234", "User ", 3),
 (19, "Carsen", "Kemp", "CK@hotmail.com", "CK1234", "User ", 3),
-(20, "Edna", "Mccarty", "EM@hotmail.com", "EM1234", "User ", 3);
+(20, "Edna", "Mccarty", "EM@hotmail.com", "EM1234", "User ", 3),
+(21, "TA", "A", "TA@hotmail.com", "TA1234", "User ", 1);
+
+INSERT into CardFees(cardType, percentage)
+VALUES("Credit", 3),
+("Debit", 1);
 
 INSERT into Card(cardId, cardNumber, cardType)
 VALUES(1, 4539937618825770, "Credit"),
@@ -180,7 +193,8 @@ VALUES(1, 4539937618825770, "Credit"),
 (17, 340645157373060, "Debit"),
 (18, 373787835718355, "Debit"),
 (19, 346098970061666, "Debit"),
-(20, 349745688116227, "Debit");
+(20, 349745688116227, "Debit"),
+(21, 373787835758355, "Debit");
 
 INSERT into Payment(paymentId, amount, cardId, date,userId)
 VALUES(1, 25, 6, "2017-11-25 01:00:00", 6),
@@ -257,7 +271,35 @@ VALUES(1, 25, 6, "2017-11-25 01:00:00", 6),
 (72, 60, 13, "2017-11-27 12:00:00", 13),
 (73, 60, 13, "2017-11-28 13:00:00", 13),
 (74, 60, 13, "2017-11-29 14:00:00", 13),
-(75, 60, 13, "2017-11-30 15:00:00", 13);
+(75, 60, 13, "2017-11-30 15:00:00", 13),
+(76, 25, 21, "2017-11-15 16:00:00", 21),
+(77, 10, 21, "2017-11-16 01:00:00", 21),
+(78, 10, 21, "2017-11-18 03:00:00", 21),
+(79, 10, 21, "2017-11-20 05:00:00", 21),
+(80, 10, 21, "2017-11-22 07:00:00", 21),
+(81, 10, 21, "2017-11-24 09:00:00", 21),
+(82, 10, 21, "2017-11-26 11:00:00", 21),
+(83, 10, 21, "2017-11-28 13:00:00", 21),
+(84, 10, 21, "2017-11-30 15:00:00", 21),
+(85, 10, 21, "2017-12-02 17:00:00", 21),
+(86, 10, 21, "2017-12-04 19:00:00", 21),
+(87, 10, 21, "2017-12-06 21:00:00", 21),
+(88, 10, 21, "2017-12-08 23:00:00", 21),
+(89, 10, 21, "2017-12-10 01:00:00", 21),
+(90, 10, 21, "2017-12-12 03:00:00", 21),
+(91, 10, 21, "2017-12-14 05:00:00", 21),
+(92, 10, 21, "2017-12-16 07:00:00", 21),
+(93, 18, 21, "2017-12-07 22:00:00", 21),
+(94, 18, 21, "2017-12-08 23:00:00", 21),
+(95, 23, 21, "2017-12-09 00:00:00", 21),
+(96, 23, 21, "2017-12-10 01:00:00", 21),
+(97, 18, 21, "2017-12-11 02:00:00", 21),
+(98, 18, 21, "2017-12-12 03:00:00", 21),
+(99, 18, 21, "2017-12-13 04:00:00", 21),
+(100, 18, 21, "2017-12-14 05:00:00", 21),
+(101, 18, 21, "2017-12-15 06:00:00", 21),
+(102, 23, 21, "2017-12-16 07:00:00", 21),
+(103, 23, 21, "2017-12-17 08:00:00", 21);
 
 INSERT into Location(locationId, province, city)
 VALUES(1, "Quebec", "Montreal"),
@@ -312,7 +354,7 @@ VALUES(1, "6817 43 Av Montreal QC H1T 2R9", 1, 6),
 (5, "1350 Golden Line Rd Almonte ON K0A 1A0", 1, 10),
 (6, "530 Wallace Ave Windsor ON N9G 1L9", 2, 11);
 
-INSERT into Advertisement(adId, description, date, images,address, title, type, phone, email, price, status, rating, availability, forSaleBy, userId, locationId, promoId, subCategoryId, storeId, expiryDate, promoExpiration)
+INSERT into Advertisement(adId, description, date, images,address, title, type, email, phone, price, status, rating, availability, forSaleBy, userId, locationId, promoId, subCategoryId, storeId, expiryDate, promoExpiration)
 VALUES(1, "Great for Winter", "2017-11-26 01:00:00", NULL,"6817 43 Av Montreal QC H1T 2R9", "Winter Men\'s Jacket", "Sell", "NULL", "WS@hotmail.com", 5254, "Posted", 1, "Store", "Buisness", 6, 1, 1, 1, NULL, "2017-12-03 01:00:00", "2017-12-03 01:00:00"),
 (2, "342 page book", "2017-11-26 02:00:00", NULL,"181 Delisle Laval QC H7A 2V2", "Harry Potter", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 7, 2, 2, 2, NULL, "2017-12-04 02:00:00", "2017-12-27 02:00:00"),
 (3, "Excellent condition, for school, work or home.", "2017-11-27 03:00:00", NULL,"5180 Rue Michel Saint-Hubert QC J3Y 2M9", "Dell XPS 13", "Sell", "NULL", "DS@hotmail.com", 6530, "Posted", 5, "Store", "Buisness", 8, 3, 3, 3, NULL, "2017-12-05 03:00:00", "2018-01-27 03:00:00"),
@@ -371,7 +413,39 @@ VALUES(1, "Great for Winter", "2017-11-26 01:00:00", NULL,"6817 43 Av Montreal Q
 (56, " Dell", "2017-12-04 12:00:00", NULL,"181 Delisle Laval QC H7A 2V2", "Laptop", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2, "2017-12-11 12:00:00", "2018-01-26 12:00:00"),
 (57, "Hp", "2017-11-27 13:00:00", NULL,"181 Delisle Laval QC H7A 2V2", "Desktop", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 3, 2, "2017-12-12 13:00:00", "2018-01-27 13:00:00"),
 (58, "With case", "2017-11-28 14:00:00", NULL,"181 Delisle Laval QC H7A 2V2", "Trumpet", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2, "2017-12-13 14:00:00", "2018-01-28 14:00:00"),
-(59, "For adults", "2017-11-29 15:00:00", NULL,"181 Delisle Laval QC H7A 2V2", "Guitar", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2, "2017-12-14 15:00:00", "2018-01-29 15:00:00");
+(59, "For adults", "2017-11-29 15:00:00", NULL,"181 Delisle Laval QC H7A 2V2", "Guitar", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 13, 2, 2, 4, 2, "2017-12-14 15:00:00", "2018-01-29 15:00:00"),
+(60, "Great for cold", "2017-11-30 01:00:00", NULL,"6817 43 Av Montreal QC H1T 2R9", "Winter Men\'s Jacket", "Sell", "NULL", "TA@hotmai.com", 20, "Posted", 1, "Online", "Owner", 21, 1, 1, 1, 2, "2017-11-23 01:00:00", "2017-11-23 01:00:00"),
+(61, "Large size", "2017-11-16 02:00:00", NULL,"6818 43 Av Montreal QC H1T 2R9", "Jacket", "Sell", "NULL", "TA@hotmai.com", 21, "Posted", 2, "Online", "Owner", 21, 1, NULL, 1, 2, "2017-11-24 02:00:00", NULL),
+(62, "355 pages", "2017-11-17 03:00:00", NULL,"6819 43 Av Montreal QC H1T 2R9", "Oxford Dictionary", "Sell", "NULL", "TA@hotmai.com", 22, "Posted", 3, "Online", "Owner", 21, 1, 1, 2, 2, "2017-11-25 03:00:00", "2017-11-25 03:00:00"),
+(63, "All countries included", "2017-11-18 04:00:00", NULL,"6820 43 Av Montreal QC H1T 2R9", "World Book", "Sell", "NULL", "TA@hotmai.com", 23, "Posted", 4, "Online", "Owner", 21, 1, NULL, 2, 2, "2017-11-26 04:00:00", NULL),
+(64, "Gray with case", "2017-11-19 05:00:00", NULL,"6821 43 Av Montreal QC H1T 2R9", "Hp Laptop", "Sell", "NULL", "TA@hotmai.com", 24, "Posted", 5, "Online", "Owner", 21, 1, 1, 3, 2, "2017-11-27 05:00:00", "2017-11-27 05:00:00"),
+(65, "Black without case", "2017-11-20 06:00:00", NULL,"6822 43 Av Montreal QC H1T 2R9", "Dell Laptop", "Sell", "NULL", "TA@hotmai.com", 25, "Posted", 1, "Online", "Owner", 21, 1, NULL, 3, 2, "2017-11-28 06:00:00", NULL),
+(66, "With case", "2017-11-21 07:00:00", NULL,"6823 43 Av Montreal QC H1T 2R9", "Guitar", "Sell", "NULL", "TA@hotmai.com", 26, "Posted", 2, "Online", "Owner", 21, 1, 1, 4, 2, "2017-11-29 07:00:00", "2017-11-29 07:00:00"),
+(67, "Used for 1 year", "2017-11-22 08:00:00", NULL,"6824 43 Av Montreal QC H1T 2R9", "Saxophone", "Sell", "NULL", "TA@hotmai.com", 27, "Posted", 3, "Online", "Owner", 21, 1, NULL, 4, 2, "2017-11-30 08:00:00", NULL),
+(68, "10 years experience", "2017-11-23 09:00:00", NULL,"6825 43 Av Montreal QC H1T 2R9", "English Tutor", "Sell", "NULL", "TA@hotmai.com", 28, "Posted", 4, "Online", "Owner", 21, 1, 1, 5, 2, "2017-12-01 09:00:00", "2017-12-01 09:00:00"),
+(69, "10 years experience", "2017-11-24 10:00:00", NULL,"6826 43 Av Montreal QC H1T 2R9", "French Tutor", "Sell", "NULL", "TA@hotmai.com", 29, "Posted", 5, "Online", "Owner", 21, 1, NULL, 5, 2, "2017-12-02 10:00:00", NULL),
+(70, "5 years experience", "2017-11-25 11:00:00", NULL,"6827 43 Av Montreal QC H1T 2R9", "Wedding Bash Party Planner", "Sell", "NULL", "TA@hotmai.com", 30, "Posted", 1, "Online", "Owner", 21, 1, 1, 6, 2, "2017-12-03 11:00:00", "2017-12-03 11:00:00"),
+(71, "5 years experience", "2017-11-26 12:00:00", NULL,"6828 43 Av Montreal QC H1T 2R9", "Birthday Bash Party Planner", "Sell", "NULL", "TA@hotmai.com", 31, "Posted", 2, "Online", "Owner", 21, 1, NULL, 6, 2, "2017-12-04 12:00:00", NULL),
+(72, "7 years experience", "2017-11-27 13:00:00", NULL,"6829 43 Av Montreal QC H1T 2R9", "Family Photographer", "Sell", "NULL", "TA@hotmai.com", 32, "Posted", 3, "Online", "Owner", 21, 1, 1, 7, 2, "2017-12-05 13:00:00", "2017-12-05 13:00:00"),
+(73, "8 years experience", "2017-11-28 14:00:00", NULL,"6830 43 Av Montreal QC H1T 2R9", "Model Photographer", "Sell", "NULL", "TA@hotmai.com", 33, "Posted", 4, "Online", "Owner", 21, 1, NULL, 7, 2, "2017-12-06 14:00:00", NULL),
+(74, "8 years experience", "2017-11-29 15:00:00", NULL,"6831 43 Av Montreal QC H1T 2R9", "Healthy Eating Trainer", "Sell", "NULL", "TA@hotmai.com", 34, "Posted", 5, "Online", "Owner", 21, 1, 1, 8, 2, "2017-12-07 15:00:00", "2017-12-07 15:00:00"),
+(75, "8 years experience", "2017-11-30 16:00:00", NULL,"6832 43 Av Montreal QC H1T 2R9", "Gym workout Trainer", "Sell", "NULL", "TA@hotmai.com", 35, "Posted", 1, "Online", "Owner", 21, 1, NULL, 8, 2, "2017-12-08 16:00:00", NULL),
+(76, "Used for 1 year", "2017-12-01 17:00:00", NULL,"6833 43 Av Montreal QC H1T 2R9", "Desktop", "Sell", "NULL", "TA@hotmai.com", 36, "Posted", 2, "Online", "Owner", 21, 1, 1, 9, 2, "2017-12-09 17:00:00", "2017-12-09 17:00:00"),
+(77, "Used for 1 year", "2017-12-02 18:00:00", NULL,"6834 43 Av Montreal QC H1T 2R9", "Lawnmower", "Sell", "NULL", "TA@hotmai.com", 37, "Posted", 3, "Online", "Owner", 21, 1, NULL, 9, 2, "2017-12-10 18:00:00", NULL),
+(78, "Family car", "2017-12-03 19:00:00", NULL,"6835 43 Av Montreal QC H1T 2R9", "Nissan Sentra", "Sell", "NULL", "TA@hotmai.com", 38, "Posted", 4, "Online", "Owner", 21, 1, 1, 10, 2, "2017-12-11 19:00:00", "2017-12-11 19:00:00"),
+(79, "Family car", "2017-12-04 20:00:00", NULL,"6836 43 Av Montreal QC H1T 2R9", "Mazda X8", "Sell", "NULL", "TA@hotmai.com", 39, "Posted", 5, "Online", "Owner", 21, 1, NULL, 10, 2, "2017-12-12 20:00:00", NULL),
+(80, "Spacious area", "2017-12-05 21:00:00", NULL,"6837 43 Av Montreal QC H1T 2R9", "Condo 4 by 4", "Sell", "NULL", "TA@hotmai.com", 40, "Sold", 1, "Online", "Owner", 21, 1, 1, 11, 2, "2017-12-13 21:00:00", "2017-12-13 21:00:00"),
+(81, "Spacious area", "2017-12-06 22:00:00", NULL,"6838 43 Av Montreal QC H1T 2R9", "Flat with 4 rooms", "Sell", "NULL", "TA@hotmai.com", 41, "Sold", 2, "Store", "Buisness", 21, 1, NULL, 11, 1, "2017-12-14 22:00:00", NULL),
+(82, "Beautiful dress", "2017-12-07 23:00:00", NULL,"6839 43 Av Montreal QC H1T 2R9", "White dress with black bow", "Sell", "NULL", "TA@hotmai.com", 42, "Sold", 3, "Store", "Buisness", 21, 1, 1, 12, 1, "2017-12-15 23:00:00", "2017-12-15 23:00:00"),
+(83, "Beautiful dress", "2017-12-08 00:00:00", NULL,"6840 43 Av Montreal QC H1T 2R9", "Red Dress", "Sell", "NULL", "TA@hotmai.com", 43, "Sold", 4, "Store", "Buisness", 21, 1, NULL, 12, 1, "2017-12-16 00:00:00", NULL),
+(84, "Family car", "2017-12-09 01:00:00", NULL,"6841 43 Av Montreal QC H1T 2R9", "Chevrolet 2 door", "Sell", "NULL", "TA@hotmai.com", 44, "Sold", 5, "Store", "Buisness", 21, 1, 1, 13, 1, "2017-12-17 01:00:00", "2017-12-17 01:00:00"),
+(85, "Family car", "2017-12-10 02:00:00", NULL,"6842 43 Av Montreal QC H1T 2R9", "Mazda 4 door", "Sell", "NULL", "TA@hotmai.com", 45, "Sold", 1, "Store", "Buisness", 21, 1, NULL, 13, 1, "2017-12-18 02:00:00", NULL),
+(86, "Lots of space", "2017-12-11 03:00:00", NULL,"6843 43 Av Montreal QC H1T 2R9", "20 feet truck", "Sell", "NULL", "TA@hotmai.com", 46, "Sold", 2, "Store", "Buisness", 21, 1, 1, 14, 1, "2017-12-19 03:00:00", "2017-12-19 03:00:00"),
+(87, "Lots of space", "2017-12-12 04:00:00", NULL,"6844 43 Av Montreal QC H1T 2R9", "Large truck", "Sell", "NULL", "TA@hotmai.com", 47, "Sold", 3, "Store", "Buisness", 21, 1, NULL, 14, 2, "2017-12-20 04:00:00", NULL),
+(88, "Durable", "2017-12-13 05:00:00", NULL,"6845 43 Av Montreal QC H1T 2R9", "2 passenger boat", "Sell", "NULL", "TA@hotmai.com", 48, "Sold", 4, "Store", "Buisness", 21, 1, 1, 15, 2, "2017-12-21 05:00:00", "2017-12-21 05:00:00"),
+(89, "Durable", "2017-12-14 06:00:00", NULL,"6846 43 Av Montreal QC H1T 2R9", "3 passenger boat", "Sell", "NULL", "TA@hotmai.com", 49, "Sold", 5, "Store", "Buisness", 21, 1, NULL, 15, 2, "2017-12-22 06:00:00", NULL),
+(90, "Look cool", "2017-12-15 07:00:00", NULL,"6847 43 Av Montreal QC H1T 2R9", "2 person Motorcycle", "Sell", "NULL", "TA@hotmai.com", 50, "Sold", 1, "Store", "Buisness", 21, 1, 1, 16, 2, "2017-12-23 07:00:00", "2017-12-23 07:00:00"),
+(91, "Look cool", "2017-12-16 08:00:00", NULL,"6848 43 Av Montreal QC H1T 2R9", "4 person Motorcyle", "Sell", "NULL", "TA@hotmai.com", 51, "Sold", 2, "Store", "Buisness", 21, 1, NULL, 16, 2, "2017-12-24 08:00:00", NULL);
 
 INSERT into Rents(rentsId, userId, storeId, date,startTime, endTime, delivery)
 VALUES(1, 13, 1, "2017-12-02", "13:00:00", "15:00:00", TRUE),
@@ -384,7 +458,19 @@ VALUES(1, 13, 1, "2017-12-02", "13:00:00", "15:00:00", TRUE),
 (8, 13, 2, "2017-12-09", "02:00:00", "07:00:00", TRUE),
 (9, 13, 2, "2017-12-10", "03:00:00", "04:00:00", TRUE),
 (10, 13, 2, "2017-12-11", "04:00:00", "08:00:00", TRUE),
-(11, 13, 2, "2017-12-12", "05:00:00", "06:00:00", TRUE);
+(11, 13, 2, "2017-12-12", "05:00:00", "06:00:00", TRUE),
+(12, 21, 1, "2017-12-07", "22:00:00", "00:00:00", TRUE),
+(13, 21, 1, "2017-12-08", "23:00:00", "01:00:00", TRUE),
+(14, 21, 1, "2017-12-09", "00:00:00", "02:00:00", TRUE),
+(15, 21, 1, "2017-12-10", "01:00:00", "03:00:00", TRUE),
+(16, 21, 1, "2017-12-11", "02:00:00", "04:00:00", TRUE),
+(17, 21, 1, "2017-12-12", "03:00:00", "05:00:00", TRUE),
+(18, 21, 2, "2017-12-13", "04:00:00", "06:00:00", TRUE),
+(19, 21, 2, "2017-12-14", "05:00:00", "07:00:00", TRUE),
+(20, 21, 2, "2017-12-15", "06:00:00", "08:00:00", TRUE),
+(21, 21, 2, "2017-12-16", "07:00:00", "09:00:00", TRUE),
+(22, 21, 2, "2017-12-17", "08:00:00", "10:00:00", TRUE);
+
 
 INSERT into StorePayment(storeId, paymentId, paymentMethod, date)
 VALUES(2, 41, "Store", "2017-11-26 15:00:00"),
@@ -408,7 +494,19 @@ VALUES(2, 41, "Store", "2017-11-26 15:00:00"),
 (2, 59, "Online", "2017-12-10 09:00:00"),
 (2, 60, "Online", "2017-12-11 10:00:00"),
 (2, 61, "Online", "2017-12-12 11:00:00"),
-(2, 62, "Online", "2017-12-13 12:00:00");
+(2, 62, "Online", "2017-12-13 12:00:00"),
+(1, 93, "Online", "2017-12-07 22:00:00"),
+(1, 94, "Online", "2017-12-08 23:00:00"),
+(1, 95, "Online", "2017-12-09 00:00:00"),
+(1, 96, "Online", "2017-12-10 01:00:00"),
+(1, 97, "Online", "2017-12-11 02:00:00"),
+(1, 98, "Online", "2017-12-12 03:00:00"),
+(2, 99, "Online", "2017-12-13 04:00:00"),
+(2, 100, "Online", "2017-12-14 05:00:00"),
+(2, 101, "Online", "2017-12-15 06:00:00"),
+(2, 102, "Online", "2017-12-16 07:00:00"),
+(2, 103, "Online", "2017-12-17 08:00:00");
+
 
 CREATE TABLE PaymentProcessingDepartment LIKE Payment;
 
