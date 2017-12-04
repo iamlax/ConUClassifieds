@@ -22,26 +22,40 @@ class Clientpayment_model extends CI_Model
                 $amount = 70;
                 break;
         }
-        $cardData = array(
-            'cardNumber' => $data['cardNumber'],
-            'cardType' => $data['cardType']
-        );
-
-        $this->db->insert('Card', $cardData);
 
         $this->db->select('cardId');
         $this->db->from('Card');
-        $this->db->where(array('cardNumber' => $cardData['cardNumber']));
-        $newCardId = $query = $this->db->get()->result_array();
+        $this->db->where(array('cardNumber' => $data['cardNumber'], 'cardType' => $data['cardType']));
+        $existCardId = $query = $this->db->get()->result_array();
 
-        $paymentData = array(
-            'userID' => $data['userId'],
-            'amount' => $amount,
-            'cardId' => $newCardId[0]['cardId'],
-            'date' => date("Y-m-d")
-        );
+        if(empty($existCardId)){
+            $cardData = array(
+                'cardNumber' => $data['cardNumber'],
+                'cardType' => $data['cardType']
+            );
+            $this->db->insert('Card', $cardData);
 
-        $this->db->insert('Payment', $paymentData);
+            $this->db->select('cardId');
+            $this->db->from('Card');
+            $this->db->where(array('cardNumber' => $cardData['cardNumber'],'cardType' => $cardData['cardType']));
+            $newCardId = $query = $this->db->get()->result_array();
+            $paymentData = array(
+                'userID' => $data['userId'],
+                'amount' => $amount,
+                'cardId' => $newCardId[0]['cardId'],
+                'date' => date("Y-m-d")
+            );
+            $this->db->insert('Payment', $paymentData);
+        }else{
+            $paymentData = array(
+                'userID' => $data['userId'],
+                'amount' => $amount,
+                'cardId' => $existCardId[0]['cardId'],
+                'date' => date("Y-m-d")
+            );
+            $this->db->insert('Payment', $paymentData);
+        }
+
 
         $newMembPlandId = intval($data['membPlanId']);
 
@@ -77,26 +91,39 @@ class Clientpayment_model extends CI_Model
                 $expiryDate = $stop_date->format('Y-m-d H:i:s');
                 break;
         }
-        $cardData = array(
-            'cardNumber' => $data['cardNumber'],
-            'cardType' => $data['cardType']
-        );
-
-        $this->db->insert('Card', $cardData);
 
         $this->db->select('cardId');
         $this->db->from('Card');
-        $this->db->where(array('cardNumber' => $cardData['cardNumber']));
-        $newCardId = $query = $this->db->get()->result_array();
+        $this->db->where(array('cardNumber' => $data['cardNumber'], 'cardType' => $data['cardType']));
+        $existCardId = $query = $this->db->get()->result_array();
 
-        $paymentData = array(
-            'userID' => $data['userId'],
-            'amount' => $amount,
-            'cardId' => $newCardId[0]['cardId'],
-            'date' => date("Y-m-d")
-        );
+        if(empty($existCardId)){
+            $cardData = array(
+                'cardNumber' => $data['cardNumber'],
+                'cardType' => $data['cardType']
+            );
+            $this->db->insert('Card', $cardData);
 
-        $this->db->insert('Payment', $paymentData);
+            $this->db->select('cardId');
+            $this->db->from('Card');
+            $this->db->where(array('cardNumber' => $cardData['cardNumber'], 'cardType' => $cardData['cardType']));
+            $newCardId = $query = $this->db->get()->result_array();
+            $paymentData = array(
+                'userID' => $data['userId'],
+                'amount' => $amount,
+                'cardId' => $newCardId[0]['cardId'],
+                'date' => date("Y-m-d")
+            );
+            $this->db->insert('Payment', $paymentData);
+        }else{
+            $paymentData = array(
+                'userID' => $data['userId'],
+                'amount' => $amount,
+                'cardId' => $existCardId[0]['cardId'],
+                'date' => date("Y-m-d")
+            );
+            $this->db->insert('Payment', $paymentData);
+        }
 
         $newPromoId = intval($data['promoId']);
 
