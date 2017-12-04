@@ -1,23 +1,26 @@
 # Databases Team Project, Concordia Fall 2017
 
-TODO: Write a project description
-
-## Installation
+This is a classifieds website designed for users to buy/sell goods and services. 
 
 ## Usage
 
-## Contributing
-
-## Domain
+1. Clone project and copy onto a PHP server
+2. Configure `.env.development` file
+4. Open browser and navigate to website
 
 ## Members
 
-Laxman Velauthapillai 40000111<br>
-Tusman Akhter 40003476<br>
-Yufeng Ding 27749317<br>
-Neqqash Hussin 40016921<br>
+| Name  | Id  | Github  |
+|---|---|---|
+| Laxman Velauthapillai  |  40000111 | iamlax  |
+| Tusman Akhter  | 40003476  | tusmanakhter  |
+| Yufeng Ding |  27749317 | kevin93d  |
+| Neqqash Hussin  |  40016921 | neqqash  |
+
 ## Languages/Technologies
 
-PHP
-SQL
-HTML/CSS
+PHP<br>
+SQL<br>
+HTML/CSS<br>
+CodeIgniter<br>
+Bootstrap<br>
