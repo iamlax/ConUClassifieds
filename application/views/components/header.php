@@ -86,11 +86,14 @@
                     <a class="account" href="<?php echo base_url();?>advertisements/user/<?php echo $this->session->userdata('userId');?>">My Ads</a>
                     <a class="account" href="<?php echo base_url();?>stores">Stores</a>
                     <a class="account" href="<?php echo base_url();?>viewProfile">My Account</a>
-                    <a class="account" href="<?php echo base_url();?>userReports/userReportsView">Reports</a>
                 <?php endif; ?>
+                <?php if($this->session->userdata('userType') === 'User' ) : ?>
+                    <a class="account" href="<?php echo base_url();?>userReports/userReportsView">User Reports</a>
+                <?php endif; ?>
+
                 <?php if($this->session->userdata('userType') === 'Admin' ) : ?>
                     <a class="account" href="<?php echo base_url();?>admins/index">Admin</a>
-                    <a class="account" href="<?php echo base_url();?>admins/reports">Reports</a>
+                    <a class="account" href="<?php echo base_url();?>admins/reports">Admin Reports</a>
                 <?php endif; ?>
             </div>
 		</div>
