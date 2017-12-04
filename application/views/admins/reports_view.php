@@ -6,7 +6,7 @@
                 <thead>
                 <tr>
                     <th>Category Name</th>
-                    <th>userId</th>
+                    <th>User Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Posts</th>
@@ -27,28 +27,28 @@
             <?php if (!empty($report2))  { ?>
                 <thead>
                     <tr>
-                        <th>adId</th>
-                        <th>promoId</th>
-                        <th>userId</th>
-                        <th>description</th>
-                        <th>date</th>
-                        <th>images</th>
-                        <th>address</th>
-                        <th>status</th>
-                        <th>availability</th>
-                        <th>rating</th>
-                        <th>locationId</th>
-                        <th>subCategoryId</th>
-                        <th>title</th>
-                        <th>type</th>
-                        <th>email</th>
-                        <th>phone</th>
-                        <th>price</th>
-                        <th>forSaleBy</th>
-                        <th>storeId</th>
-                        <th>subCategoryId</th>
-                        <th>categoryId</th>
-                        <th>name</th>
+                        <th>Ad Id</th>
+                        <th>Promo Id</th>
+                        <th>User Id</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Images</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th>Availability</th>
+                        <th>Rating</th>
+                        <th>Location Id</th>
+                        <th>SubCategory Id</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Price</th>
+                        <th>For Sale By</th>
+                        <th>Store Id</th>
+                        <th>SubCategory Id</th>
+                        <th>Category Id</th>
+                        <th>Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,13 +84,13 @@
             <?php if (!empty($report3))  { ?>
                 <thead>
                 <tr>
-                    <th>userId</th>
-                    <th>firstName</th>
-                    <th>lastName</th>
-                    <th>email</th>
-                    <th>userType</th>
-                    <th>membPlanId</th>
-                    <th>title</th>
+                    <th>User Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>User Type</th>
+                    <th>Membership Plan Id</th>
+                    <th>Title</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -110,15 +110,15 @@
             <?php if (!empty($report4))  { ?>
                 <thead>
                 <tr>
-                    <th>adId</th>
-                    <th>userId</th>
-                    <th>title</th>
-                    <th>description</th>
-                    <th>price</th>
-                    <th>date</th>
-                    <th>availability</th>
-                    <th>type</th>
-                    <th>SubCategory</th>
+                    <th>Ad Id</th>
+                    <th>User Id</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Availability</th>
+                    <th>Type</th>
+                    <th>Sub Category</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -143,10 +143,10 @@
                 <tr>
                     <th>Category</th>
                     <th>City</th>
-                    <th>userId</th>
-                    <th>firstName</th>
-                    <th>lastName</th>
-                    <th>avg_rating</th>
+                    <th>User Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Average Rating</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -177,12 +177,12 @@
 
                 <thead>
                 <tr>
-                    <th>managerId</th>
-                    <th>storeId</th>
-                    <th>strategicLocationId</th>
-                    <th>address</th>
-                    <th>date</th>
-                    <th>Daily_Revenue</th>
+                    <th>Manager Id</th>
+                    <th>Store Id</th>
+                    <th>Strategic LocationId</th>
+                    <th>Address</th>
+                    <th>Date</th>
+                    <th>Daily Revenue</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -205,7 +205,7 @@
 
                 <thead>
                 <tr>
-                    <th>storeId</th>
+                    <th>Store Id</th>
                     <th>Online Payments</th>
                 <tr>
                 </thead>
@@ -234,8 +234,8 @@
 
                     <thead>
                     <tr>
-                        <th>storeId</th>
-                        <th>type</th>
+                        <th>Store Id</th>
+                        <th>Type</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -283,9 +283,9 @@
             <?php if (!empty($report7))  { ?>
                 <thead>
                 <tr>
-                    <th>strategicLocationID</th>
-                    <th>percentage</th>
-                    <th>cph</th>
+                    <th>Strategic Location ID</th>
+                    <th>Percentage</th>
+                    <th>CpH</th>
                     <th>Weekend Hourly Cost</th>
                     <th>Weekday Hourly Cost</th>
                     <th>Delivery Weekend Hourly Cost</th>
@@ -303,7 +303,7 @@
                 <tbody>
                 <?php foreach ($report7 as $rep7) { ?>
                     <tr>
-                        <td><?php echo $rep7['strategicLocationID'] ?></td>
+                        <td><?php echo $rep7['strategicLocationId'] ?></td>
                         <td><?php echo $rep7['percentage'] ?></td>
                         <td><?php echo $rep7['cph'] ?></td>
                         <td><?php echo $rep7['Weekend Hourly Cost'] ?></td>
@@ -326,10 +326,10 @@
             <?php if (!empty($report10_1))  { ?>
                 <thead>
                 <tr>
-                    <th>Category_Name</th>
-                    <th>userId</th>
-                    <th>firstName</th>
-                    <th>lastName</th>
+                    <th>Category Name</th>
+                    <th>User Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Posts</th>
                 </tr>
                 </thead>
