@@ -18,6 +18,8 @@
             Phone: <?php echo $advertisement['phone'] ?></br>
             For Sale By: <?php echo $advertisement['forSaleBy'] ?></br>
             <?php if ($isowner || $isadmin) { ?>
+                Expiry:<?php echo $advertisement['expiryDate'] ?></br>
+                Promo Expiry: <?php echo $advertisement['promoExpiration'] ?></br>
                 Status: <?php echo $advertisement['status'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
                 <a href="<?php echo base_url();?>ClientPayment/purchasePromotion/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Add promotion package</button></a>

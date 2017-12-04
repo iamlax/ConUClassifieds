@@ -9,7 +9,7 @@ class Advertisements extends MY_Controller{
     public function index(){
         if ($this->session->userdata('locationId') == NULL) {
             $this->session->set_flashdata('error', 'Please select a location before trying to select category.');
-            redirect('home');
+            redirect('errors');
         }
         
         $location = $this->session->userdata('locationId');
@@ -83,7 +83,7 @@ class Advertisements extends MY_Controller{
     public function create(){
         if ($this->session->userdata('locationId') == NULL) {
             $this->session->set_flashdata('error', 'Please select a location before trying to create an ad.');
-            redirect('home');
+            redirect('errors');
         }
 
         $user = $this->user_model->get_user($this->session->userdata('userId'));
@@ -91,7 +91,7 @@ class Advertisements extends MY_Controller{
         // Makes sure user has a membership plan before creating an ad
         if ($user['membPlanId'] == NULL) {
             $this->session->set_flashdata('error', 'Purchase a membership plan to create an advertisement.');
-            redirect('home');
+            redirect('errors');
         }
 
         $data['title'] = 'Create Advertisements';
@@ -174,7 +174,7 @@ class Advertisements extends MY_Controller{
 
         if ($ad['userId'] != $this->session->userdata('userId') && $user['userType'] != 'Admin') {
             $this->session->set_flashdata('error', 'You do not have permission to edit this ad.');
-            redirect('home');
+            redirect('errors');
         }
 
         $data['title'] = 'Edit Advertisements';
@@ -203,7 +203,7 @@ class Advertisements extends MY_Controller{
 
         if ($ad['userId'] != $this->session->userdata('userId') && $user['userType'] != 'Admin') {
             $this->session->set_flashdata('error', 'You do not have permission to edit this ad.');
-            redirect('home');
+            redirect('errors');
         }
 
         $this->form_validation->set_rules('category', 'Category', 'required');
@@ -268,7 +268,7 @@ class Advertisements extends MY_Controller{
 
         if ($ad['userId'] != $this->session->userdata('userId') && $user['userType'] != 'Admin') {
             $this->session->set_flashdata('error', 'You do not have permission to delete this ad.');
-            redirect('home');
+            redirect('errors');
         }
         
         if ($ad['images']) {

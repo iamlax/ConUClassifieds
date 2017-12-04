@@ -25,6 +25,8 @@
                 For Sale By: <?php echo $ad['forSaleBy'] ?></br>
                 <?php if ($isowner) { ?>
                 Status: <?php echo $ad['status'] ?></br>
+                Expiry:<?php echo $ad['expiryDate'] ?></br>
+                Promo Expiry: <?php echo $ad['promoExpiration'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $ad['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
                 <a href="<?php echo base_url();?>ClientPayment/purchasePromotion/<?php echo $ad['adId'] ?>"><button type="button" class="btn-warning">Add promotion package</button></a>
                 <a href="<?php echo base_url();?>advertisements/delete/<?php echo $ad['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
