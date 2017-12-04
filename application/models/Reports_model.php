@@ -110,12 +110,12 @@ class Reports_model extends CI_Model
 
     public function dailyRevenue($managerId){
 
-        $query = $this->db->query("SELECT *, SUM(Payment.amount) as Daily_Revenue
+        $query = $this->db->query("SELECT Store.managerId, Store.storeId, Store.strategicLocationId, Store.address, CAST(Payment.date AS DATE) as date, SUM(Payment.amount) as Daily_Revenue
             FROM Payment
             INNER JOIN StorePayment ON Payment.paymentId = StorePayment.paymentId
             LEFT JOIN Store on StorePayment.storeId = Store.storeId
             WHERE Store.managerId =$managerId AND Payment.date >= CURDATE() - INTERVAL 15 DAY AND Payment.date <= CURDATE()
-            GROUP BY Payment.date, Store.storeId;
+            GROUP BY CAST(Payment.date AS DATE), Store.storeId;
             ");
 
         return $query->result_array();

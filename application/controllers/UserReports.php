@@ -16,6 +16,13 @@ class UserReports extends MY_Controller{
     public function userReportsView(){
         $data['title'] = 'User Report List';
 
+        $man = $this->user_model->isStoreManager($this->session->userdata('userId'));
+
+        if(!empty($man)) {
+
+            $data['storeManager'] = $man;
+        }
+
         $this->load->view('components/header');
         $this->load->view('userReports/userReports', $data);
         $this->load->view('components/footer');
@@ -56,11 +63,16 @@ class UserReports extends MY_Controller{
 
     public function report10_5($storeId=NULL){
 
-        $data['stores'] = $this->reports_model->getStores();
+        $man = $this->user_model->isStoreManager($this->session->userdata('userId'));
 
         if(!empty($storeId)) {
 
             $data['report10_5'] = $this->reports_model->listOfUsersRentingStoreSpaceAndTheTimesRented($storeId);
+        }
+
+        if(!empty($man)) {
+
+            $data['storeManager'] = $man;
         }
 
         $this->load->view('components/header');

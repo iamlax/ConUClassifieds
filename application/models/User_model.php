@@ -13,4 +13,12 @@ class User_model extends CI_Model {
         return $query->result_array();
 
     }
+
+    public function isStoreManager($managerId) {
+        $query = $this->db->query("SELECT * FROM User 
+            INNER JOIN Store on Store.managerId = User.userId
+            WHERE Store.managerId = $managerId;");
+
+        return $query->result_array();
+    }
 }
