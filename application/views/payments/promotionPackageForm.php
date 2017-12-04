@@ -16,10 +16,8 @@
             <label>Card Types <span>*</span></label>
             <select required name="cardType">
                 <option disabled selected value="">Select Card</option>
-                <option value='Visa'>Visa</option>
-                <option value='Mastercard'>Mastercard</option>
-                <option value='American Express'>American Express</option>
-                <option value='Capital One'>Capital One</option>
+                <option value='Credit'>Credit</option>
+                <option value='Debit'>Debit</option>
             </select>
             <div class="clearfix"></div>
             <label>Card Number<span>*</span></label>

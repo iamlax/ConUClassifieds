@@ -27,7 +27,7 @@ class Clientpayment_model extends CI_Model
             'cardType' => $data['cardType']
         );
 
-        $this->db->insert('card', $cardData);
+        $this->db->insert('Card', $cardData);
 
         $this->db->select('cardId');
         $this->db->from('Card');
@@ -50,7 +50,7 @@ class Clientpayment_model extends CI_Model
         );
 
         $this->db->where('userId', $data['userId']);
-        $this->db->update('user', $newPlan);
+        $this->db->update('User', $newPlan);
         $this->session->set_userdata('membPlanId', $newMembPlandId);
     }
 
@@ -106,7 +106,7 @@ class Clientpayment_model extends CI_Model
         );
 
         $this->db->where('adId', $data['adId']);
-        $this->db->update('advertisement', $newPromo);
+        $this->db->update('Advertisement', $newPromo);
     }
 
 }
