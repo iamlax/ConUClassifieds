@@ -69,10 +69,10 @@
                 </tbody>
             <?php } ?>
 
-            <?php if (!empty($stores))  { ?>
+            <?php if (!empty($storeManager))  { ?>
                 <select onChange="window.location.href=this.value">
                     <option disabled selected value> Select an Option</option>
-                    <?php foreach($stores as $st) { ?>
+                    <?php foreach($storeManager as $st) { ?>
                             <option value="<?php echo base_url();?>userReports/report10_5/<?php echo $st['storeId'];?>">
                                 <?php echo $st['storeId'] . ": " . $st['address']?>
                             </option>
