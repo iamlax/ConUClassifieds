@@ -266,6 +266,7 @@
                     <th>Date</th>
                     <th>Hours
                     <th>Cost</th>
+                    <th>Paid</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -274,6 +275,7 @@
                         <td><?php echo $rep91['Date'] ?></td>
                         <td><?php echo $rep91['Hours'] ?></td>
                         <td><?php echo $rep91['Cost'] ?></td>
+                        <td><?php echo $rep91['Paid'] ?></td>
 
                     </tr>
                 <?php } ?>
