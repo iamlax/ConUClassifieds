@@ -9,7 +9,7 @@ class Categories extends MY_Controller{
     public function index(){
         if ($this->session->userdata('locationId') == NULL) {
             $this->session->set_flashdata('error', 'Please select a location before trying to select category.');
-            redirect('home');
+            redirect('errors');
         }
 
         $data['title'] = 'Categories';
@@ -26,7 +26,7 @@ class Categories extends MY_Controller{
     public function subcategory($id){
         if ($this->session->userdata('locationId') == NULL) {
             $this->session->set_flashdata('error', 'Please select a location before trying to select category.');
-            redirect('home');
+            redirect('errors');
         }
 
         $data['title'] = 'Sub Categories';
@@ -46,7 +46,7 @@ class Categories extends MY_Controller{
     public function advertisements($cat = FALSE, $subcat = FALSE) {
         if ($this->session->userdata('locationId') == NULL) {
             $this->session->set_flashdata('error', 'Please select a location before trying to view advertisements.');
-            redirect('home');
+            redirect('errors');
         }
 
         $location = $this->session->userdata('locationId');
