@@ -44,6 +44,12 @@
                     <option value="Online">Online</option>
                 </select>
                 <div class="clearfix"></div>
+                <label>Status <span>*</span></label>
+                <select name="status" id="status">
+                    <option value="Available">Available</option>
+                    <option value="Sold">Sold</option>
+                </select>
+                <div class="clearfix"></div>
                 <label>Store Id</label>
                 <select name="storeId" id="storeId">
                     <option disabled selected value>Select an Option</option>
@@ -63,6 +69,7 @@
                     $('#forSaleBy').val('<?php echo $advertisement['forSaleBy']; ?>');
                     $('#type').val('<?php echo $advertisement['type']; ?>');
                     $('#storeId').val('<?php echo $advertisement['storeId']; ?>');
+                    $('#status').val('<?php echo $advertisement['status']; ?>');
                 </script>
             <div class="upload-ad-photos">
                 <div class="personal-details">

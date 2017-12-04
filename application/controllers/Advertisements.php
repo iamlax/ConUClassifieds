@@ -220,6 +220,7 @@ class Advertisements extends MY_Controller{
         $this->form_validation->set_rules('forSaleBy', 'For Sale By', 'required');
         $this->form_validation->set_rules('address', 'Address', 'required|trim|regex_match[/^\d+\s[A-z]+/]');
         $this->form_validation->set_rules('availability', 'Availability', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
 
         if ($this->input->post('availability') == 'Store') {
             $this->form_validation->set_rules('storeId', 'Store Id', 'required');
