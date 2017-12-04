@@ -114,9 +114,9 @@ class Advertisement_model extends CI_Model {
 
     public function update_advertisement($rating = FALSE){
         if ($this->input->post('storeId') <= 0 || $this->input->post('availability') == 'Online') {
-            $storeId == NULL;
+            $storeId = NULL;
         } else {
-            $storeId == $this->input->post('storeId');
+            $storeId = $this->input->post('storeId');
         }
         if ($rating) {
             $data = array('rating' => $rating);
