@@ -9,4 +9,11 @@ class Store_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_store_ids() {
+        $this->db->select('Store.storeId');
+        $this->db->from('Store');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
