@@ -15,6 +15,7 @@
             <div class="clearfix"></div>
             <label>Card Types <span>*</span></label>
             <select required name="cardType">
+                <option disabled selected value="">Select Card</option>
                 <option value='Credit'>Credit</option>
                 <option value='Debit'>Debit</option>
             </select>
