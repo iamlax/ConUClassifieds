@@ -78,6 +78,13 @@ $route['admins/report6/(:any)'] = 'admins/report6/$1';
 $route['admins/report7'] = 'admins/report7';
 $route['admins/report8/(:any)'] = 'admins/report8/$1';
 $route['admins/report9/(:any)'] = 'admins/report9/$1';
+$route['admins/report10_1'] = 'admins/report10_1';
+
+$route['userReport/userReportsView'] = 'userReport/userReportsView/';
+$route['userReport/report10_2'] = 'userReport/report10_2/';
+$route['userReport/report10_3'] = 'userReport/report10_3/';
+$route['userReport/report10_4'] = 'userReport/report10_4/';
+$route['userReport/report10_5/(:any)'] = 'userReport/report10_5/$1';
 
 $route['locations'] = 'locations/index';
 $route['locations/set/:id'] = 'locations/set';

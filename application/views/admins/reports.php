@@ -2,7 +2,7 @@
     <div class="container">
         <div class="clearfix"></div>
         </div>
-    <h2 class="head">Reports</h2>
+    <h2 class="head">Admin Reports</h2>
 
         <div class="ads-display col-md-12">
             <div class="wrapper">
@@ -61,7 +61,11 @@
                                                     7 days, and the total amount they have paid per day for the past 7 days.</span>
                                             </a>
                                         </li>
-
+                                        <li role="presentation" class="active">
+                                            <a href="<?php echo base_url();?>admins/report10_1" >
+                                                <span class="text">10.1. Number of posts per user per subcategory.</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

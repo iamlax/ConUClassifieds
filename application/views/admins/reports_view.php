@@ -322,6 +322,29 @@
                 <?php } ?>
                 </tbody>
             <?php } ?>
+
+            <?php if (!empty($report10_1))  { ?>
+                <thead>
+                <tr>
+                    <th>Category_Name</th>
+                    <th>userId</th>
+                    <th>firstName</th>
+                    <th>lastName</th>
+                    <th>Posts</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($report10_1 as $rep10_1) { ?>
+                    <tr>
+                        <td><?php echo $rep10_1['Category_Name'] ?></td>
+                        <td><?php echo $rep10_1['userId'] ?></td>
+                        <td><?php echo $rep10_1['firstName'] ?></td>
+                        <td><?php echo $rep10_1['lastName'] ?></td>
+                        <td><?php echo $rep10_1['Posts'] ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            <?php } ?>
         </table>
     </div>
 </div>
