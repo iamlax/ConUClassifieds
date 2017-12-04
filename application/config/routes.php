@@ -89,6 +89,9 @@ $route['userReport/report10_5/(:any)'] = 'userReport/report10_5/$1';
 $route['locations'] = 'locations/index';
 $route['locations/set/:id'] = 'locations/set';
 
+$route['stores'] = 'stores/index';
+$route['stores/calculator'] = 'stores/calculator';
+
 $route['auth_controller/login'] = 'auth_controller/login';
 $route['auth_controller/register'] = 'auth_controller/register';
 $route['viewProfile'] = 'auth_controller/viewProfile';

@@ -25,16 +25,15 @@ class Advertisements extends MY_Controller{
     public function view($id = NULL){
         $ad  = $this->advertisement_model->get_ad($id);
 
+        if(empty($ad)){
+            show_404();
+        }
+
         $ads_by_sub = $this->advertisement_model->get_ads_by_category(FALSE, $ad['subCategoryId'], $this->session->userdata('locationId'));
         $ad['rank'] = array_search($ad['adId'], array_column($ads_by_sub, 'adId')) + 1;
-
         $data['advertisement'] = $ad;
 
         $data['user'] = $this->user_model->get_user($data['advertisement']['userId']);
-
-        if(empty($data['advertisement'])){
-            show_404();
-        }
         
         if ($this->session->userdata('userId') == $data['user']['userId']) {
             $data['isowner'] = true;
@@ -101,6 +100,8 @@ class Advertisements extends MY_Controller{
             $category['subCategory'] = $this->category_model->get_subcategories($category['categoryId']);
         }
         
+        $data['stores'] = $this->store_model->get_store_ids();
+
         $data['categories'] = $categories;
 
         $this->form_validation->set_rules('category', 'Category', 'required');
@@ -113,7 +114,7 @@ class Advertisements extends MY_Controller{
         $this->form_validation->set_rules('availability', 'Availability', 'required');
 
         if ($this->input->post('availability') == 'Store') {
-            $this->form_validation->set_rules('storeId', 'Store Id', 'required|trim|int');
+            $this->form_validation->set_rules('storeId', 'Store Id', 'required');
         }
 
         if ($this->input->post('email'))
@@ -184,6 +185,7 @@ class Advertisements extends MY_Controller{
             $category['subCategory'] = $this->category_model->get_subcategories($category['categoryId']);
         }
         
+        $data['stores'] = $this->store_model->get_store_ids();
         $data['categories'] = $categories;
 
         $data['advertisement'] = $this->advertisement_model->get_ad($id);
@@ -216,7 +218,7 @@ class Advertisements extends MY_Controller{
         $this->form_validation->set_rules('availability', 'Availability', 'required');
 
         if ($this->input->post('availability') == 'Store') {
-            $this->form_validation->set_rules('storeId', 'Store Id', 'required|trim|int');
+            $this->form_validation->set_rules('storeId', 'Store Id', 'required');
         }
 
         if ($this->input->post('email'))

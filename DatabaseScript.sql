@@ -312,7 +312,7 @@ VALUES(1, "6817 43 Av Montreal QC H1T 2R9", 1, 6),
 (5, "1350 Golden Line Rd Almonte ON K0A 1A0", 1, 10),
 (6, "530 Wallace Ave Windsor ON N9G 1L9", 2, 11);
 
-INSERT into Advertisement(adId, description, date, images,address, title, type, email, phone, price, status, rating, availability, forSaleBy, userId, locationId, promoId, subCategoryId, storeId, expiryDate, promoExpiration)
+INSERT into Advertisement(adId, description, date, images,address, title, type, phone, email, price, status, rating, availability, forSaleBy, userId, locationId, promoId, subCategoryId, storeId, expiryDate, promoExpiration)
 VALUES(1, "Great for Winter", "2017-11-26 01:00:00", NULL,"6817 43 Av Montreal QC H1T 2R9", "Winter Men\'s Jacket", "Sell", "NULL", "WS@hotmail.com", 5254, "Posted", 1, "Store", "Buisness", 6, 1, 1, 1, NULL, "2017-12-03 01:00:00", "2017-12-03 01:00:00"),
 (2, "342 page book", "2017-11-26 02:00:00", NULL,"181 Delisle Laval QC H7A 2V2", "Harry Potter", "Sell", "NULL", "HS@hotmail.com", 8547, "Posted", 4, "Store", "Buisness", 7, 2, 2, 2, NULL, "2017-12-04 02:00:00", "2017-12-27 02:00:00"),
 (3, "Excellent condition, for school, work or home.", "2017-11-27 03:00:00", NULL,"5180 Rue Michel Saint-Hubert QC J3Y 2M9", "Dell XPS 13", "Sell", "NULL", "DS@hotmail.com", 6530, "Posted", 5, "Store", "Buisness", 8, 3, 3, 3, NULL, "2017-12-05 03:00:00", "2018-01-27 03:00:00"),

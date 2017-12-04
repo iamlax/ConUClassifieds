@@ -1,10 +1,5 @@
 <!--Vertical Tab-->
 <div class="categories-section main-grid-border">
-    <?php if ($this->session->flashdata('success') !== null) { ?>
-        <div class="alert alert-success text-center">
-            <?php echo $this->session->flashdata('success'); ?>
-        </div>
-    <?php } ?>
     <div class="container">
         <h2 class="head">User profile</h2>
         <div class="category-list">
