@@ -152,22 +152,23 @@ VALUES(1, "Layla", "Levine", "LL@hotmail.com", "LL1234", "Admin", Null),
 (3, "Darren Banks", "Banks", "DB@hotmail.com", "DB1234", "Admin", Null),
 (4, "Joaquin", "Carney", "JC@hotmail.com", "JC1234", "Admin", Null),
 (5, "Lexie", "Burke", "LB@hotmail.com", "LB1234", "Admin", Null),
-(6, "Delaney", "Carney", "DC@hotmail.com", "DC1234", "User ", 1),
-(7, "Adrienne", "Stevenson", "AS@hotmail.com", "AS1234", "User ", 1),
-(8, "Bbel", "Saunders", "BS@hotmail.com", "BS1234", "User ", 1),
-(9, "Katelynn", "Barr", "KB@hotmail.com", "KB1234", "User ", 1),
-(10, "Deandre", "Haynes", "DH@hotmail.com", "DH1234", "User ", 2),
-(11, "Annika", "Parks", "AP@hotmail.com", "AP1234", "User ", 1),
-(12, "Naomi", "Villanueva", "NV@hotmail.com", "NV1234", "User ", 2),
-(13, "Sergio", "Cooper", "SC@hotmail.com", "SC1234", "User ", 2),
-(14, "Brick", "Mccarty", "BM@hotmail.com", "BM1234", "User ", 2),
-(15, "Jaslene", "Lin", "JL@hotmail.com", "JL1234", "User ", 2),
-(16, "Gunnar", "Kirby", "GK@hotmail.com", "GK1234", "User ", 3),
-(17, "Victoria", "Shaffer", "VS@hotmail.com", "VS1234", "User ", 3),
-(18, "Elisha", "Harrington", "EH@hotmail.com", "EH1234", "User ", 3),
-(19, "Carsen", "Kemp", "CK@hotmail.com", "CK1234", "User ", 3),
-(20, "Edna", "Mccarty", "EM@hotmail.com", "EM1234", "User ", 3),
-(21, "TA", "A", "TA@hotmail.com", "TA1234", "User ", 1);
+(6, "Delaney", "Carney", "DC@hotmail.com", "DC1234", "User", 1),
+(7, "Adrienne", "Stevenson", "AS@hotmail.com", "AS1234", "User", 1),
+(8, "Bbel", "Saunders", "BS@hotmail.com", "BS1234", "User", 1),
+(9, "Katelynn", "Barr", "KB@hotmail.com", "KB1234", "User", 1),
+(10, "Deandre", "Haynes", "DH@hotmail.com", "DH1234", "User", 2),
+(11, "Annika", "Parks", "AP@hotmail.com", "AP1234", "User", 1),
+(12, "Naomi", "Villanueva", "NV@hotmail.com", "NV1234", "User", 2),
+(13, "Sergio", "Cooper", "SC@hotmail.com", "SC1234", "User", 2),
+(14, "Brick", "Mccarty", "BM@hotmail.com", "BM1234", "User", 2),
+(15, "Jaslene", "Lin", "JL@hotmail.com", "JL1234", "User", 2),
+(16, "Gunnar", "Kirby", "GK@hotmail.com", "GK1234", "User", 3),
+(17, "Victoria", "Shaffer", "VS@hotmail.com", "VS1234", "User", 3),
+(18, "Elisha", "Harrington", "EH@hotmail.com", "EH1234", "User", 3),
+(19, "Carsen", "Kemp", "CK@hotmail.com", "CK1234", "User", 3),
+(20, "Edna", "Mccarty", "EM@hotmail.com", "EM1234", "User", 3),
+(21, "TA", "A", "TA@hotmail.com", "TA1234", "User", 1);
+
 
 INSERT into CardFees(cardType, percentage)
 VALUES("Credit", 3),
@@ -519,7 +520,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-
 DELIMITER $$
 CREATE EVENT backupPaymentEvent
 	ON SCHEDULE
@@ -531,6 +531,7 @@ BEGIN
   call backupPayments();
 END$$
 DELIMITER ;
+
 
 DELIMITER //
 CREATE TRIGGER addExpiryDate

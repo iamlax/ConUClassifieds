@@ -125,7 +125,7 @@ class Reports_model extends CI_Model
 
         $query = $this->db->query("SELECT Store.storeId, COUNT(*) as Online_payments
             FROM Payment
-            INNER JOIN storePayment ON Payment.paymentId = StorePayment.paymentId
+            INNER JOIN StorePayment ON Payment.paymentId = StorePayment.paymentId
             LEFT JOIN store on StorePayment.storeId =Store.storeId
             WHERE Store.managerId = $managerId AND StorePayment.paymentMethod=\"Online\" AND Payment.date >= CURDATE() - INTERVAL 15 DAY AND Payment.date <= CURDATE()
             GROUP BY Store.storeId;
