@@ -9,8 +9,8 @@
             <select required name="promoId">
                 <option disabled selected value="">Select A Promotion Here</option>
                 <option value= 1>7 days promotion</option>
-                <option value= 2>14 days promotion</option>
-                <option value= 3>30 days promotion</option>
+                <option value= 2>30 days promotion</option>
+                <option value= 3>60 days promotion</option>
             </select>
             <div class="clearfix"></div>
             <label>Card Types <span>*</span></label>
