@@ -243,7 +243,7 @@ class Advertisements extends MY_Controller{
             if (validation_errors() != NULL) {
                 $this->session->set_flashdata('error', validation_errors());
             }
-            redirect('advertisements/edit/'.$this->input->post('adId'), $data);
+            redirect('advertisements/edit/'.$this->input->post('adId'));
         } else {
             $this->advertisement_model->update_advertisement();
 
