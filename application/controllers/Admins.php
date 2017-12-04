@@ -154,4 +154,12 @@ class Admins extends MY_Controller{
         $this->load->view('components/footer');
     }
 
+    public function report10_1(){
+
+        $data['report10_1'] = $this->reports_model->numberOfPostsPerUserPerSubCategory();
+
+        $this->load->view('components/header');
+        $this->load->view('admins/reports_view', $data);
+        $this->load->view('components/footer');
+    }
 }

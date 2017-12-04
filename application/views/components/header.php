@@ -84,6 +84,8 @@
                     <a class="account" href="<?php echo base_url();?>viewProfile">My Account</a>
                     <a class="account" href="<?php echo base_url();?>categories">Categories</a>
                     <a class="account" href="<?php echo base_url();?>advertisements/user/<?php echo $this->session->userdata('userId');?>">My Ads</a>
+                    <a class="account" href="<?php echo base_url();?>userReports/userReportsView">Reports</a>
+
                 <?php endif; ?>
                 <?php if($this->session->userdata('userType') === 'Admin' ) : ?>
                     <a class="account" href="<?php echo base_url();?>admins/index">Admin</a>
