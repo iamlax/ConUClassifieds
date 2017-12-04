@@ -158,6 +158,10 @@ class Advertisements extends MY_Controller{
                 foreach($imagesArray as $image) {
                     $images[]= $image['file_name'];
                 }
+            } else {
+                $this->session->set_flashdata('error', 'Upload fail');
+                
+                redirect('advertisements/create');
             }
 
             $this->advertisement_model->create_advertisement($images);
