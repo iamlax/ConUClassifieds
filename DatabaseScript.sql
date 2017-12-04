@@ -18,11 +18,18 @@ CREATE TABLE User (
     FOREIGN KEY (membPlanId) REFERENCES MembershipPlan(membPlanId)
 );
 
+CREATE TABLE CardFees (
+    cardType varchar(255),
+    percentage int,
+    PRIMARY KEY (cardType)
+);
+
 CREATE TABLE Card (
     cardId int NOT NULL AUTO_INCREMENT,
     cardNumber BIGINT,
     cardType varchar(255),
-    PRIMARY KEY (cardId)
+    PRIMARY KEY (cardId),
+    FOREIGN KEY (cardType) REFERENCES CardFees(cardType)
 );
 
 CREATE TABLE Payment (
@@ -162,6 +169,9 @@ VALUES(1, "Layla", "Levine", "LL@hotmail.com", "LL1234", "Admin", Null),
 (20, "Edna", "Mccarty", "EM@hotmail.com", "EM1234", "User ", 3),
 (21, "TA", "A", "TA@hotmail.com", "TA1234", "User ", 1);
 
+INSERT into CardFees(cardType, percentage)
+VALUES("Credit", 3),
+("Debit", 1);
 
 INSERT into Card(cardId, cardNumber, cardType)
 VALUES(1, 4539937618825770, "Credit"),
