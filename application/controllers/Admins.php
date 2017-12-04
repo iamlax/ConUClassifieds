@@ -24,6 +24,7 @@ class Admins extends MY_Controller{
 
     public function backupPayments(){
         $data['backup'] = $this->payment_model->backupPayments();
+        $this->session->set_flashdata('success', 'Payments Backed Up.');
         $this->payments();
     }
 
