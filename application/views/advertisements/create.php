@@ -61,7 +61,6 @@
 
                     <div>
                         <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" required/>
-                        <div id="filedrag">or drop files here</div>
                     </div>
                     </div>
                 <div class="clearfix"></div>
