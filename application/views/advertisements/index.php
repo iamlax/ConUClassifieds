@@ -3,7 +3,6 @@
         <ol class="breadcrumb" style="margin-bottom: 5px;">
             <li><a href="<?php echo base_url();?>">Home</a></li>
             <li><a href="<?php echo base_url();?>categories">Categories</a></li>
-            <li class="active">Mobiles</li>
         </ol>
         <div class="ads-grid">
             </div>
