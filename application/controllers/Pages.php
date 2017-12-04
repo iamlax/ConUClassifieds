@@ -6,6 +6,10 @@ class Pages extends CI_Controller{
         }
         $data['title'] = ucfirst($page);
 
+        if($page == 'home' && $this->session->userdata('userId') !== null){
+            redirect('locations');
+        }
+
         $this->load->view('components/header', $data);
         $this->load->view('pages/'.$page, $data);
         $this->load->view('components/footer');

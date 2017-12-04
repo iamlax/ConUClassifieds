@@ -34,3 +34,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .env.production
 .env.testing
 .env
+/public/images/uploads

@@ -23,6 +23,7 @@ class Auth_model extends CI_Model {
         $result = $query= $this->db->get()->result_array();
 
         if($result[0]['password'] === $password ){
+            unset($result[0]['password']);
             return $result[0];
         }else{
             return false;

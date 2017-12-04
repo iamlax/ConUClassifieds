@@ -23,16 +23,16 @@ class Clientpayment_model extends CI_Model
                 break;
         }
         $cardData = array(
-          'cardNumber' => $data['cardNumber'],
-          'cardType' => $data['cardType']
+            'cardNumber' => $data['cardNumber'],
+            'cardType' => $data['cardType']
         );
 
-        $this->db->insert('card',$cardData);
+        $this->db->insert('card', $cardData);
 
         $this->db->select('cardId');
         $this->db->from('Card');
-        $this->db->where(array('cardNumber'=>$cardData['cardNumber']));
-        $newCardId = $query= $this->db->get()->result_array();
+        $this->db->where(array('cardNumber' => $cardData['cardNumber']));
+        $newCardId = $query = $this->db->get()->result_array();
 
         $paymentData = array(
             'userID' => $data['userId'],
@@ -53,4 +53,60 @@ class Clientpayment_model extends CI_Model
         $this->db->update('user', $newPlan);
         $this->session->set_userdata('membPlanId', $newMembPlandId);
     }
+
+    public function purchasePromo($data)
+    {
+        $amount = 0;
+        switch ($data['promoId']) {
+            case '1':
+                $amount = 10;
+                $stop_date = new DateTime(); 
+                $stop_date->modify('+7 day');
+                $expiryDate= $stop_date->format('Y-m-d H:i:s');
+                break;
+            case '2':
+                $amount = 50;
+                $stop_date = new DateTime(); 
+                $stop_date->modify('+30 day');
+                $expiryDate= $stop_date->format('Y-m-d H:i:s');
+                break;
+            case '3':
+                $amount = 90;
+                $stop_date = new DateTime(); 
+                $stop_date->modify('+60 day');
+                $expiryDate = $stop_date->format('Y-m-d H:i:s');
+                break;
+        }
+        $cardData = array(
+            'cardNumber' => $data['cardNumber'],
+            'cardType' => $data['cardType']
+        );
+
+        $this->db->insert('card', $cardData);
+
+        $this->db->select('cardId');
+        $this->db->from('Card');
+        $this->db->where(array('cardNumber' => $cardData['cardNumber']));
+        $newCardId = $query = $this->db->get()->result_array();
+
+        $paymentData = array(
+            'userID' => $data['userId'],
+            'amount' => $amount,
+            'cardId' => $newCardId[0]['cardId'],
+            'date' => date("Y-m-d")
+        );
+
+        $this->db->insert('Payment', $paymentData);
+
+        $newPromoId = intval($data['promoId']);
+
+        $newPromo = array(
+            'promoId' => $newPromoId,
+            'promoExpiration' => $expiryDate
+        );
+
+        $this->db->where('adId', $data['adId']);
+        $this->db->update('advertisement', $newPromo);
+    }
+
 }

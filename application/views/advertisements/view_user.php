@@ -14,6 +14,7 @@
                 <?php } ?>
                 Rank in <?php echo $ad['cat_name'] ?>/<?php echo $ad['sub_name'] ?> in <?php echo $ad['city'] ?>: <span class="label label-primary"><?php echo $ad['rank'] ?></span></br>
                 Description: <?php echo $ad['description'] ?></br>
+                Price: $<?php echo $ad['price'] ?></br>
                 Date: <?php echo $ad['date'] ?></br>
                 Address: <?php echo $ad['address'] ?></br>
                 Availability: <?php echo $ad['availability'] ?></br>
@@ -24,7 +25,10 @@
                 For Sale By: <?php echo $ad['forSaleBy'] ?></br>
                 <?php if ($isowner) { ?>
                 Status: <?php echo $ad['status'] ?></br>
+                Expiry:<?php echo $ad['expiryDate'] ?></br>
+                Promo Expiry: <?php echo $ad['promoExpiration'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $ad['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
+                <a href="<?php echo base_url();?>ClientPayment/purchasePromotion/<?php echo $ad['adId'] ?>"><button type="button" class="btn-warning">Add promotion package</button></a>
                 <a href="<?php echo base_url();?>advertisements/delete/<?php echo $ad['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
                 <?php } ?>
             </div>

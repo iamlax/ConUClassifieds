@@ -7,6 +7,11 @@ class Advertisements extends MY_Controller{
     }
 
     public function index(){
+        if ($this->session->userdata('locationId') == NULL) {
+            $this->session->set_flashdata('error', 'Please select a location before trying to select category.');
+            redirect('errors');
+        }
+        
         $location = $this->session->userdata('locationId');
         
         $data['ads'] = $this->advertisement_model->get_ads_by_category(FALSE, FALSE, $location);
@@ -49,7 +54,15 @@ class Advertisements extends MY_Controller{
     }
 
     public function view_user($id = NULL){
-        $ads = $this->advertisement_model->get_ads_by_user($id);
+        $data['user'] = $this->user_model->get_user($id);
+        
+        if ($this->session->userdata('userId') == $data['user']['userId']) {
+            $data['isowner'] = true;
+            $ads = $this->advertisement_model->get_user_ads($id);
+        } else {
+            $data['isowner'] = false;
+            $ads = $this->advertisement_model->get_ads_by_user($id);
+        }
 
         foreach($ads as &$ad) {
             $ads_by_sub = $this->advertisement_model->get_ads_by_category(FALSE, $ad['subCategoryId'], $this->session->userdata('locationId'));
@@ -58,16 +71,8 @@ class Advertisements extends MY_Controller{
 
         $data['advertisements'] = $ads;
 
-        $data['user'] = $this->user_model->get_user($id);
-
         if(empty($data['user'])){
             show_404();
-        }
-
-        if ($this->session->userdata('userId') == $data['user']['userId']) {
-            $data['isowner'] = true;
-        } else {
-            $data['isowner'] = false;
         }
 
         $this->load->view('components/header');
@@ -76,6 +81,19 @@ class Advertisements extends MY_Controller{
     }
 
     public function create(){
+        if ($this->session->userdata('locationId') == NULL) {
+            $this->session->set_flashdata('error', 'Please select a location before trying to create an ad.');
+            redirect('errors');
+        }
+
+        $user = $this->user_model->get_user($this->session->userdata('userId'));
+
+        // Makes sure user has a membership plan before creating an ad
+        if ($user['membPlanId'] == NULL) {
+            $this->session->set_flashdata('error', 'Purchase a membership plan to create an advertisement.');
+            redirect('errors');
+        }
+
         $data['title'] = 'Create Advertisements';
 
         $categories = $this->category_model->get_categories();
@@ -140,7 +158,7 @@ class Advertisements extends MY_Controller{
                     $images[]= $image['file_name'];
                 }
             }
-        
+
             $this->advertisement_model->create_advertisement($images);
 
             // Set message
@@ -151,6 +169,14 @@ class Advertisements extends MY_Controller{
     }
 
     public function edit($id){
+        $ad = $this->advertisement_model->get_ad($id);
+        $user = $this->user_model->get_user($this->session->userdata('userId'));
+
+        if ($ad['userId'] != $this->session->userdata('userId') && $user['userType'] != 'Admin') {
+            $this->session->set_flashdata('error', 'You do not have permission to edit this ad.');
+            redirect('errors');
+        }
+
         $data['title'] = 'Edit Advertisements';
 
         $categories = $this->category_model->get_categories();
@@ -172,6 +198,14 @@ class Advertisements extends MY_Controller{
     }
 
     public function update(){
+        $ad = $this->advertisement_model->get_ad($this->input->post('adId'));
+        $user = $this->user_model->get_user($this->session->userdata('userId'));
+
+        if ($ad['userId'] != $this->session->userdata('userId') && $user['userType'] != 'Admin') {
+            $this->session->set_flashdata('error', 'You do not have permission to edit this ad.');
+            redirect('errors');
+        }
+
         $this->form_validation->set_rules('category', 'Category', 'required');
         $this->form_validation->set_rules('title', 'Title', 'required|trim');
         $this->form_validation->set_rules('description', 'Description', 'required|trim');
@@ -230,6 +264,12 @@ class Advertisements extends MY_Controller{
 
     public function delete($id){
         $ad = $this->advertisement_model->get_ad($id);
+        $user = $this->user_model->get_user($this->session->userdata('userId'));
+
+        if ($ad['userId'] != $this->session->userdata('userId') && $user['userType'] != 'Admin') {
+            $this->session->set_flashdata('error', 'You do not have permission to delete this ad.');
+            redirect('errors');
+        }
         
         if ($ad['images']) {
             foreach(json_decode($ad['images']) as $image) {

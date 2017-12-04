@@ -8,6 +8,7 @@
             <?php } ?>
             Rank in <?php echo $advertisement['cat_name'] ?>/<?php echo $advertisement['sub_name'] ?> in <?php echo $advertisement['city'] ?>: <span class="label label-primary"><?php echo $advertisement['rank'] ?></span></br>
             Description: <?php echo $advertisement['description'] ?></br>
+            Price: $<?php echo $advertisement['price'] ?></br>
             Date: <?php echo $advertisement['date'] ?></br>
             Address: <?php echo $advertisement['address'] ?></br>
             Availability: <?php echo $advertisement['availability'] ?></br>
@@ -17,8 +18,11 @@
             Phone: <?php echo $advertisement['phone'] ?></br>
             For Sale By: <?php echo $advertisement['forSaleBy'] ?></br>
             <?php if ($isowner || $isadmin) { ?>
+                Expiry:<?php echo $advertisement['expiryDate'] ?></br>
+                Promo Expiry: <?php echo $advertisement['promoExpiration'] ?></br>
                 Status: <?php echo $advertisement['status'] ?></br>
                 <a href="<?php echo base_url();?>advertisements/edit/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Edit</button></a>
+                <a href="<?php echo base_url();?>ClientPayment/purchasePromotion/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-warning">Add promotion package</button></a>
                 <a href="<?php echo base_url();?>advertisements/delete/<?php echo $advertisement['adId'] ?>"><button type="button" class="btn-danger">Delete</button></a>
             <?php } ?>
         </div>

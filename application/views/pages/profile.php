@@ -11,7 +11,7 @@
             <div id="parentVerticalTab">
                 <ul class="resp-tabs-list hor_1">
                     <li>Info</li>
-                    <li>My ads</li>
+                    <!--<li>My ads</li>-->
                     <li>Logout</li>
                     <li>Purchase Membership</li>
                 </ul>
@@ -22,21 +22,21 @@
                         </div>
                         <br>
                         <div class="text-center" style="font-size: large">
-                            Name
-                            : <?php echo $this->session->userdata('firstName') . ' ' . $this->session->userdata('lastName'); ?>
+                            Name: <?php echo $this->session->userdata('firstName') . ' ' . $this->session->userdata('lastName'); ?>
                             <br>
                             Email: <?php echo $this->session->userdata('email'); ?> <br>
-                            My Plan: <?php echo $name ?>
+                            My Plan: <?php echo $name ?><br>
+                            User Type:  <?php echo $this->session->userdata('userType'); ?>
                         </div>
                     </div>
-                    <div>
+                    <!-- <div>
                         <div class="category">
                             <h3 class="tlt text-center">My ads </h3>
                         </div>
                         <div class="new_people">
                             <a href="<?php echo base_url() ?>advertisements/user/<?php echo $userId ?>">See my Ads</a>
                         </div>
-                    </div>
+                    </div> -->
                     <div>
                         <div class="category">
                             <h3 class="tlt text-center">Log Out</h3>
