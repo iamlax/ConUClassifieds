@@ -22,9 +22,13 @@ class Auth_model extends CI_Model {
         $this->db->where(array('email'=>$email));
         $result = $query= $this->db->get()->result_array();
 
-        if($result[0]['password'] === $password ){
-            unset($result[0]['password']);
-            return $result[0];
+        if(!empty($result)){
+            if($result[0]['password'] === $password ){
+                unset($result[0]['password']);
+                return $result[0];
+            }else{
+                return false;
+            }
         }else{
             return false;
         }
