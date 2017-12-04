@@ -132,6 +132,7 @@ class Advertisement_model extends CI_Model {
                 'email' => $this->input->post('email'),
                 'address' => $this->input->post('address'),
                 'availability' => $this->input->post('availability'),
+                'status' => $this->input->post('status'),
                 'storeId' => $storeId,
             );
         }
