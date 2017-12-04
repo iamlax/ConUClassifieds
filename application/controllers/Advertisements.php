@@ -258,14 +258,14 @@ class Advertisements extends MY_Controller{
         $this->form_validation->set_rules('rating', 'Rating', 'required');
 
         if($this->form_validation->run() === FALSE){
-            redirect('advertisements/'.$this->input->post('adId'), $data);
+            redirect('advertisements/'.$this->input->post('adId'));
         } else {
             $this->advertisement_model->update_advertisement($this->input->post('rating'));
 
             // Set message
             $this->session->set_flashdata('success', 'Rating has been updated');
 
-            redirect('advertisements/'.$this->input->post('adId'), $data);
+            redirect('advertisements/'.$this->input->post('adId'));
         }
     }
 
