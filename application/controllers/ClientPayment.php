@@ -12,7 +12,7 @@ class ClientPayment extends MY_Controller
     {
         return array('user_auth');
     }
-    
+
     public function purchaseMembership(){
 
         $this->load->view('components/header');
@@ -23,7 +23,7 @@ class ClientPayment extends MY_Controller
 
             $this->form_validation->set_rules('membPlanId', 'Memberplan ID', 'required');
             $this->form_validation->set_rules('cardType', 'Card Type', 'required');
-            $this->form_validation->set_rules('cardNumber', 'Card Number', 'required');
+            $this->form_validation->set_rules('cardNumber', 'Card Number', 'required|numeric|trim|min_length[10]|max_length[20]');
 
             if ($this->form_validation->run() == true) {
 
@@ -38,9 +38,11 @@ class ClientPayment extends MY_Controller
                 //$this->load->view('components/header');
                 redirect('viewProfile');
             } else {
-                $this->load->view('components/header');
-                $this->load->view('payments/membershipForm');
-                $this->load->view('components/footer');
+                //$this->load->view('components/header');
+                //$this->load->view('payments/membershipForm');
+                //$this->load->view('components/footer');
+                $this->session->set_flashdata('error', 'Wrong card number format');
+                redirect('purchaseMembership');
                 //If failed, go back to register page, verified by validation
             }
         }
@@ -58,7 +60,7 @@ class ClientPayment extends MY_Controller
 
             $this->form_validation->set_rules('promoId', 'Memberplan ID', 'required');
             $this->form_validation->set_rules('cardType', 'Card Type', 'required');
-            $this->form_validation->set_rules('cardNumber', 'Card Number', 'required');
+            $this->form_validation->set_rules('cardNumber', 'Card Number', 'required|numeric|trim|min_length[10]|max_length[20]');
 
             if ($this->form_validation->run() == true) {
 
@@ -74,9 +76,11 @@ class ClientPayment extends MY_Controller
                 //$this->load->view('components/header');
                 redirect('advertisements/user/'.$this->session->userdata('userId'));
             } else {
-                $this->load->view('components/header');
-                $this->load->view('payments/promotionPackageForm', $data);
-                $this->load->view('components/footer');
+                //$this->load->view('components/header');
+                //$this->load->view('payments/promotionPackageForm', $data);
+                //$this->load->view('components/footer');
+                $this->session->set_flashdata('error', 'Wrong card number format');
+                redirect('ClientPayment/purchasePromotion/'.$adId);
                 //If failed, go back to register page, verified by validation
             }
         }
