@@ -47,10 +47,15 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>Store Id</label>
-                <input type="text" name="storeId" placeholder="Store #">
+                <select name="storeId">
+                    <option disabled selected value>Select an Option</option>
+                    <?php foreach ($stores as $store) { ?>
+                        <option value="<?php echo $store['storeId'] ?>"><?php echo $store['storeId'] ?></option>
+                    <?php } ?>
+                </select>
                 <div class="clearfix"></div>
             <div class="upload-ad-photos">
-            <label>Images:</label>	
+            <label>Images <span>*</span>: </label>	
                 <div class="photos-upload-view">
                     <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="30000000" />
 

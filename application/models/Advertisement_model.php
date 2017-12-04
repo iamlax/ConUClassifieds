@@ -83,7 +83,7 @@ class Advertisement_model extends CI_Model {
     }
 
     public function create_advertisement($images){
-        if ($this->input->post('storeId') <= 0) {
+        if ($this->input->post('storeId') <= 0 || $this->input->post('availability') == 'Online') {
             $storeId = NULL;
         } else {
             $storeId = $this->input->post('storeId');
@@ -113,7 +113,7 @@ class Advertisement_model extends CI_Model {
     }
 
     public function update_advertisement($rating = FALSE){
-        if ($this->input->post('storeId').length <= 0) {
+        if ($this->input->post('storeId') <= 0 || $this->input->post('availability') == 'Online') {
             $storeId == NULL;
         } else {
             $storeId == $this->input->post('storeId');

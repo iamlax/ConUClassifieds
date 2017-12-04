@@ -45,7 +45,12 @@
                 </select>
                 <div class="clearfix"></div>
                 <label>Store Id</label>
-                <input type="text" name="storeId" value="<?php echo $advertisement['storeId']; ?>">
+                <select name="storeId" id="storeId">
+                    <option disabled selected value>Select an Option</option>
+                    <?php foreach ($stores as $store) { ?>
+                        <option value="<?php echo $store['storeId'] ?>"><?php echo $store['storeId'] ?></option>
+                    <?php } ?>
+                </select>
                 <div class="clearfix"></div>
                 <?php if(json_decode($advertisement['images'])[0]) { ?>
                     Images: </br>
@@ -57,6 +62,7 @@
                     $('#availability').val('<?php echo $advertisement['availability']; ?>');
                     $('#forSaleBy').val('<?php echo $advertisement['forSaleBy']; ?>');
                     $('#type').val('<?php echo $advertisement['type']; ?>');
+                    $('#storeId').val('<?php echo $advertisement['storeId']; ?>');
                 </script>
             <div class="upload-ad-photos">
                 <div class="personal-details">
