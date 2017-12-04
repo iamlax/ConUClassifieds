@@ -14,7 +14,7 @@ class Reports_model extends CI_Model
         $query = $this->db->query("SELECT Category.name, User.userId, User.firstName, User.lastName, COUNT(*) as Posts
             FROM User
             INNER JOIN Advertisement ON User.userId = Advertisement.userId
-            LEFT JOIN SubCategory ON Advertisement.SubCategoryId = Subcategory.subCategoryId
+            LEFT JOIN SubCategory ON Advertisement.SubCategoryId = SubCategory.subCategoryId
             LEFT JOIN Category ON SubCategory.categoryId = Category.categoryId
             WHERE Category.name = \"$category\"
             GROUP BY User.userId
@@ -37,7 +37,7 @@ class Reports_model extends CI_Model
 
         $query = $this->db->query("SELECT *
             FROM Advertisement
-            LEFT JOIN SubCategory ON Advertisement.subCategoryId = Subcategory.subCategoryid
+            LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
             LEFT JOIN Category ON SubCategory.categoryId = Category.categoryId
             WHERE Category.name = \"Buy and Sell\" 
             AND Advertisement.date >= CURDATE() - INTERVAL 10 DAY AND Advertisement.date <= CURDATE();
@@ -52,7 +52,7 @@ class Reports_model extends CI_Model
         $query = $this->db->query("SELECT User.*, Advertisement.title
             FROM User
             INNER JOIN Advertisement on User.userId = Advertisement.userId
-            LEFT JOIN SubCategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
+            LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
             LEFT JOIN Location ON Advertisement.locationId = Location.locationId
             WHERE SubCategory.name = 'Clothing' AND Location.province = 'Quebec' AND Advertisement.title = \"Winter Men\'s Jacket\";
             ");
@@ -67,7 +67,7 @@ class Reports_model extends CI_Model
             Advertisement.availability, Advertisement.type, SubCategory.name as SubCategory
             FROM Advertisement 
             LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
-            Left JOIN Category ON Subcategory.categoryId = Category.categoryId
+            Left JOIN Category ON SubCategory.categoryId = Category.categoryId
             WHERE Category.name = \"Rent\";
         ");
 
@@ -79,8 +79,8 @@ class Reports_model extends CI_Model
         $query = $this->db->query("SELECT Category.name as Category, Location.city, User.userId, User.firstName, User.lastName, AVG(Advertisement.rating) as avg_rating
             FROM User 
             INNER JOIN Advertisement on User.userId = Advertisement.userId
-            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
-            LEFT JOIN Category ON Subcategory.categoryId = Category.categoryId
+            LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
+            LEFT JOIN Category ON SubCategory.categoryId = Category.categoryId
             LEFT JOIN Location ON Advertisement.locationId = Location.locationId
             WHERE Category.name = \"$category\" AND Location.city =\"$city\"
             GROUP BY User.userId
@@ -90,8 +90,8 @@ class Reports_model extends CI_Model
             (SELECT AVG(Advertisement.rating) as avg_rating
             FROM User 
             INNER JOIN Advertisement on User.userId = Advertisement.userId
-            LEFT JOIN Subcategory ON Advertisement.subCategoryId = Subcategory.subCategoryId
-            LEFT JOIN Category ON Subcategory.categoryId = Category.categoryId
+            LEFT JOIN SubCategory ON Advertisement.subCategoryId = SubCategory.subCategoryId
+            LEFT JOIN Category ON SubCategory.categoryId = Category.categoryId
             LEFT JOIN Location ON Advertisement.locationId = Location.locationId
             WHERE Category.name = \"$category\" AND Location.city =\"$city\"
             GROUP BY User.userId) x);
