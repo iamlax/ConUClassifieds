@@ -82,7 +82,7 @@ class Clientpayment_model extends CI_Model
             'cardType' => $data['cardType']
         );
 
-        $this->db->insert('card', $cardData);
+        $this->db->insert('Card', $cardData);
 
         $this->db->select('cardId');
         $this->db->from('Card');
