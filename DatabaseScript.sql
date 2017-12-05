@@ -336,7 +336,7 @@ VALUES(1, "Clothing", 1),
 (10, "Car", 3),
 (11, "Apartements", 3),
 (12, "Wedding-Dresses", 3),
-(13, "Cars & Trucks", 4),
+(13, "Cars", 4),
 (14, "Trucks", 4),
 (15, "Boats", 4),
 (16, "MotorCycles", 4);
