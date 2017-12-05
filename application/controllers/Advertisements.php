@@ -64,8 +64,13 @@ class Advertisements extends MY_Controller{
         }
 
         foreach($ads as &$ad) {
-            $ads_by_sub = $this->advertisement_model->get_ads_by_category(FALSE, $ad['subCategoryId'], $this->session->userdata('locationId'));
-            $ad['rank'] = array_search($ad['adId'], array_column($ads_by_sub, 'adId')) + 1;
+            $ads_by_sub = $this->advertisement_model->get_ads_by_category(FALSE, $ad['subCategoryId'], $ad['locationId']);
+            $rank = array_search($ad['adId'], array_column($ads_by_sub, 'adId'));
+            if ($rank != FALSE) {
+                $ad['rank'] = $rank + 1;
+            } else {
+                $ad['rank'] = 'Expired';
+            }
         }
 
         $data['advertisements'] = $ads;
