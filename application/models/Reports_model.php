@@ -166,11 +166,12 @@ class Reports_model extends CI_Model
 
     public function deliveryCostForPastAndPresent7Days($userId){
 
-        $query = $this->db->query("SELECT R.date as Date, SUM(HOUR(TIMEDIFF(R.endTime, R.startTime))) as Hours, SUM(IF(Weekday(R.date) = 5 OR 6,15*HOUR(TIMEDIFF(R.endTime, R.startTime)),10*HOUR(TIMEDIFF(R.endTime, R.startTime)))) as Cost
+        $query = $this->db->query("SELECT R.date as Date, SUM(HOUR(TIMEDIFF(R.endTime, R.startTime))) as Hours, SUM(IF(Weekday(R.date) = 5 OR 6,15*HOUR(TIMEDIFF(R.endTime, R.startTime)),10*HOUR(TIMEDIFF(R.endTime, R.startTime)))) as Cost, IF(R.date<=CURDATE(), \"Paid\", \"To be Paid\") as Paid
             FROM Rents R
             INNER JOIN User U ON U.userId = R.userId
             WHERE R.date >= CURDATE() - INTERVAL 7 DAY AND R.date <= CURDATE() + INTERVAL 7 DAY AND U.userId=$userId
-            GROUP BY R.date;");
+            GROUP BY R.date;
+            ");
 
         return $query->result_array();
     }
