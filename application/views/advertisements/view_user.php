@@ -18,6 +18,7 @@
                 Date: <?php echo $ad['date'] ?></br>
                 Address: <?php echo $ad['address'] ?></br>
                 Availability: <?php echo $ad['availability'] ?></br>
+                Type: <?php echo $ad['type'] ?></br>
                 StoreId: <?php echo $ad['storeId']; ?></br>
                 Rating: <?php echo $ad['rating'] ?></br>
                 Email:<?php echo $ad['email'] ?></br>
